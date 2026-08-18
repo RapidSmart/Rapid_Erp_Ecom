@@ -1,21 +1,18 @@
+import { NavLink } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Moon } from 'lucide-react'
 import { cn } from '@/shared/utils/utils'
 import { primaryNavItems } from './nav-items.data'
 
 export interface SidebarProps {
-  activeItemId?: string
   collapsed?: boolean
   onToggleCollapse?: () => void
-  onNavigate?: (itemId: string) => void
   darkMode?: boolean
   onToggleDarkMode?: () => void
 }
 
 function Sidebar({
-  activeItemId = 'country',
   collapsed = false,
   onToggleCollapse,
-  onNavigate,
   darkMode = false,
   onToggleDarkMode,
 }: SidebarProps) {
@@ -47,28 +44,26 @@ function Sidebar({
         </button>
       </div>
 
-      <nav className="flex flex-1 flex-col gap-2.5 overflow-y-auto px-4 pb-4" aria-label="Primary">
+      <nav className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 pb-4" aria-label="Primary">
         {primaryNavItems.map((item) => {
-          const isActive = item.id === activeItemId
           const Icon = item.icon
           return (
-            <button
+            <NavLink
               key={item.id}
-              type="button"
-              onClick={() => onNavigate?.(item.id)}
-              aria-current={isActive ? 'page' : undefined}
+              to={item.href}
+              end={item.href === '/'}
               title={collapsed ? item.label : undefined}
-              className={cn(
-                'flex h-12 shrink-0 items-center gap-3 rounded-xl px-4 text-[15px] font-medium transition-colors',
-                collapsed && 'justify-center px-0',
-                isActive
-                  ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-sm'
-                  : 'text-sidebar-foreground/90 hover:bg-white/10'
-              )}
+              className={({ isActive }) =>
+                cn(
+                  'flex shrink-0 flex-col items-center gap-2 rounded-2xl border-2 border-transparent bg-white/10 py-4 text-[13px] font-medium text-sidebar-foreground/90 transition-colors hover:bg-white/15',
+                  collapsed ? 'px-0' : 'px-3',
+                  isActive && 'border-white bg-white/20 text-sidebar-foreground'
+                )
+              }
             >
               <Icon className="size-5 shrink-0" aria-hidden="true" />
               {!collapsed && <span className="truncate">{item.label}</span>}
-            </button>
+            </NavLink>
           )
         })}
       </nav>
