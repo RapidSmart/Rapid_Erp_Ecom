@@ -2,7 +2,7 @@
 
 > **This file is binding.** Any AI agent (Claude Code, Copilot, Cursor, etc.) working in this repository must read and follow these rules before writing, editing, or reviewing code. If a request conflicts with this document, follow this document and flag the conflict to the user instead of silently deviating.
 
-Stack: **React (Vite) + React Router / TanStack Router + TypeScript**, SPA, modular domain architecture. No `constants/` folders anywhere — static/config data lives in `config/`, `styles/`, module `i18n/`, or colocated with the file that uses it (see Section 4).
+Stack: **React (Vite) + React Router / TanStack Router + TypeScript**, **pnpm** as package manager, SPA, modular domain architecture. No `constants/` folders anywhere — static/config data lives in `config/`, `styles/`, module `i18n/`, or colocated with the file that uses it (see Section 4).
 
 ---
 
@@ -170,7 +170,7 @@ src/
 - Sanitize any `dangerouslySetInnerHTML` (DOMPurify) — relevant especially to Blogs/Support modules.
 - Runtime-validate all external input (Zod), regardless of TS types.
 - Prefer httpOnly cookies over `localStorage` for session tokens.
-- Automated dependency scanning (`npm audit`, Dependabot/Renovate) in CI.
+- Automated dependency scanning (`pnpm audit`, Dependabot/Renovate) in CI.
 
 **Error Handling**
 
