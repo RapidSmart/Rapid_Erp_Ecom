@@ -1,19 +1,6 @@
 import { cn } from '@/shared/utils'
-import { IconDuplicate, IconPrint } from './Icons'
-
-interface FormFooterProps {
-  filledCount: number
-  totalCount: number
-  filledText: string
-  duplicateText: string
-  printText: string
-  clearText: string
-  saveText: string
-  onDuplicate: () => void
-  onPrint: () => void
-  onClear: () => void
-  onSave: () => void
-}
+import type { FormFooterProps } from '../types/country.types'
+import { IconDuplicate, IconPrint } from '../icons'
 
 export function FormFooter({
   filledCount,

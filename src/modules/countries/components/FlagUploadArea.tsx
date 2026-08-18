@@ -1,19 +1,8 @@
-import { useEffect, useState, useRef } from 'react'
-import type { ChangeEvent, DragEvent } from 'react'
+import type { ChangeEvent } from 'react'
 import { cn } from '@/shared/utils'
-import type { FlagGalleryItem } from '../types/country.types'
-import { IconUpload } from './Icons'
-
-interface FlagUploadAreaProps {
-  flagFile: File | null
-  selectedFlag: string | null
-  flagGallery: readonly FlagGalleryItem[]
-  uploadText: string
-  onUpload: (file: File) => void
-  onClearFlag: () => void
-  onDragOver: (e: DragEvent<HTMLDivElement | HTMLButtonElement>) => void
-  onDrop: (e: DragEvent<HTMLDivElement | HTMLButtonElement>) => void
-}
+import type { FlagUploadAreaProps } from '../types/country.types'
+import { useFlagUploadArea } from '../hooks/useFlagUploadArea'
+import { IconUpload, IconClose } from '../icons'
 
 export function FlagUploadArea({
   flagFile,
@@ -25,26 +14,17 @@ export function FlagUploadArea({
   onDragOver,
   onDrop,
 }: FlagUploadAreaProps) {
-  const fileRef = useRef<HTMLInputElement>(null)
-  const [objectUrl, setObjectUrl] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (flagFile) {
-      const url = URL.createObjectURL(flagFile)
-      setObjectUrl(url)
-      return () => {
-        URL.revokeObjectURL(url)
-      }
-    }
-    setObjectUrl(null)
-  }, [flagFile])
-
-  const selectedGalleryItem = selectedFlag
-    ? flagGallery.find((item) => item.code === selectedFlag)
-    : null
-
-  const hasUploadedFile = Boolean(flagFile && objectUrl)
-  const hasSelectedGalleryFlag = Boolean(selectedFlag && selectedGalleryItem)
+  const {
+    fileRef,
+    objectUrl,
+    selectedGalleryItem,
+    hasUploadedFile,
+    hasSelectedGalleryFlag,
+  } = useFlagUploadArea({
+    flagFile,
+    selectedFlag,
+    flagGallery,
+  })
 
   return (
     <>
@@ -86,22 +66,7 @@ export function FlagUploadArea({
               aria-label="Remove uploaded flag"
               className="absolute -right-3.5 -top-3.5 flex size-[34px] items-center justify-center rounded-full bg-white text-slate-500 shadow-md transition-transform hover:bg-slate-50 hover:text-slate-700 active:scale-95"
             >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 15 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-[15px]"
-              >
-                <path
-                  d="M11.25 3.75L3.75 11.25M3.75 3.75L11.25 11.25"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <IconClose />
             </button>
           </div>
         ) : hasSelectedGalleryFlag ? (
@@ -133,22 +98,7 @@ export function FlagUploadArea({
               aria-label="Remove selected flag"
               className="flex size-[34px] shrink-0 items-center justify-center rounded-full bg-white text-slate-500 shadow-xs transition-transform hover:bg-slate-50 hover:text-slate-700 active:scale-95"
             >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 15 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-[15px]"
-              >
-                <path
-                  d="M11.25 3.75L3.75 11.25M3.75 3.75L11.25 11.25"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <IconClose />
             </button>
           </div>
         ) : (

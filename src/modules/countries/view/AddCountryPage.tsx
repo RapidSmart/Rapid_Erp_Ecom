@@ -1,67 +1,27 @@
-import { useTranslation } from '@/shared/hooks'
-import { useCountryForm } from '../hooks/useCountryForm'
-import { IconChevronLeft } from '../components/Icons'
-import { CountryForm } from '../components/CountryForm'
+import { useTranslation } from "@/shared/hooks";
+import { PageHeader } from "@/shared/components/layout/PageHeader";
+import { useCountryForm } from "../hooks/useCountryForm";
+import { CountryForm } from "../components/CountryForm";
 
 export function AddCountryPage() {
-  const { t } = useTranslation()
-  const form = useCountryForm()
+  const { t } = useTranslation();
+  const form = useCountryForm();
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
       <div className="mx-auto max-w-[1560px]">
-        {/* Back to list */}
-        <div className="mb-5">
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="inline-flex h-[40px] items-center gap-[10px] rounded-full border border-slate-200 bg-white px-4 text-[13.5px] font-semibold text-slate-600 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-          >
-            <IconChevronLeft />
-            {t('countries.add.backToList')}
-          </a>
-        </div>
-
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-3">
-          <ol className="flex items-center gap-1.5 text-[12.5px]">
-            <li>
-              <span className="font-medium text-slate-500">
-                {t('countries.add.breadcrumb.masterData')}
-              </span>
-            </li>
-            <li aria-hidden="true" className="text-slate-300">
-              /
-            </li>
-            <li>
-              <span className="font-medium text-slate-500">
-                {t('countries.add.breadcrumb.countries')}
-              </span>
-            </li>
-            <li aria-hidden="true" className="text-slate-300">
-              /
-            </li>
-            <li aria-current="page">
-              <span className="font-semibold text-slate-900">
-                {t('countries.add.breadcrumb.newCountry')}
-              </span>
-            </li>
-          </ol>
-        </nav>
-
-        {/* Heading */}
-        <div className="mb-6">
-          <h1 className="text-[23px] font-semibold tracking-tight text-slate-900">
-            {t('countries.add.title')}
-          </h1>
-          <p className="mt-1 text-[13.5px] text-slate-500">
-            {t('countries.add.description')}
-          </p>
-        </div>
-
-        {/* Form card */}
+        <PageHeader
+          backText={t("countries.add.backToList")}
+          breadcrumbItems={[
+            { label: t("countries.add.breadcrumb.masterData") },
+            { label: t("countries.add.breadcrumb.countries") },
+            { label: t("countries.add.breadcrumb.newCountry"), current: true },
+          ]}
+          title={t("countries.add.title")}
+          description={t("countries.add.description")}
+        />
         <CountryForm mode="add" form={form} />
       </div>
     </div>
-  )
+  );
 }

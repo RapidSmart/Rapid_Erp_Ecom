@@ -1,15 +1,6 @@
-import type { ChangeEvent, ReactNode } from 'react'
+import type { ChangeEvent } from 'react'
 import { cn } from '@/shared/utils'
-
-interface PillInputProps {
-  id: string
-  placeholder: string
-  value: string
-  type?: 'text' | 'tel'
-  rightIcon?: ReactNode
-  required?: boolean
-  onChange: (value: string) => void
-}
+import type { PillInputProps } from '../types/country.types'
 
 export function PillInput({
   id,
@@ -19,6 +10,8 @@ export function PillInput({
   rightIcon,
   required,
   onChange,
+  className,
+  ...props
 }: PillInputProps) {
   return (
     <div className="relative h-[54px]">
@@ -38,7 +31,9 @@ export function PillInput({
           'px-[22px] text-[15px] text-slate-900 placeholder:text-slate-400',
           'outline-none transition-colors focus:border-blue-400',
           rightIcon && 'pr-12',
+          className,
         )}
+        {...props}
       />
       {rightIcon && (
         <div className="absolute right-[14px] top-1/2 -translate-y-1/2 flex items-center justify-center">

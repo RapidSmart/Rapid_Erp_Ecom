@@ -1,6 +1,10 @@
 import { useState, useCallback, useEffect } from 'react'
 import type { DragEvent } from 'react'
-import type { CountryFormValues, UseCountryFormReturn } from '../types/country.types'
+import type {
+  CountryFormValues,
+  UseCountryFormOptions,
+  UseCountryFormReturn,
+} from '../types/country.types'
 import {
   FLAG_GALLERY,
   CONTINENT_OPTIONS,
@@ -22,12 +26,6 @@ const INITIAL_VALUES: CountryFormValues = {
   flagFile: null,
   selectedFlag: null,
   internalNote: '',
-}
-
-export interface UseCountryFormOptions {
-  id?: string
-  initialValues?: Partial<CountryFormValues>
-  isEditMode?: boolean
 }
 
 export function useCountryForm(options?: UseCountryFormOptions): UseCountryFormReturn {

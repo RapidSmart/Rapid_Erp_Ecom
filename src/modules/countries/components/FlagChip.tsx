@@ -1,11 +1,5 @@
 import { cn } from '@/shared/utils'
-import type { FlagGalleryItem } from '../types/country.types'
-
-interface FlagChipProps {
-  item: FlagGalleryItem
-  selected: boolean
-  onClick: () => void
-}
+import type { FlagChipProps } from '../types/country.types'
 
 export function FlagChip({ item, selected, onClick }: FlagChipProps) {
   return (

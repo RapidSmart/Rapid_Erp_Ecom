@@ -1,17 +1,7 @@
-import type { ChangeEvent, ReactNode } from 'react'
+import type { ChangeEvent } from 'react'
 import { cn } from '@/shared/utils'
-import type { SelectOption } from '../types/country.types'
-import { IconChevronDown } from './Icons'
-
-interface PillSelectProps {
-  id: string
-  placeholder: string
-  value: string
-  options: readonly SelectOption[]
-  required?: boolean
-  onChange: (value: string) => void
-  prefix?: ReactNode
-}
+import type { PillSelectProps } from '../types/country.types'
+import { IconChevronDown } from '../icons'
 
 export function PillSelect({
   id,
