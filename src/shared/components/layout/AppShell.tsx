@@ -3,19 +3,17 @@ import { Sidebar } from './Sidebar'
 import { Navbar, type NavbarUser } from './Navbar'
 
 export interface AppShellProps {
-  activeItemId?: string
   user: NavbarUser
-  children: ReactNode
+  children?: ReactNode
 }
 
-function AppShell({ activeItemId, user, children }: AppShellProps) {
+function AppShell({ user, children }: AppShellProps) {
   const [collapsed, setCollapsed] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
 
   return (
     <div className="flex h-svh w-full overflow-hidden bg-background">
       <Sidebar
-        activeItemId={activeItemId}
         collapsed={collapsed}
         onToggleCollapse={() => setCollapsed((value) => !value)}
         darkMode={darkMode}

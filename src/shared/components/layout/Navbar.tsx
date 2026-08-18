@@ -25,30 +25,30 @@ function Navbar({ searchPlaceholder = 'Search master data, users, documents...',
   return (
     <header
       data-slot="navbar"
-      className="flex h-21 shrink-0 items-center gap-6 border-b border-border bg-background px-8"
+      className="flex h-14 shrink-0 items-center gap-4 border-b border-border bg-background px-6"
     >
-      <div className="flex h-11 w-full max-w-105 flex-1 items-center gap-2.5 rounded-xl border border-border bg-background px-3.5">
-        <Search className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+      <div className="flex h-9 w-full max-w-80 flex-1 items-center gap-2 rounded-lg border border-border bg-background px-3">
+        <Search className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
         <input
           type="text"
           placeholder={searchPlaceholder}
           onChange={(event) => onSearch?.(event.target.value)}
-          className="h-full flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+          className="h-full flex-1 bg-transparent text-xs text-foreground outline-none placeholder:text-muted-foreground"
         />
-        <kbd className="shrink-0 rounded-md border border-border px-1.5 py-0.5 text-xs font-medium text-muted-foreground">
+        <kbd className="shrink-0 rounded border border-border px-1 py-0.5 text-[10px] font-medium text-muted-foreground">
           ⌘K
         </kbd>
       </div>
 
-      <div className="ml-auto flex items-center gap-2.5">
+      <div className="ml-auto flex items-center gap-1.5">
         {actionIcons.map(({ id, icon: Icon, label }) => (
           <button
             key={id}
             type="button"
             aria-label={label}
-            className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
+            className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
           >
-            <Icon className="size-4.5" aria-hidden="true" />
+            <Icon className="size-3.5" aria-hidden="true" />
           </button>
         ))}
       </div>
@@ -56,21 +56,21 @@ function Navbar({ searchPlaceholder = 'Search master data, users, documents...',
       <button
         type="button"
         className={cn(
-          'flex shrink-0 items-center gap-2.5 rounded-xl py-1 pl-1 pr-2 text-left transition-colors hover:bg-muted'
+          'flex shrink-0 items-center gap-2 rounded-lg py-1 pl-1 pr-1.5 text-left transition-colors hover:bg-muted'
         )}
       >
-        <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted">
+        <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted">
           {user.avatarUrl ? (
             <img
               src={user.avatarUrl}
               alt=""
-              width={40}
-              height={40}
+              width={32}
+              height={32}
               loading="lazy"
               className="size-full object-cover"
             />
           ) : (
-            <span className="text-sm font-semibold text-muted-foreground">
+            <span className="text-xs font-semibold text-muted-foreground">
               {user.name
                 .split(' ')
                 .map((part) => part[0])
@@ -80,10 +80,10 @@ function Navbar({ searchPlaceholder = 'Search master data, users, documents...',
           )}
         </span>
         <span className="flex flex-col leading-tight">
-          <span className="text-sm font-semibold text-foreground">{user.name}</span>
-          <span className="text-xs text-muted-foreground">{user.role}</span>
+          <span className="text-xs font-semibold text-foreground">{user.name}</span>
+          <span className="text-[11px] text-muted-foreground">{user.role}</span>
         </span>
-        <ChevronDown className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+        <ChevronDown className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
       </button>
     </header>
   )
