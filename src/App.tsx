@@ -1,6 +1,7 @@
 import { Plus } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { Button } from '@/shared/components/ui/button'
+import { AppShell } from '@/shared/components/layout'
 import { increment } from '@/store/slices/counterSlice'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -12,7 +13,10 @@ function App() {
   const dispatch = useAppDispatch()
 
   return (
-    <>
+    <AppShell
+      activeItemId="country"
+      user={{ name: 'Aarav Mehta', role: 'System administrator' }}
+    >
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -120,7 +124,7 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
-    </>
+    </AppShell>
   )
 }
 

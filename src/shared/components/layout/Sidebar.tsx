@@ -23,13 +23,13 @@ function Sidebar({
     <aside
       data-slot="sidebar"
       className={cn(
-        'flex h-svh shrink-0 flex-col bg-[#3461FD] text-white transition-[width] duration-200',
-        collapsed ? 'w-[84px]' : 'w-[248px]'
+        'flex h-svh shrink-0 flex-col bg-sidebar text-sidebar-foreground transition-[width] duration-200',
+        collapsed ? 'w-21' : 'w-62'
       )}
     >
-      <div className="flex h-[84px] shrink-0 items-center justify-between px-6">
+      <div className="flex h-21 shrink-0 items-center justify-between px-6">
         {!collapsed && (
-          <span className="text-[22px] font-extrabold tracking-wide text-white">
+          <span className="text-xl font-extrabold tracking-wide text-sidebar-foreground">
             RAPID
           </span>
         )}
@@ -37,7 +37,7 @@ function Sidebar({
           type="button"
           onClick={onToggleCollapse}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          className="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25"
+          className="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/15 text-sidebar-foreground transition-colors hover:bg-white/25"
         >
           {collapsed ? (
             <ChevronRight className="size-4" aria-hidden="true" />
@@ -62,8 +62,8 @@ function Sidebar({
                 'flex h-12 shrink-0 items-center gap-3 rounded-xl px-4 text-[15px] font-medium transition-colors',
                 collapsed && 'justify-center px-0',
                 isActive
-                  ? 'bg-white text-[#3461FD] shadow-sm'
-                  : 'text-white/90 hover:bg-white/10'
+                  ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-sm'
+                  : 'text-sidebar-foreground/90 hover:bg-white/10'
               )}
             >
               <Icon className="size-5 shrink-0" aria-hidden="true" />
@@ -76,7 +76,7 @@ function Sidebar({
       <div className="shrink-0 border-t border-white/15 px-4 py-4">
         <div
           className={cn(
-            'flex h-12 items-center gap-3 rounded-xl px-4 text-[15px] font-medium text-white/90',
+            'flex h-12 items-center gap-3 rounded-xl px-4 text-[15px] font-medium text-sidebar-foreground/90',
             collapsed && 'justify-center px-0'
           )}
         >
@@ -98,7 +98,7 @@ function Sidebar({
                 <span
                   className={cn(
                     'absolute top-0.5 size-4 rounded-full transition-transform',
-                    darkMode ? 'translate-x-[18px] bg-[#3461FD]' : 'translate-x-0.5 bg-white'
+                    darkMode ? 'translate-x-4.5 bg-sidebar' : 'translate-x-0.5 bg-white'
                   )}
                 />
               </button>
