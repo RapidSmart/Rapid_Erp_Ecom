@@ -54,8 +54,8 @@ export default function CheckEmail() {
           </span>.
         </p>
 
-        <div className="w-full space-y-3">
-          <Link to="/auth/set-new-password" className="w-full">
+        <div className="w-full flex flex-col gap-3">
+          <Link to="/auth/set-new-password" className="block w-full">
             <Button 
               className="w-full bg-primary hover:bg-primary/90 text-white h-[52px] rounded-full text-[15px] font-semibold transition-colors cursor-pointer"
             >
