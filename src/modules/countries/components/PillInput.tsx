@@ -41,7 +41,7 @@ export function PillInput({
         )}
       />
       {rightIcon && (
-        <div className="pointer-events-none absolute right-[18px] top-1/2 -translate-y-1/2">
+        <div className="absolute right-[14px] top-1/2 -translate-y-1/2 flex items-center justify-center">
           {rightIcon}
         </div>
       )}

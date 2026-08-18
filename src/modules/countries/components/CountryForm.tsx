@@ -1,13 +1,14 @@
 import type { DragEvent, ChangeEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
 import type { UseCountryFormReturn } from '../types/country.types'
-import { IconCalendar, IconTranslate } from './Icons'
+import { IconCalendar } from './Icons'
 import { SectionHeader } from './SectionHeader'
 import { PillInput } from './PillInput'
 import { PillSelect } from './PillSelect'
 import { FlagUploadArea } from './FlagUploadArea'
 import { FlagChip } from './FlagChip'
 import { FormFooter } from './FormFooter'
+import { LanguageDropdown } from './LanguageDropdown'
 
 interface CountryFormProps {
   mode: 'add' | 'edit'
@@ -78,7 +79,14 @@ export function CountryForm({ mode, form }: CountryFormProps) {
               placeholder={t(`${prefix}.fields.countryName`)}
               value={values.countryName}
               onChange={(v) => handleFieldChange('countryName', v)}
-              rightIcon={<IconTranslate />}
+              rightIcon={
+                <LanguageDropdown
+                  currentLanguage="en"
+                  onSelectLanguage={(lang) => {
+                    console.log('Selected translation language:', lang)
+                  }}
+                />
+              }
               required
             />
             <PillInput
@@ -151,10 +159,16 @@ export function CountryForm({ mode, form }: CountryFormProps) {
 
           <FlagUploadArea
             flagFile={values.flagFile}
+            selectedFlag={values.selectedFlag}
+            flagGallery={flagGallery}
             uploadText={t(`${prefix}.fields.uploadFlag`)}
             onUpload={handleFlagUpload}
+            onClearFlag={() => {
+              handleFieldChange('flagFile', null)
+              handleFieldChange('selectedFlag', null)
+            }}
             onDragOver={
-              handleDragOver as (e: DragEvent<HTMLButtonElement>) => void
+              handleDragOver as (e: DragEvent<HTMLDivElement | HTMLButtonElement>) => void
             }
             onDrop={(e) =>
               handleDrop(e as unknown as DragEvent<HTMLElement>)
