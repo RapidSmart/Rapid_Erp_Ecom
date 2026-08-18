@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Suspense } from 'react'
 import App from '@/App'
-import { SignIn, SignUp } from '@/modules/auth'
+import { SignIn, VerifyEmail } from '@/modules/auth'
 
 export const router = createBrowserRouter([
   {
@@ -17,10 +17,10 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/auth/signup',
+    path: '/auth/verify-email',
     element: (
       <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
-        <SignUp />
+        <VerifyEmail />
       </Suspense>
     ),
   },
