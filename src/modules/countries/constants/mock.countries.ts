@@ -116,3 +116,16 @@ export const REQUIRED_FIELDS: readonly (keyof CountryFormValues)[] = [
   'continent',
   'currency',
 ] as const
+
+export const MOCK_EDIT_COUNTRY: CountryFormValues = {
+  isoCode: 'US',
+  countryName: 'United States',
+  diallingCode: '+1',
+  continent: 'north_america',
+  currency: 'usd',
+  status: 'active',
+  defaultCountry: 'yes',
+  flagFile: null,
+  selectedFlag: 'US',
+  internalNote: 'Primary operation market in North America.',
+}

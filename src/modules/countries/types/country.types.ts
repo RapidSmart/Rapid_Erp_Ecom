@@ -6,7 +6,7 @@ export interface CountryFormValues {
   diallingCode: string
   continent: string
   currency: string
-  status: string
+  status: 'active' | 'inactive'
   defaultCountry: string
   flagFile: File | null
   selectedFlag: string | null
@@ -25,6 +25,7 @@ export interface FlagGalleryItem {
 
 export interface UseCountryFormReturn {
   values: CountryFormValues
+  isLoading?: boolean
   filledRequiredCount: number
   totalRequiredCount: number
   flagGallery: readonly FlagGalleryItem[]

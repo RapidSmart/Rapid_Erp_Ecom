@@ -7,5 +7,6 @@ export const API_ROUTES = {
     list: '/api/v1/countries',
     create: '/api/v1/countries',
     detail: (id: string) => `/api/v1/countries/${id}`,
+    update: (id: string) => `/api/v1/countries/${id}`,
   },
 } as const

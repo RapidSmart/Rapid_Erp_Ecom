@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import type { DragEvent } from 'react'
 import type { CountryFormValues, UseCountryFormReturn } from '../types/country.types'
 import {
@@ -24,8 +24,41 @@ const INITIAL_VALUES: CountryFormValues = {
   internalNote: '',
 }
 
-export function useCountryForm(): UseCountryFormReturn {
-  const [values, setValues] = useState<CountryFormValues>(INITIAL_VALUES)
+export interface UseCountryFormOptions {
+  id?: string
+  initialValues?: Partial<CountryFormValues>
+  isEditMode?: boolean
+}
+
+export function useCountryForm(options?: UseCountryFormOptions): UseCountryFormReturn {
+  const [values, setValues] = useState<CountryFormValues>(() => ({
+    ...INITIAL_VALUES,
+    ...options?.initialValues,
+  }))
+
+  const [isLoading, setIsLoading] = useState<boolean>(Boolean(options?.isEditMode && options?.id))
+
+  useEffect(() => {
+    if (options?.isEditMode && options?.id) {
+      setIsLoading(true)
+      countryService
+        .getCountryById(options.id)
+        .then((fetchedData) => {
+          setValues((prev) => ({
+            ...prev,
+            ...fetchedData,
+          }))
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+    } else if (options?.initialValues) {
+      setValues((prev) => ({
+        ...prev,
+        ...options.initialValues,
+      }))
+    }
+  }, [options?.id, options?.isEditMode, options?.initialValues])
 
   const filledRequiredCount = REQUIRED_FIELDS.filter((field) => {
     const value = values[field]
@@ -68,28 +101,42 @@ export function useCountryForm(): UseCountryFormReturn {
   )
 
   const handleClear = useCallback(() => {
-    setValues(INITIAL_VALUES)
-  }, [])
+    setValues(options?.initialValues ? { ...INITIAL_VALUES, ...options.initialValues } : INITIAL_VALUES)
+  }, [options?.initialValues])
 
   const handleSave = useCallback(() => {
-    // Send form data to service layer
-    countryService
-      .createCountry({
-        isoCode: values.isoCode,
-        countryName: values.countryName,
-        diallingCode: values.diallingCode,
-        continent: values.continent,
-        currency: values.currency,
-        status: values.status === 'inactive' ? 'inactive' : 'active',
-        defaultCountry: values.defaultCountry,
-        selectedFlag: values.selectedFlag,
-        internalNote: values.internalNote,
+    const payload: {
+      isoCode: string
+      countryName: string
+      diallingCode: string
+      continent: string
+      currency: string
+      status: 'active' | 'inactive'
+      defaultCountry: string
+      selectedFlag: string | null
+      internalNote: string
+    } = {
+      isoCode: values.isoCode,
+      countryName: values.countryName,
+      diallingCode: values.diallingCode,
+      continent: values.continent,
+      currency: values.currency,
+      status: values.status === 'inactive' ? 'inactive' : 'active',
+      defaultCountry: values.defaultCountry,
+      selectedFlag: values.selectedFlag,
+      internalNote: values.internalNote,
+    }
+
+    if (options?.isEditMode && options?.id) {
+      countryService.updateCountry(options.id, payload).catch((err: unknown) => {
+        console.error('Failed to update country', err)
       })
-      .catch((err: unknown) => {
-        // Handled at boundary or logger
+    } else {
+      countryService.createCountry(payload).catch((err: unknown) => {
         console.error('Failed to create country', err)
       })
-  }, [values])
+    }
+  }, [options?.id, options?.isEditMode, values])
 
   const handleDuplicate = useCallback(() => {
     void Promise.resolve(values)
@@ -101,6 +148,7 @@ export function useCountryForm(): UseCountryFormReturn {
 
   return {
     values,
+    isLoading,
     filledRequiredCount,
     totalRequiredCount: REQUIRED_FIELDS.length,
     flagGallery: FLAG_GALLERY,

@@ -6,6 +6,9 @@ import { SignIn, SignUp } from "@/modules/auth";
 const AddCountryPage = lazy(() =>
   import("@/modules/countries").then((m) => ({ default: m.AddCountryPage })),
 );
+const EditCountryPage = lazy(() =>
+  import("@/modules/countries").then((m) => ({ default: m.EditCountryPage })),
+);
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +54,20 @@ export const router = createBrowserRouter([
         }
       >
         <AddCountryPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/countries/:id/edit",
+    element: (
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <EditCountryPage />
       </Suspense>
     ),
   },
