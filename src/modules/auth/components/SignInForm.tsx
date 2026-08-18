@@ -32,7 +32,7 @@ export function SignInForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-2">
-        <label htmlFor="email" className="block text-[14px] font-medium !text-[#334155]">
+        <label htmlFor="email" className="block text-[14px] font-medium text-[#334155]">
           Work email
         </label>
         <div className="relative">
@@ -41,7 +41,7 @@ export function SignInForm() {
             id="email"
             type="email"
             placeholder="you@rapid.co.nz"
-            className="pl-10 h-12 rounded-full border-gray-200 bg-white !text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 h-12 rounded-full border-gray-200 bg-white text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
             {...register('email')}
           />
         </div>
@@ -54,13 +54,13 @@ export function SignInForm() {
         <div className="flex items-center justify-between">
           <label
             htmlFor="password"
-            className="block text-[14px] font-medium !text-[#334155]"
+            className="block text-[14px] font-medium text-[#334155]"
           >
             Password
           </label>
           <a
             href="#"
-            className="text-[14px] font-medium !text-primary hover:underline"
+            className="text-[14px] font-medium text-primary hover:underline"
           >
             Forgot password?
           </a>
@@ -71,7 +71,7 @@ export function SignInForm() {
             id="password"
             type={showPassword ? 'text' : 'password'}
             placeholder="Enter your password"
-            className="pl-10 pr-10 h-12 rounded-full border-gray-200 bg-white !text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 pr-10 h-12 rounded-full border-gray-200 bg-white text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
             {...register('password')}
           />
           <button
@@ -101,7 +101,7 @@ export function SignInForm() {
         />
         <label
           htmlFor="keepSignedIn"
-          className="text-[14px] font-medium !text-[#64748B]"
+          className="text-[14px] font-medium text-[#64748B]"
         >
           Keep me signed in on this device for 30 days.
         </label>
