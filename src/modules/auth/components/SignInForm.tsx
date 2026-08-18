@@ -30,18 +30,18 @@ export function SignInForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
-      <div className="space-y-3">
-        <label htmlFor="email" className="block text-[13px] font-semibold !text-[#334155]">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="space-y-2">
+        <label htmlFor="email" className="block text-[14px] font-medium !text-[#334155]">
           Work email
         </label>
         <div className="relative">
-          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
             id="email"
             type="email"
             placeholder="you@rapid.co.nz"
-            className="pl-11 h-12 rounded-full border-gray-200 bg-white !text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 h-12 rounded-full border-gray-200 bg-white !text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
             {...register('email')}
           />
         </div>
@@ -50,34 +50,34 @@ export function SignInForm() {
         )}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label
             htmlFor="password"
-            className="block text-[13px] font-semibold !text-[#334155]"
+            className="block text-[14px] font-medium !text-[#334155]"
           >
             Password
           </label>
           <a
             href="#"
-            className="text-[13px] font-semibold !text-primary hover:underline"
+            className="text-[14px] font-medium !text-primary hover:underline"
           >
             Forgot password?
           </a>
         </div>
         <div className="relative">
-          <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
             placeholder="Enter your password"
-            className="pl-11 pr-11 h-12 rounded-full border-gray-200 bg-white !text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 pr-10 h-12 rounded-full border-gray-200 bg-white !text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
             {...register('password')}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
             aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             {showPassword ? (
@@ -101,17 +101,17 @@ export function SignInForm() {
         />
         <label
           htmlFor="keepSignedIn"
-          className="text-[13px] font-medium !text-[#64748B]"
+          className="text-[14px] font-medium !text-[#64748B]"
         >
           Keep me signed in on this device for 30 days.
         </label>
       </div>
 
-      <div className="pt-3">
+      <div className="pt-2">
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-12 rounded-full text-[14px] font-semibold shadow-sm hover:shadow transition-shadow"
+          className="w-full h-12 rounded-full text-[15px] font-semibold shadow-sm hover:shadow transition-shadow"
         >
           Sign in
           <ArrowRight className="ml-1.5 h-4 w-4" />
