@@ -55,12 +55,14 @@ export default function CheckEmail() {
         </p>
 
         <div className="w-full space-y-3">
-          <Button 
-            className="w-full bg-primary hover:bg-primary/90 text-white h-[52px] rounded-full text-[15px] font-semibold transition-colors cursor-pointer"
-          >
-            I've opened the link
-            <ArrowRight className="ml-1.5 h-4 w-4" />
-          </Button>
+          <Link to="/auth/set-new-password" className="w-full">
+            <Button 
+              className="w-full bg-primary hover:bg-primary/90 text-white h-[52px] rounded-full text-[15px] font-semibold transition-colors cursor-pointer"
+            >
+              I've opened the link
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
 
           <Link 
             to="/auth/signin" 

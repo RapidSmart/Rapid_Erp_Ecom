@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Suspense } from 'react'
 import App from '@/App'
-import { SignIn, VerifyEmail, AccountVerified, ForgotPassword, CheckEmail } from '@/modules/auth'
+import { SignIn, VerifyEmail, AccountVerified, ForgotPassword, CheckEmail, SetNewPassword } from '@/modules/auth'
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +45,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
         <CheckEmail />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/auth/set-new-password',
+    element: (
+      <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+        <SetNewPassword />
       </Suspense>
     ),
   },
