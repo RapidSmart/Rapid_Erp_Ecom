@@ -122,3 +122,15 @@ export interface PillSelectProps {
   onChange: (value: string) => void
   prefix?: ReactNode
 }
+
+export interface LanguageTranslationValues {
+  arabic: string
+  hindi: string
+  urdu: string
+  bangla: string
+}
+
+export interface LanguageDropdownProps {
+  initialValues?: Partial<LanguageTranslationValues>
+  onSave?: (translations: LanguageTranslationValues) => void
+}
