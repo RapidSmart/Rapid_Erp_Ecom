@@ -48,7 +48,7 @@ export function SignInForm() {
             id="email"
             type="email"
             placeholder="you@rapid.co.nz"
-            className="pl-10 h-12 rounded-full border-gray-200 bg-white text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 h-12 rounded-full border-transparent bg-[#E1E7F0] text-gray-900 text-[14px] focus-visible:ring-1 focus-visible:ring-primary"
             {...register("email")}
           />
         </div>
@@ -78,7 +78,7 @@ export function SignInForm() {
             id="password"
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
-            className="pl-10 pr-10 h-12 rounded-full border-gray-200 bg-white text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 pr-10 h-12 rounded-full border-transparent bg-[#E1E7F0] text-gray-900 text-[14px] focus-visible:ring-1 focus-visible:ring-primary"
             {...register("password")}
           />
           <button

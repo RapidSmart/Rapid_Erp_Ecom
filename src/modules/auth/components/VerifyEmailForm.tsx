@@ -20,7 +20,7 @@ export function VerifyEmailForm() {
     navigate('/auth/verified')
   }
 
-  const slotClassName = "w-12 h-12 sm:w-[60px] sm:h-[60px] text-xl sm:text-2xl font-bold bg-[#F8FAFC] !border !border-gray-200 !rounded-full cursor-pointer"
+  const slotClassName = "w-12 h-12 sm:w-[60px] sm:h-[60px] text-xl sm:text-2xl font-bold bg-[#E1E7F0] !border !border-transparent !rounded-full cursor-pointer focus:ring-1 focus:ring-primary"
 
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col items-center space-y-6">

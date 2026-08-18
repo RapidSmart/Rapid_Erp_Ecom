@@ -34,7 +34,7 @@ export function ForgotPasswordForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@rapid.co.nz"
-            className="pl-10 h-12 rounded-full border-gray-200 bg-white text-gray-900 text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-primary"
+            className="pl-10 h-12 rounded-full border-transparent bg-[#E1E7F0] text-gray-900 text-[14px] focus-visible:ring-1 focus-visible:ring-primary"
             required
           />
         </div>
