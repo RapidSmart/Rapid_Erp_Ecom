@@ -23,6 +23,7 @@ Stack: **React (Vite) + React Router / TanStack Router + TypeScript**, **pnpm** 
 
   | Layer         | Responsibility                | Must NOT do                                        |
   | ------------- | ------------------------------ | --------------------------------------------------- |
+  | `view/`       | Route-level page components    | Complex UI components (delegate to components/)      |
   | `components/` | Render UI from props/state     | Fetch data, own business rules, contain mock data    |
   | `hooks/`      | Stateful logic & side effects  | Render JSX                                           |
   | `services/`   | Talk to external APIs          | Contain UI logic                                     |
@@ -44,7 +45,7 @@ src/
 ├── router/                       # routes.tsx, guards/, index.ts — routing config only
 ├── modules/
 │   ├── auth/
-│   │   ├── components/ hooks/ services/ types/ validation/ store/ i18n/ __tests__/
+│   │   ├── view/ components/ hooks/ services/ types/ validation/ store/ i18n/ __tests__/
 │   │   └── index.ts               # the ONLY public import surface for this module
 │   ├── account/ product/ blogs/ support/ ...
 ├── shared/                        # promoted, cross-module code ONLY
