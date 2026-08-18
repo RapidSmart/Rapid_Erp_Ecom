@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import type { SignInFormValues } from "../types/auth.types";
 import { signInSchema } from "../validation/auth.schema";
 
@@ -65,12 +65,12 @@ export function SignInForm() {
           >
             Password
           </label>
-          <a
-            href="#"
+          <Link
+            to="/auth/forgot-password"
             className="text-[14px] font-medium text-primary hover:underline"
           >
             Forgot password?
-          </a>
+          </Link>
         </div>
         <div className="relative">
           <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />

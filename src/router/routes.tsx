@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Suspense } from 'react'
 import App from '@/App'
-import { SignIn, VerifyEmail, AccountVerified } from '@/modules/auth'
+import { SignIn, VerifyEmail, AccountVerified, ForgotPassword } from '@/modules/auth'
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +29,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
         <AccountVerified />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/auth/forgot-password',
+    element: (
+      <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+        <ForgotPassword />
       </Suspense>
     ),
   },
