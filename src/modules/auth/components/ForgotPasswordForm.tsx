@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Mail, ArrowRight } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
@@ -6,6 +7,7 @@ import { Input } from '@/shared/components/ui/input'
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -14,7 +16,7 @@ export function ForgotPasswordForm() {
     console.log('Forgot password requested for:', email)
     await new Promise((resolve) => setTimeout(resolve, 1000))
     setIsSubmitting(false)
-    // Navigate or show success state
+    navigate('/auth/check-email')
   }
 
   return (
