@@ -21,12 +21,13 @@ Stack: **React (Vite) + React Router / TanStack Router + TypeScript**, **pnpm** 
 - **YAGNI** — do not build for hypothetical features or hypothetical future modules. This applies to scaffolding new `modules/<name>/` too: don't create one without a committed requirement.
 - **Separation of Concerns** — inside every module:
 
-  | Layer         | Responsibility                | Must NOT do                                        |
-  | ------------- | ------------------------------ | --------------------------------------------------- |
-  | `components/` | Render UI from props/state     | Fetch data, own business rules, contain mock data    |
-  | `hooks/`      | Stateful logic & side effects  | Render JSX                                           |
-  | `services/`   | Talk to external APIs          | Contain UI logic                                     |
-  | `utils/`      | Pure transformations           | Cause side effects, know about React                 |
+  | Layer         | Responsibility                | Must NOT do                                       |
+  | ------------- | ----------------------------- | ------------------------------------------------- |
+  | `view/`       | Route-level page components   | Complex UI components (delegate to components/)   |
+  | `components/` | Render UI from props/state    | Fetch data, own business rules, contain mock data |
+  | `hooks/`      | Stateful logic & side effects | Render JSX                                        |
+  | `services/`   | Talk to external APIs         | Contain UI logic                                  |
+  | `utils/`      | Pure transformations          | Cause side effects, know about React              |
 
 - **SOLID**:
   - SRP — a component that fetches data, validates business rules, _and_ renders has 3 reasons to change. Split it.
@@ -44,7 +45,7 @@ src/
 ├── router/                       # routes.tsx, guards/, index.ts — routing config only
 ├── modules/
 │   ├── auth/
-│   │   ├── components/ hooks/ services/ types/ validation/ store/ i18n/ __tests__/
+│   │   ├── view/ components/ constants/ hooks/ services/ types/ validation/ store/ i18n/ __tests__/
 │   │   └── index.ts               # the ONLY public import surface for this module
 │   ├── account/ product/ blogs/ support/ ...
 ├── shared/                        # promoted, cross-module code ONLY
@@ -89,7 +90,8 @@ src/
   - **Design tokens** (colors, spacing, typography) → `styles/` (Tailwind theme layer or CSS variables) — never inline hex codes or literal pixel values in components.
   - **UI copy** → module `i18n/{locale}.json` — never a `strings.ts` file.
   - **Route paths** → `router/routes.tsx` (or a co-located `router/paths.ts` if the list grows past what's readable inline).
-  - **Module-specific static data used by only that module** (dropdown options, status enums, etc.) → a single colocated file inside that module, e.g. `modules/product/product.data.ts`, next to what consumes it. Do not create a `constants/` subfolder for it — that's the pattern this repo deliberately avoids.
+  - **Module-specific static data used by only that module** (dropdown options, status enums, etc.) → a `constants/` folder inside that specific module (e.g., `modules/product/constants/`).
+  - **Mock Data** (for UI development before APIs are ready) → keep it in the module's `constants/` folder using the naming convention `mock.<module>.ts` (e.g., `mock.auth.ts`, `mock.notification.ts`).
   - **Data genuinely shared by 2+ modules** → promote to `shared/utils/` or `shared/types/` (for enums/unions) once the second consumer exists, not before.
 - Test fixtures belong in `__mocks__/`/test files, never in production bundles — do not conflate them with UI fallback data.
 
@@ -130,14 +132,14 @@ src/
 
 **State** — put state at the lowest common ancestor that needs it. Concrete test: _does a second module actually need this?_ If not, keep it local/module-scoped.
 
-| State type                          | Tool                                                                       |
-| ------------------------------------ | --------------------------------------------------------------------------- |
-| Server/cache state                   | React Query / SWR — never duplicated into global state                     |
-| Local UI state                       | `useState`/`useReducer`, as local as possible                              |
-| Module-local cross-component state   | module's own `store/` slice or Context                                     |
-| Cross-module state                   | top-level `store/`/`providers/` — only when 2+ unrelated modules need it   |
-| URL-derived state                    | `useSearchParams` (React Router) / route loader params                     |
-| Form state                           | React Hook Form + Zod resolver                                             |
+| State type                         | Tool                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| Server/cache state                 | React Query / SWR — never duplicated into global state                   |
+| Local UI state                     | `useState`/`useReducer`, as local as possible                            |
+| Module-local cross-component state | module's own `store/` slice or Context                                   |
+| Cross-module state                 | top-level `store/`/`providers/` — only when 2+ unrelated modules need it |
+| URL-derived state                  | `useSearchParams` (React Router) / route loader params                   |
+| Form state                         | React Hook Form + Zod resolver                                           |
 
 **Styling**
 
@@ -230,7 +232,7 @@ Treat any of the following, found in a diff, as a blocking issue — fix it befo
 **Code & Architecture**
 
 - [ ] No raw HTTP calls outside `shared/services/http.service.ts` and module `*.service.ts` files
-- [ ] No mock/static data inside components, and no new `constants/` folder introduced
+- [ ] No mock/static data inside components (use module `constants/mock.*.ts` files instead)
 - [ ] No hardcoded UI copy — resolved via i18n, namespaced by module
 - [ ] No `any` types
 - [ ] Named exports used everywhere
