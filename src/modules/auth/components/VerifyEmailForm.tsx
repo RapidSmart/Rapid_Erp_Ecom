@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   InputOTP,
   InputOTPGroup,
@@ -10,14 +10,17 @@ import { Button } from '@/shared/components/ui/button'
 
 export function VerifyEmailForm() {
   const [value, setValue] = useState('')
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log('OTP submitted:', value)
-    // Handle OTP verification here
+    // Mock API call
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    navigate('/auth/verified')
   }
 
-  const slotClassName = "w-12 h-12 sm:w-[60px] sm:h-[60px] text-xl sm:text-2xl font-bold bg-[#F8FAFC] !border !border-gray-200 !rounded-full cursor-pointer"
+  const slotClassName = "w-12 h-12 sm:w-[60px] sm:h-[60px] text-xl sm:text-2xl font-bold bg-[#E1E7F0] !border !border-transparent !rounded-full cursor-pointer focus:ring-1 focus:ring-primary"
 
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col items-center space-y-6">
