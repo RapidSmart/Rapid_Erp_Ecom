@@ -10,9 +10,12 @@ export const CountryListing = lazy(() =>
 
 export { CountryRouteError } from './view/CountryRouteError'
 export { CountryCardSkeleton } from './components/CountryCardSkeleton'
+export { AddCountryPage } from './view/AddCountryPage'
+export { EditCountryPage } from './view/EditCountryPage'
 export type {
   Country,
   CountryId,
   CountryStatus,
   CountryPayload,
+  CountryFormValues,
 } from './types/country.types'

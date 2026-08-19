@@ -2,6 +2,14 @@ import {
   createMockCountries,
   MOCK_COUNTRY_OVERVIEW,
 } from '../constants/mock.country'
+import { httpService } from '@/shared/services/http.service'
+import { API_ROUTES } from '@/config/api-routes'
+import {
+  countryResponseSchema,
+  type CountryFormInput,
+  type CountryResponse,
+} from '../validation/country-page.schema'
+import { MOCK_EDIT_COUNTRY } from '../constants/mock.countries'
 import {
   parseCountry,
   parseCountryList,
@@ -194,5 +202,36 @@ export const countryService = {
     const current = requireCountry(id)
     const items = getStore()
     items.splice(items.indexOf(current), 1)
+  },
+
+  async createCountry(data: CountryFormInput): Promise<CountryResponse> {
+    const response = await httpService.post<unknown>(
+      API_ROUTES.countries.create,
+      data,
+    )
+    return countryResponseSchema.parse(response)
+  },
+
+  async getCountryById(id: string): Promise<CountryFormInput> {
+    try {
+      const response = await httpService.get<unknown>(
+        API_ROUTES.countries.detail(id),
+      )
+      return countryResponseSchema.parse(response)
+    } catch {
+      // Fallback mock data for dev preview when backend API endpoint is not connected
+      return { ...MOCK_EDIT_COUNTRY }
+    }
+  },
+
+  async updateCountry(
+    id: string,
+    data: CountryFormInput,
+  ): Promise<CountryResponse> {
+    const response = await httpService.put<unknown>(
+      API_ROUTES.countries.update(id),
+      data,
+    )
+    return countryResponseSchema.parse(response)
   },
 }

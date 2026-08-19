@@ -18,10 +18,10 @@ import {
 } from "@/modules/country";
 
 const AddCountryPage = lazy(() =>
-  import("@/modules/countries").then((m) => ({ default: m.AddCountryPage })),
+  import("@/modules/country").then((m) => ({ default: m.AddCountryPage })),
 );
 const EditCountryPage = lazy(() =>
-  import("@/modules/countries").then((m) => ({ default: m.EditCountryPage })),
+  import("@/modules/country").then((m) => ({ default: m.EditCountryPage })),
 );
 
 const navRoutes = primaryNavItems

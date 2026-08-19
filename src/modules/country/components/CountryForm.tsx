@@ -1,6 +1,6 @@
 import type { DragEvent, ChangeEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
-import type { CountryFormProps } from '../types/country.types'
+import type { CountryPageFormProps } from '../types/country.types'
 import { IconCalendar } from '../icons'
 import { SectionHeader } from './SectionHeader'
 import { PillInput } from './PillInput'
@@ -10,9 +10,9 @@ import { FlagChip } from './FlagChip'
 import { FormFooter } from './FormFooter'
 import { LanguageDropdown } from './LanguageDropdown'
 
-export function CountryForm({ mode, form }: CountryFormProps) {
+export function CountryForm({ mode, form }: CountryPageFormProps) {
   const { t } = useTranslation()
-  const prefix = mode === 'add' ? 'countries.add' : 'countries.edit'
+  const prefix = mode === 'add' ? 'country.add' : 'country.edit'
 
   const {
     values,

@@ -2,8 +2,8 @@ import { useState, useCallback, useEffect } from 'react'
 import type { DragEvent } from 'react'
 import type {
   CountryFormValues,
-  UseCountryFormOptions,
-  UseCountryFormReturn,
+  UseCountryPageFormOptions,
+  UseCountryPageFormReturn,
 } from '../types/country.types'
 import {
   FLAG_GALLERY,
@@ -28,7 +28,7 @@ const INITIAL_VALUES: CountryFormValues = {
   internalNote: '',
 }
 
-export function useCountryForm(options?: UseCountryFormOptions): UseCountryFormReturn {
+export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCountryPageFormReturn {
   const [values, setValues] = useState<CountryFormValues>(() => ({
     ...INITIAL_VALUES,
     ...options?.initialValues,

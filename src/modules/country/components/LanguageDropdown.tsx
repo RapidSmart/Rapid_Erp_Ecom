@@ -13,6 +13,8 @@ import { IconTranslate } from '../icons'
 export function LanguageDropdown({
   initialValues,
   onSave,
+  currentLanguage: _currentLanguage,
+  onSelectLanguage: _onSelectLanguage,
 }: LanguageDropdownProps) {
   const [open, setOpen] = useState(false)
   const [translations, setTranslations] = useState<LanguageTranslationValues>({
@@ -33,14 +35,11 @@ export function LanguageDropdown({
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
-      <DropdownMenuTrigger asChild>
-        <button
-          type="button"
-          aria-label="Country name translations"
-          className="group flex size-8 items-center justify-center rounded-full text-slate-400 outline-none transition-all hover:bg-slate-200/70 hover:text-slate-700 focus-visible:ring-2 focus-visible:ring-blue-400"
-        >
-          <IconTranslate />
-        </button>
+      <DropdownMenuTrigger
+        aria-label="Country name translations"
+        className="group flex size-8 items-center justify-center rounded-full text-slate-400 outline-none transition-all hover:bg-slate-200/70 hover:text-slate-700 focus-visible:ring-2 focus-visible:ring-blue-400"
+      >
+        <IconTranslate />
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
