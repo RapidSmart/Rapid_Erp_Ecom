@@ -1,40 +1,68 @@
+import countryEn from '@/modules/country/i18n/en.json'
 import countriesEn from '@/modules/countries/i18n/en.json'
 
-type Translations = Record<string, unknown>
+/**
+ * Loader/merger only — this folder never holds UI copy. Every module ships its
+ * own `modules/<name>/i18n/{locale}.json` and registers it here, namespaced by
+ * module name (`country.listing.title`).
+ */
+export type Locale = 'en'
 
-const resources: Record<string, Translations> = {
+export type TranslationTree = { [key: string]: string | TranslationTree }
+
+export type TranslationVars = Record<string, string | number>
+
+const resources: Record<Locale, TranslationTree> = {
   en: {
-    ...countriesEn,
+    country: countryEn as unknown as TranslationTree,
+    countries: countriesEn.countries as unknown as TranslationTree,
   },
 }
 
-export function useTranslation(locale = 'en') {
-  const dict = resources[locale] ?? resources.en ?? {}
+const DEFAULT_LOCALE: Locale = 'en'
 
-  const t = (key: string, params?: Record<string, string | number>): string => {
-    const keys = key.split('.')
-    let current: unknown = dict
-
-    for (const k of keys) {
-      if (typeof current === 'object' && current !== null && k in current) {
-        current = (current as Record<string, unknown>)[k]
-      } else {
-        return key
-      }
-    }
-
-    if (typeof current !== 'string') {
-      return key
-    }
-
-    if (!params) return current
-
-    return Object.entries(params).reduce(
-      (acc, [paramKey, paramVal]) =>
-        acc.replace(new RegExp(`{{\\s*${paramKey}\\s*}}`, 'g'), String(paramVal)),
-      current,
+function resolve(tree: TranslationTree, key: string): string | undefined {
+  const value = key
+    .split('.')
+    .reduce<string | TranslationTree | undefined>(
+      (node, part) =>
+        typeof node === 'object' && node !== null ? node[part] : undefined,
+      tree
     )
+
+  return typeof value === 'string' ? value : undefined
+}
+
+function interpolate(template: string, vars: TranslationVars): string {
+  return template.replace(/{{\s*(\w+)\s*}}/g, (match, name: string) => {
+    const value = vars[name]
+
+    return value === undefined ? match : String(value)
+  })
+}
+
+export function translate(
+  key: string,
+  vars?: TranslationVars,
+  locale: Locale = DEFAULT_LOCALE
+): string {
+  const template = resolve(resources[locale], key)
+
+  if (template === undefined) {
+    if (import.meta.env.DEV) {
+      console.warn(`[i18n] Missing translation for "${key}" (${locale})`)
+    }
+
+    // Missing-key fallback: render the key so the gap is visible, never blank.
+    return key
   }
 
-  return { t }
+  return vars ? interpolate(template, vars) : template
 }
+
+const translation = { t: translate }
+
+export function useTranslation() {
+  return translation
+}
+
