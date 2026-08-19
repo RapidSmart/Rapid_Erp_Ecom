@@ -1,14 +1,17 @@
 import { useTranslation } from '@/i18n'
 import { PageHeader } from '@/shared/components/layout/PageHeader'
 import { IndustriesForm } from '../components/IndustriesForm'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { industriesService } from '../services/industries.service'
+import { useIndustriesListing } from '../hooks/useIndustriesListing'
 import type { Industry, IndustryId } from '../types/industries.types'
 
 export default function IndustriesEdit() {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const { t } = useTranslation()
+  const { updateIndustry, isMutating } = useIndustriesListing()
   
   const [loading, setLoading] = useState(true)
   const [industry, setIndustry] = useState<Industry | null>(null)
@@ -50,7 +53,14 @@ export default function IndustriesEdit() {
         ) : error ? (
           <div className="p-8 text-center text-red-500">{error}</div>
         ) : industry ? (
-          <IndustriesForm />
+          <IndustriesForm 
+            industry={industry} 
+            onSubmit={async (payload) => {
+              await updateIndustry(industry.id, payload);
+              navigate('/industries');
+            }}
+            submitting={isMutating}
+          />
         ) : null}
       </div>
     </div>
