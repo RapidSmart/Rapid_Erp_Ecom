@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import type { Product, ProductError, ProductId } from '../types/product.types'
+import type { Product, ProductError, ProductId } from '../../types/product.types'
 
 export interface ProductDeleteDialogProps {
   product: Product

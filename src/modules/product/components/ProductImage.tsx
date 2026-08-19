@@ -1,12 +1,7 @@
 import { useState } from 'react'
 import { cn } from '@/shared/utils/utils'
 import { Package } from 'lucide-react'
-
-export interface ProductImageProps {
-  imageUrl?: string
-  name: string
-  className?: string
-}
+import type { ProductImageProps } from '../types/product.types'
 
 function ProductImage({ imageUrl, name, className }: ProductImageProps) {
   const [failed, setFailed] = useState(false)

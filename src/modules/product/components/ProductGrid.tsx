@@ -2,27 +2,15 @@ import { Package, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
 import { ProductCard } from './ProductCard'
-import { ProductCardSkeleton } from './ProductCardSkeleton'
+import { ProductCardSkeleton } from './skeleton/ProductCardSkeleton'
 import { ProductFeedback } from './ProductFeedback'
-import type { AsyncState, Product } from '../types/product.types'
+import type { ProductGridProps } from '../types/product.types'
 
 const SKELETON_COUNT = 8
 
 const gridClasses =
   'grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-x-3.5 gap-y-5'
 
-export interface ProductGridProps {
-  state: AsyncState<Product[]>
-  isRefreshing: boolean
-  isFiltered: boolean
-  onRetry: () => void
-  onClearFilters: () => void
-  onAdd: () => void
-  onOpenDetails: (product: Product) => void
-  onEdit: (product: Product) => void
-  onDuplicate: (product: Product) => void
-  onDelete: (product: Product) => void
-}
 
 function ProductGrid({
   state,

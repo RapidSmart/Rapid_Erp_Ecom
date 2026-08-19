@@ -4,16 +4,9 @@ import { cn } from '@/shared/utils/utils'
 import { ProductImage } from './ProductImage'
 import { ProductStatusBadge } from './ProductStatusBadge'
 import { formatUpdatedAtCompact } from '../utils/format-updated-at'
-import type { Product } from '../types/product.types'
+import type { ProductTableRowProps } from '../types/product.types'
 
 const cellClasses = 'px-4 py-3.5 text-[13px] text-ink-muted'
-
-export interface ProductTableRowProps {
-  product: Product
-  selected: boolean
-  onToggleSelected: (product: Product, selected: boolean) => void
-  onOpenDetails: (product: Product) => void
-}
 
 function ProductTableRow({
   product,

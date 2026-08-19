@@ -1,16 +1,6 @@
 import { useTranslation } from '@/i18n'
 import { ProductOverviewRing } from './ProductOverviewRing'
-import type { ProductStatus } from '../types/product.types'
-
-export interface ProductOverviewCardProps {
-  status: ProductStatus
-  label: string
-  value: number
-  percentage: number
-  selected?: boolean
-  actionLabel?: string
-  onSelect?: () => void
-}
+import type { ProductOverviewCardProps } from '../types/product.types'
 
 function ProductOverviewCard({
   status,

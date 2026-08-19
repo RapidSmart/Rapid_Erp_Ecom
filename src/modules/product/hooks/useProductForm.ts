@@ -1,35 +1,16 @@
 import { useState, type FormEvent } from 'react'
 import { DEFAULT_PRODUCT_STATUS } from '../constants/product-status.data'
-import {
-  normalizeProductPayload,
-  validateProductForm,
-  type ProductFormErrors,
-  type ProductFormField,
-} from '../validation/product-form.schema'
+import { normalizeProductPayload, validateProductForm } from '../validation/product-form.schema'
 import type {
   Product,
-  ProductError,
   ProductFormMode,
   ProductPayload,
   ProductStatus,
+  ProductFormErrors,
+  ProductFormField,
+  UseProductFormOptions,
+  ProductFormController,
 } from '../types/product.types'
-
-export interface UseProductFormOptions {
-  mode: ProductFormMode
-  product?: Product
-  onSubmit: (payload: ProductPayload) => Promise<ProductError | null>
-  onSuccess: () => void
-}
-
-export interface ProductFormController {
-  values: ProductPayload
-  errors: ProductFormErrors
-  /** Non field-specific failure returned by the service. */
-  formError: string | null
-  setText: (field: ProductFormField, value: string | number) => void
-  setStatus: (status: ProductStatus) => void
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
-}
 
 function buildInitialValues(
   mode: ProductFormMode,

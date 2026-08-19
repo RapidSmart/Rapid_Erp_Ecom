@@ -17,40 +17,9 @@ import type {
   ProductPayload,
   ProductStatus,
   ProductTimeRange,
+  ProductListingController,
 } from '../types/product.types'
 
-export interface ProductListingController {
-  search: string
-  setSearch: (value: string) => void
-  statusFilter: ProductStatus | null
-  setStatusFilter: (status: ProductStatus | null) => void
-  range: ProductTimeRange
-  setRange: (range: ProductTimeRange) => void
-  list: AsyncState<Product[]>
-  overview: AsyncState<ProductOverview>
-  isRefreshing: boolean
-  isMutating: boolean
-  isFiltered: boolean
-  clearFilters: () => void
-  refresh: () => void
-  createProduct: (payload: ProductPayload) => Promise<ProductError | null>
-  updateProduct: (
-    id: ProductId,
-    payload: ProductPayload
-  ) => Promise<ProductError | null>
-  deleteProduct: (id: ProductId) => Promise<ProductError | null>
-  /** Client-side pagination over `list` — shared by every view that paginates. */
-  page: number
-  setPage: (page: number) => void
-  pageSize: ProductPageSize
-  setPageSize: (pageSize: ProductPageSize) => void
-  pageCount: number
-  /** Size of the current (search/status-filtered) result set. */
-  totalCount: number
-  /** Unfiltered master-data size — what the header subtitle shows. */
-  masterCount: number
-  paginatedList: AsyncState<Product[]>
-}
 
 /**
  * Owns every piece of product listing state: query params, server state for the

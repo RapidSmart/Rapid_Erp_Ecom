@@ -1,4 +1,6 @@
-import type { DragEvent, ReactNode, InputHTMLAttributes, RefObject } from 'react'
+import type { DragEvent, ReactNode, InputHTMLAttributes, RefObject, FormEvent } from 'react'
+import type { LucideIcon } from 'lucide-react'
+
 
 export type ProductId = string & { readonly __brand: 'ProductId' }
 
@@ -193,16 +195,181 @@ export interface PillSelectProps {
   prefix?: ReactNode
 }
 
-export interface LanguageTranslationValues {
-  arabic: string
-  hindi: string
-  urdu: string
-  bangla: string
+export interface ProductListingController {
+  search: string
+  setSearch: (value: string) => void
+  statusFilter: ProductStatus | null
+  setStatusFilter: (status: ProductStatus | null) => void
+  range: ProductTimeRange
+  setRange: (range: ProductTimeRange) => void
+  list: AsyncState<Product[]>
+  overview: AsyncState<ProductOverview>
+  isRefreshing: boolean
+  isMutating: boolean
+  isFiltered: boolean
+  clearFilters: () => void
+  refresh: () => void
+  createProduct: (payload: ProductPayload) => Promise<ProductError | null>
+  updateProduct: (
+    id: ProductId,
+    payload: ProductPayload
+  ) => Promise<ProductError | null>
+  deleteProduct: (id: ProductId) => Promise<ProductError | null>
+  /** Client-side pagination over `list` — shared by every view that paginates. */
+  page: number
+  setPage: (page: number) => void
+  pageSize: ProductPageSize
+  setPageSize: (pageSize: ProductPageSize) => void
+  pageCount: number
+  /** Size of the current (search/status-filtered) result set. */
+  totalCount: number
+  /** Unfiltered master-data size — what the header subtitle shows. */
+  masterCount: number
+  paginatedList: AsyncState<Product[]>
 }
 
-export interface LanguageDropdownProps {
-  initialValues?: Partial<LanguageTranslationValues>
-  onSave?: (translations: LanguageTranslationValues) => void
-  currentLanguage?: string
-  onSelectLanguage?: (lang: any) => void
+export interface ProductFeedbackProps {
+  icon: LucideIcon
+  tone?: 'muted' | 'danger'
+  title: string
+  body: string
+  actionLabel?: string
+  onAction?: () => void
+  /** Skip the card border/background when already nested inside one. */
+  bare?: boolean
 }
+
+export interface ProductCardProps {
+  product: Product
+  onOpenDetails: (product: Product) => void
+  onEdit: (product: Product) => void
+  onDuplicate: (product: Product) => void
+  onDelete: (product: Product) => void
+}
+
+export interface ProductDetailsDialogProps {
+  product: Product
+  onEdit: (product: Product) => void
+  onDuplicate: (product: Product) => void
+  onDelete: (product: Product) => void
+  onClose: () => void
+}
+
+export interface ProductFormFieldProps {
+  id: string
+  label: string
+  error?: string
+  children: ReactNode
+}
+
+export interface ProductGridProps {
+  state: AsyncState<Product[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onOpenDetails: (product: Product) => void
+  onEdit: (product: Product) => void
+  onDuplicate: (product: Product) => void
+  onDelete: (product: Product) => void
+}
+
+export interface ProductImageProps {
+  imageUrl?: string
+  name: string
+  className?: string
+}
+
+export interface ProductOverviewCardProps {
+  status: ProductStatus
+  label: string
+  value: number
+  percentage: number
+  selected?: boolean
+  actionLabel?: string
+  onSelect?: () => void
+}
+
+export interface ProductOverviewPanelProps {
+  state: AsyncState<ProductOverview>
+  range: ProductTimeRange
+  onRangeChange: (range: ProductTimeRange) => void
+  statusFilter: ProductStatus | null
+  onStatusFilterChange: (status: ProductStatus | null) => void
+  onRetry: () => void
+}
+
+export interface ProductPaginationProps {
+  page: number
+  pageCount: number
+  pageSize: ProductPageSize
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: ProductPageSize) => void
+  totalCount: number
+}
+
+export interface ProductStatDonutProps {
+  tone: ProductStatTone
+  label: string
+  value: number
+  percentage: number
+  selected?: boolean
+  actionLabel?: string
+  onSelect?: () => void
+}
+
+export interface ProductStatusBadgeProps {
+  status: ProductStatus
+  className?: string
+}
+
+export interface ProductTableProps {
+  state: AsyncState<Product[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  page: number
+  pageCount: number
+  pageSize: ProductPageSize
+  totalCount: number
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: ProductPageSize) => void
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onOpenDetails: (product: Product) => void
+}
+
+export interface ProductTableRowProps {
+  product: Product
+  selected: boolean
+  onToggleSelected: (product: Product, selected: boolean) => void
+  onOpenDetails: (product: Product) => void
+}
+
+export type ProductFormField =
+  | 'name'
+  | 'sku'
+  | 'price'
+  | 'category'
+  | 'stock'
+
+export type ProductFormErrors = Partial<Record<ProductFormField, string>>
+
+export interface UseProductFormOptions {
+  mode: ProductFormMode
+  product?: Product
+  onSubmit: (payload: ProductPayload) => Promise<ProductError | null>
+  onSuccess: () => void
+}
+
+export interface ProductFormController {
+  values: ProductPayload
+  errors: ProductFormErrors
+  /** Non field-specific failure returned by the service. */
+  formError: string | null
+  setText: (field: ProductFormField, value: string | number) => void
+  setStatus: (status: ProductStatus) => void
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+}
+

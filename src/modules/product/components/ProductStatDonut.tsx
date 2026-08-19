@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { cn } from '@/shared/utils/utils'
-import type { ProductStatTone } from '../types/product.types'
+import type { ProductStatTone, ProductStatDonutProps } from '../types/product.types'
 
 const VIEWBOX = 120
 const CENTER = VIEWBOX / 2
@@ -17,16 +17,6 @@ const toneTextClasses: Record<ProductStatTone, string> = {
   inactive: 'text-stat-inactive',
   draft: 'text-stat-draft',
   delete: 'text-stat-delete',
-}
-
-export interface ProductStatDonutProps {
-  tone: ProductStatTone
-  label: string
-  value: number
-  percentage: number
-  selected?: boolean
-  actionLabel?: string
-  onSelect?: () => void
 }
 
 function ProductStatDonut({

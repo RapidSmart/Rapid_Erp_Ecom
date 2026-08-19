@@ -1,17 +1,7 @@
-import type { LucideIcon } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { cn } from '@/shared/utils/utils'
+import type { ProductFeedbackProps } from '../types/product.types'
 
-export interface ProductFeedbackProps {
-  icon: LucideIcon
-  tone?: 'muted' | 'danger'
-  title: string
-  body: string
-  actionLabel?: string
-  onAction?: () => void
-  /** Skip the card border/background when already nested inside one. */
-  bare?: boolean
-}
 
 /** Shared empty / no-results / error panel for the product grid and table. */
 function ProductFeedback({

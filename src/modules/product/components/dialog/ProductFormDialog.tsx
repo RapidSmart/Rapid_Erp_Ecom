@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from 'react'
+import { useId } from 'react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
 import {
@@ -10,46 +10,20 @@ import {
   DialogTitle,
 } from '@/shared/components/ui/dialog'
 import { Input } from '@/shared/components/ui/input'
-import { PRODUCT_STATUS_OPTIONS } from '../constants/product-status.data'
-import { CATEGORY_OPTIONS } from '../constants/mock.products'
-import { useProductForm } from '../hooks/useProductForm'
+import { PRODUCT_STATUS_OPTIONS } from '../../constants/product-status.data'
+import { CATEGORY_OPTIONS } from '../../constants/mock.products'
+import { useProductForm } from '../../hooks/useProductForm'
+import { MODE_COPY } from '../../constants/product-form.data'
 import type {
   Product,
   ProductError,
   ProductFormMode,
   ProductPayload,
   ProductStatus,
-} from '../types/product.types'
+  ProductFormFieldProps,
+} from '../../types/product.types'
 
-const MODE_COPY: Record<
-  ProductFormMode,
-  { title: string; description: string; submit: string }
-> = {
-  create: {
-    title: 'product.form.createTitle',
-    description: 'product.form.createDescription',
-    submit: 'product.form.submitCreate',
-  },
-  edit: {
-    title: 'product.form.editTitle',
-    description: 'product.form.editDescription',
-    submit: 'product.form.submitEdit',
-  },
-  duplicate: {
-    title: 'product.form.duplicateTitle',
-    description: 'product.form.duplicateDescription',
-    submit: 'product.form.submitDuplicate',
-  },
-}
-
-interface FieldProps {
-  id: string
-  label: string
-  error?: string
-  children: ReactNode
-}
-
-function Field({ id, label, error, children }: FieldProps) {
+function Field({ id, label, error, children }: ProductFormFieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
       <label htmlFor={id} className="text-xs font-medium text-ink">

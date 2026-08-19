@@ -4,15 +4,7 @@ import { cn } from '@/shared/utils/utils'
 import { ProductImage } from './ProductImage'
 import { ProductStatusBadge } from './ProductStatusBadge'
 import { formatUpdatedAt } from '../utils/format-updated-at'
-import type { Product } from '../types/product.types'
-
-export interface ProductCardProps {
-  product: Product
-  onOpenDetails: (product: Product) => void
-  onEdit: (product: Product) => void
-  onDuplicate: (product: Product) => void
-  onDelete: (product: Product) => void
-}
+import type { ProductCardProps } from '../types/product.types'
 
 const actionButtonClasses =
   'flex size-6 cursor-pointer items-center justify-center rounded-md border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'

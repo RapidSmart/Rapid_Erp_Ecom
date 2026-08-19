@@ -4,21 +4,7 @@ import { Button } from '@/shared/components/ui/button'
 import { ProductRangeSwitch } from './ProductRangeSwitch'
 import { ProductStatDonut } from './ProductStatDonut'
 import { PRODUCT_STAT_TILES } from '../constants/product-overview.data'
-import type {
-  AsyncState,
-  ProductOverview,
-  ProductStatus,
-  ProductTimeRange,
-} from '../types/product.types'
-
-export interface ProductOverviewPanelProps {
-  state: AsyncState<ProductOverview>
-  range: ProductTimeRange
-  onRangeChange: (range: ProductTimeRange) => void
-  statusFilter: ProductStatus | null
-  onStatusFilterChange: (status: ProductStatus | null) => void
-  onRetry: () => void
-}
+import type { ProductOverviewPanelProps } from '../types/product.types'
 
 function ProductOverviewPanel({
   state,

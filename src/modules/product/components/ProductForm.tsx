@@ -8,7 +8,6 @@ import { PillSelect } from './PillSelect'
 import { ProductImageUploadArea } from './ProductImageUploadArea'
 import { ProductImageChip } from './ProductImageChip'
 import { FormFooter } from './FormFooter'
-import { LanguageDropdown } from './LanguageDropdown'
 
 export function ProductForm({ mode, form }: ProductPageFormProps) {
   const { t } = useTranslation()
@@ -73,14 +72,6 @@ export function ProductForm({ mode, form }: ProductPageFormProps) {
               placeholder={t(`${prefix}.fields.productName`)}
               value={values.name}
               onChange={(v) => handleFieldChange('name', v)}
-              rightIcon={
-                <LanguageDropdown
-                  currentLanguage="en"
-                  onSelectLanguage={(lang) => {
-                    console.log('Selected translation language:', lang)
-                  }}
-                />
-              }
               required
             />
             <PillInput

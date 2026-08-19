@@ -7,18 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import { ProductImage } from './ProductImage'
-import { ProductStatusBadge } from './ProductStatusBadge'
-import { formatUpdatedAtFull } from '../utils/format-updated-at'
-import type { Product } from '../types/product.types'
+import { ProductImage } from '../ProductImage'
+import { ProductStatusBadge } from '../ProductStatusBadge'
+import { formatUpdatedAtFull } from '../../utils/format-updated-at'
+import type { ProductDetailsDialogProps } from '../../types/product.types'
 
-export interface ProductDetailsDialogProps {
-  product: Product
-  onEdit: (product: Product) => void
-  onDuplicate: (product: Product) => void
-  onDelete: (product: Product) => void
-  onClose: () => void
-}
 
 function ProductDetailsDialog({
   product,

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import { ProductRouteError } from './view/ProductRouteError'
-import { ProductCardSkeleton } from './components/ProductCardSkeleton'
+import { ProductCardSkeleton } from './components/skeleton/ProductCardSkeleton'
 
 export const PRODUCT_ROUTE_PATH = '/product'
 

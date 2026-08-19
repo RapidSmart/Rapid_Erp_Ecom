@@ -1,13 +1,4 @@
-import type { ProductPayload } from '../types/product.types'
-
-export type ProductFormField =
-  | 'name'
-  | 'sku'
-  | 'price'
-  | 'category'
-  | 'stock'
-
-export type ProductFormErrors = Partial<Record<ProductFormField, string>>
+import type { ProductPayload, ProductFormErrors } from '../types/product.types'
 
 const SKU_PATTERN = /^[A-Za-z0-9-_]{3,30}$/
 const PRICE_PATTERN = /^\d+(\.\d{1,2})?$/
