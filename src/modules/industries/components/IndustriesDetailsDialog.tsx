@@ -21,7 +21,6 @@ export interface IndustriesDetailsDialogProps {
 function IndustriesDetailsDialog({
   industry,
   onEdit,
-  onDuplicate,
   onDelete,
   onClose,
 }: IndustriesDetailsDialogProps) {

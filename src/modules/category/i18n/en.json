@@ -1,0 +1,188 @@
+{
+  "listing": {
+    "title": "Listing Categories",
+    "subtitle": "Total Categories {{count}}",
+    "menu": "Toggle navigation",
+    "searchLabel": "Search categories",
+    "searchPlaceholder": "Search category, code or description",
+    "voiceSearch": "Search by voice",
+    "add": "Add",
+    "grid": "Categories",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "overview": {
+    "title": "Status overview",
+    "records": "{{count}} records",
+    "rangeLabel": "Overview time range",
+    "statFilterHint": "Filter list by {{status}}",
+    "clearFilterHint": "Clear status filter",
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "card": {
+    "code": "Code",
+    "updated": "Updated {{value}}",
+    "details": "View {{name}} details",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "imageAlt": "{{name}} image"
+  },
+  "table": {
+    "category": "Category",
+    "code": "Code",
+    "description": "Description",
+    "status": "Status",
+    "updated": "Updated",
+    "selectAll": "Select all categories",
+    "selectRow": "Select {{name}}"
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}} Categories",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "states": {
+    "loading": "Loading categories…",
+    "emptyTitle": "No categories yet",
+    "emptyBody": "Add your first category to start building the master data list.",
+    "emptyAction": "Add category",
+    "noResultsTitle": "No categories match your filters",
+    "noResultsBody": "Try a different search term or clear the status filter.",
+    "noResultsAction": "Clear filters",
+    "errorTitle": "Could not load categories",
+    "errorAction": "Try again"
+  },
+  "form": {
+    "createTitle": "Add category",
+    "createDescription": "Create a new category in the master data list.",
+    "editTitle": "Edit category",
+    "editDescription": "Update the details of this category.",
+    "duplicateTitle": "Duplicate category",
+    "duplicateDescription": "Create a copy of this category with a new code.",
+    "name": "Category name",
+    "namePlaceholder": "e.g. Furniture",
+    "code": "Category code",
+    "codePlaceholder": "e.g. FURN",
+    "description": "Description",
+    "descriptionPlaceholder": "e.g. Ergonomic chairs and tables",
+    "cancel": "Cancel",
+    "submitCreate": "Add category",
+    "submitEdit": "Save changes",
+    "submitDuplicate": "Duplicate",
+    "submitting": "Saving…",
+    "errors": {
+      "codeFormat": "Code must be 2-10 characters, alphanumeric/dash/underscore.",
+      "nameRequired": "Category name is required.",
+      "nameLength": "Category name must be at most 40 characters.",
+      "descriptionRequired": "Description is required.",
+      "descriptionLength": "Description must be at most 200 characters.",
+      "duplicateCode": "A category with this code already exists."
+    }
+  },
+  "delete": {
+    "title": "Delete category",
+    "description": "\"{{name}}\" will be removed from the categories master data. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "details": {
+    "title": "Category details",
+    "status": "Status",
+    "code": "Code",
+    "description": "Description",
+    "updated": "Last updated",
+    "close": "Close",
+    "edit": "Edit"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "brand": "Rapid",
+    "help": "Need help?",
+    "chat": "Live chat"
+  },
+  "add": {
+    "backToList": "Back to list",
+    "breadcrumb": {
+      "masterData": "Master data",
+      "categories": "Categories",
+      "newCategory": "New category"
+    },
+    "title": "Add a category",
+    "description": "Exactly three required text fields, and one image picker. Nothing is saved until you press Save category.",
+    "sections": {
+      "identity": "Identity",
+      "imageAndDesc": "Image and description"
+    },
+    "fields": {
+      "code": "Category code *",
+      "categoryName": "Category name *",
+      "description": "Description * (max 200 chars)",
+      "uploadImage": "Upload image here or drag",
+      "pickFromGallery": "Or pick from gallery"
+    },
+    "footer": {
+      "fieldsFilled": "{{filled}} of {{total}} required fields filled",
+      "duplicate": "Duplicate",
+      "print": "Print",
+      "clear": "Clear",
+      "save": "Save Category"
+    }
+  },
+  "edit": {
+    "backToList": "Back to list",
+    "breadcrumb": {
+      "masterData": "Master data",
+      "categories": "Categories",
+      "editCategory": "Edit category"
+    },
+    "title": "Edit category",
+    "description": "Update category identity details, image, and description configuration.",
+    "sections": {
+      "identity": "Identity",
+      "imageAndDesc": "Image and description"
+    },
+    "fields": {
+      "code": "Category code",
+      "categoryName": "Category name *",
+      "description": "Description * (max 200 chars)",
+      "uploadImage": "Upload image here or drag",
+      "pickFromGallery": "Or pick from gallery"
+    },
+    "footer": {
+      "fieldsFilled": "{{filled}} of {{total}} required fields filled",
+      "duplicate": "Duplicate",
+      "print": "Print",
+      "clear": "Reset Changes",
+      "save": "Update Category"
+    }
+  }
+}

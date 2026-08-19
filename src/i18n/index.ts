@@ -1,5 +1,6 @@
 import countryEn from '@/modules/country/i18n/en.json'
-import countriesEn from '@/modules/countries/i18n/en.json'
+import productEn from '@/modules/product/i18n/en.json'
+import categoryEn from '@/modules/category/i18n/en.json'
 import industriesEn from '@/modules/industries/i18n/en.json'
 
 /**
@@ -16,7 +17,8 @@ export type TranslationVars = Record<string, string | number>
 const resources: Record<Locale, TranslationTree> = {
   en: {
     country: countryEn as unknown as TranslationTree,
-    countries: countriesEn.countries as unknown as TranslationTree,
+    product: productEn as unknown as TranslationTree,
+    category: categoryEn as unknown as TranslationTree,
     industries: industriesEn as unknown as TranslationTree,
   },
 }
@@ -67,4 +69,3 @@ const translation = { t: translate }
 export function useTranslation() {
   return translation
 }
-

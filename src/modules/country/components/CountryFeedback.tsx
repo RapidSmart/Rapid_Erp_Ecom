@@ -1,17 +1,6 @@
-import type { LucideIcon } from 'lucide-react'
+import type { CountryFeedbackProps } from '../types/country.types'
 import { Button } from '@/shared/components/ui/button'
 import { cn } from '@/shared/utils/utils'
-
-export interface CountryFeedbackProps {
-  icon: LucideIcon
-  tone?: 'muted' | 'danger'
-  title: string
-  body: string
-  actionLabel?: string
-  onAction?: () => void
-  /** Skip the card border/background when already nested inside one. */
-  bare?: boolean
-}
 
 /** Shared empty / no-results / error panel for the country grid and table. */
 function CountryFeedback({

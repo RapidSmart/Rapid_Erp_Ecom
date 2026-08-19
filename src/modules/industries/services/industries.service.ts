@@ -133,7 +133,7 @@ export const industriesService = {
   },
 
   async overview(
-    range: IndustryTimeRange,
+    _range: IndustryTimeRange,
     signal?: AbortSignal
   ): Promise<IndustryOverview> {
     await delay(signal)

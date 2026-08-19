@@ -4,21 +4,7 @@ import { Button } from '@/shared/components/ui/button'
 import { CountryRangeSwitch } from './CountryRangeSwitch'
 import { CountryStatDonut } from './CountryStatDonut'
 import { COUNTRY_STAT_TILES } from '../constants/country-overview.data'
-import type {
-  AsyncState,
-  CountryOverview,
-  CountryStatus,
-  CountryTimeRange,
-} from '../types/country.types'
-
-export interface CountryOverviewPanelProps {
-  state: AsyncState<CountryOverview>
-  range: CountryTimeRange
-  onRangeChange: (range: CountryTimeRange) => void
-  statusFilter: CountryStatus | null
-  onStatusFilterChange: (status: CountryStatus | null) => void
-  onRetry: () => void
-}
+import type { CountryOverviewPanelProps } from '../types/country.types'
 
 function CountryOverviewPanel({
   state,

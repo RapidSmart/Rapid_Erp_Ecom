@@ -4,15 +4,7 @@ import { cn } from '@/shared/utils/utils'
 import { CountryFlag } from './CountryFlag'
 import { CountryStatusBadge } from './CountryStatusBadge'
 import { formatUpdatedAt } from '../utils/format-updated-at'
-import type { Country } from '../types/country.types'
-
-export interface CountryCardProps {
-  country: Country
-  onOpenDetails: (country: Country) => void
-  onEdit: (country: Country) => void
-  onDuplicate: (country: Country) => void
-  onDelete: (country: Country) => void
-}
+import type { CountryCardProps } from '../types/country.types'
 
 const actionButtonClasses =
   'flex size-6 cursor-pointer items-center justify-center rounded-md border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'

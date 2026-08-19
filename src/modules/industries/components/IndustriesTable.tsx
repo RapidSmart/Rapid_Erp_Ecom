@@ -41,7 +41,6 @@ export function IndustriesTable({
   onRetry,
   onClearFilters,
   onAdd,
-  onEdit,
   onOpenDetails,
 }: IndustriesTableProps) {
   const { t } = useTranslation()

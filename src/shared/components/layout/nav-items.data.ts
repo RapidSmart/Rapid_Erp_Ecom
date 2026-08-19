@@ -9,6 +9,8 @@ import {
   Users,
   UserCog,
   Map,
+  Package,
+  Folder,
   Factory,
   type LucideIcon,
 } from 'lucide-react'
@@ -24,6 +26,8 @@ export const primaryNavItems: NavItem[] = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutGrid, href: '/' },
   { id: 'analytics', label: 'Analytics', icon: BarChart3, href: '/analytics' },
   { id: 'country', label: 'Country', icon: Globe, href: '/country' },
+  { id: 'product', label: 'Product', icon: Package, href: '/product' },
+  { id: 'category', label: 'Category', icon: Folder, href: '/category' },
   { id: 'industries', label: 'Industries', icon: Factory, href: '/industries' },
   { id: 'document-types', label: 'Document types', icon: FileText, href: '/document-types' },
   { id: 'action-types', label: 'Action types', icon: Zap, href: '/action-types' },

@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSidebar } from '@/shared/components/layout'
-import { CountryDeleteDialog } from '../components/CountryDeleteDialog'
-import { CountryDetailsDialog } from '../components/CountryDetailsDialog'
-import { CountryFormDialog } from '../components/CountryFormDialog'
+import { CountryDeleteDialog } from '../components/dialog/CountryDeleteDialog'
+import { CountryDetailsDialog } from '../components/dialog/CountryDetailsDialog'
 import { CountryGrid } from '../components/CountryGrid'
 import { CountryListingFooter } from '../components/CountryListingFooter'
 import { CountryListingHeader } from '../components/CountryListingHeader'
@@ -30,8 +30,6 @@ function CountryListing() {
     isFiltered,
     clearFilters,
     refresh,
-    createCountry,
-    updateCountry,
     deleteCountry,
     page,
     setPage,
@@ -43,12 +41,12 @@ function CountryListing() {
     paginatedList,
   } = useCountryListing()
 
+  const navigate = useNavigate()
   const closeDialog = () => setDialog({ kind: 'none' })
-  const openCreate = () => setDialog({ kind: 'form', mode: 'create' })
-  const openEdit = (country: Country) =>
-    setDialog({ kind: 'form', mode: 'edit', country })
+  const openCreate = () => navigate('/country/new')
+  const openEdit = (country: Country) => navigate(`/country/${country.id}/edit`)
   const openDuplicate = (country: Country) =>
-    setDialog({ kind: 'form', mode: 'duplicate', country })
+    navigate('/country/new', { state: { initialValues: { ...country, id: '' } } })
   const openDelete = (country: Country) => setDialog({ kind: 'delete', country })
   const openDetails = (country: Country) =>
     setDialog({ kind: 'details', country })
@@ -60,7 +58,6 @@ function CountryListing() {
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
-          onAdd={openCreate}
           totalCount={masterCount}
           view={view}
           onToggleView={() =>
@@ -123,21 +120,6 @@ function CountryListing() {
 
       <CountryListingFooter />
 
-      {dialog.kind === 'form' && (
-        <CountryFormDialog
-          mode={dialog.mode}
-          country={dialog.country}
-          submitting={isMutating}
-          onSubmit={(payload) => {
-            const target = dialog.country
-
-            return dialog.mode === 'edit' && target
-              ? updateCountry(target.id, payload)
-              : createCountry(payload)
-          }}
-          onClose={closeDialog}
-        />
-      )}
 
       {dialog.kind === 'delete' && (
         <CountryDeleteDialog

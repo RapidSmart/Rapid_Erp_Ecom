@@ -5,11 +5,11 @@ import { Checkbox } from '@/shared/components/ui/checkbox'
 import { CountryFeedback } from './CountryFeedback'
 import { CountryPagination } from './CountryPagination'
 import { CountryTableRow } from './CountryTableRow'
+import { CountryTableSkeleton } from './skeleton/CountryTableSkeleton'
 import type {
-  AsyncState,
   Country,
   CountryId,
-  CountryPageSize,
+  CountryTableProps,
 } from '../types/country.types'
 
 const SKELETON_ROW_COUNT = 8
@@ -17,21 +17,6 @@ const SKELETON_ROW_COUNT = 8
 const HEADER_CELL_CLASSES =
   'px-4 py-3 text-left text-[11px] font-medium text-ink-subtle'
 
-export interface CountryTableProps {
-  state: AsyncState<Country[]>
-  isRefreshing: boolean
-  isFiltered: boolean
-  page: number
-  pageCount: number
-  pageSize: CountryPageSize
-  totalCount: number
-  onPageChange: (page: number) => void
-  onPageSizeChange: (pageSize: CountryPageSize) => void
-  onRetry: () => void
-  onClearFilters: () => void
-  onAdd: () => void
-  onOpenDetails: (country: Country) => void
-}
 
 function CountryTable({
   state,
@@ -133,16 +118,7 @@ function CountryTable({
       </div>
 
       {state.status === 'loading' && (
-        <div className="flex flex-col divide-y divide-surface-border" role="status" aria-busy="true">
-          <span className="sr-only">{t('country.states.loading')}</span>
-          {Array.from({ length: SKELETON_ROW_COUNT }, (_, index) => (
-            <div key={index} className="flex items-center gap-4 px-4 py-3.5">
-              <span className="size-4 shrink-0 animate-pulse rounded-[4px] bg-surface-muted" />
-              <span className="h-5 w-32 shrink-0 animate-pulse rounded-full bg-surface-muted" />
-              <span className="ml-auto h-3 w-40 animate-pulse rounded-full bg-surface-muted" />
-            </div>
-          ))}
-        </div>
+        <CountryTableSkeleton rowCount={SKELETON_ROW_COUNT} />
       )}
 
       {state.status === 'error' && (

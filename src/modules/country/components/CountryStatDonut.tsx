@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { cn } from '@/shared/utils/utils'
-import type { CountryStatTone } from '../types/country.types'
+import type { CountryStatTone, CountryStatDonutProps } from '../types/country.types'
 
 const VIEWBOX = 120
 const CENTER = VIEWBOX / 2
@@ -17,16 +17,6 @@ const toneTextClasses: Record<CountryStatTone, string> = {
   inactive: 'text-stat-inactive',
   draft: 'text-stat-draft',
   delete: 'text-stat-delete',
-}
-
-export interface CountryStatDonutProps {
-  tone: CountryStatTone
-  label: string
-  value: number
-  percentage: number
-  selected?: boolean
-  actionLabel?: string
-  onSelect?: () => void
 }
 
 function CountryStatDonut({

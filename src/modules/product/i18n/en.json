@@ -1,0 +1,210 @@
+{
+  "listing": {
+    "title": "Listing Products",
+    "subtitle": "Total Products {{count}}",
+    "menu": "Toggle navigation",
+    "searchLabel": "Search products",
+    "searchPlaceholder": "Search product, SKU or category",
+    "voiceSearch": "Search by voice",
+    "add": "Add",
+    "grid": "Products",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "overview": {
+    "title": "Status overview",
+    "records": "{{count}} records",
+    "rangeLabel": "Overview time range",
+    "statFilterHint": "Filter list by {{status}}",
+    "clearFilterHint": "Clear status filter",
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "card": {
+    "sku": "SKU",
+    "category": "Category",
+    "price": "Price",
+    "stock": "Stock",
+    "updated": "Updated {{value}}",
+    "details": "View {{name}} details",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "imageAlt": "{{name}} image"
+  },
+  "table": {
+    "product": "Product",
+    "sku": "SKU",
+    "category": "Category",
+    "price": "Price",
+    "stock": "Stock",
+    "status": "Status",
+    "updated": "Updated",
+    "selectAll": "Select all products",
+    "selectRow": "Select {{name}}"
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}} Products",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "states": {
+    "loading": "Loading products…",
+    "emptyTitle": "No products yet",
+    "emptyBody": "Add your first product to start building the master data list.",
+    "emptyAction": "Add product",
+    "noResultsTitle": "No products match your filters",
+    "noResultsBody": "Try a different search term or clear the status filter.",
+    "noResultsAction": "Clear filters",
+    "errorTitle": "Could not load products",
+    "errorAction": "Try again"
+  },
+  "form": {
+    "createTitle": "Add product",
+    "createDescription": "Create a new product record in the master data list.",
+    "editTitle": "Edit product",
+    "editDescription": "Update the details of this product record.",
+    "duplicateTitle": "Duplicate product",
+    "duplicateDescription": "Create a copy of this product with a new name and SKU.",
+    "name": "Product name",
+    "namePlaceholder": "e.g. Mechanical Keyboard",
+    "sku": "SKU code",
+    "skuPlaceholder": "e.g. KB-MECH-87",
+    "category": "Category",
+    "categoryPlaceholder": "Select category",
+    "price": "Price",
+    "stock": "Stock",
+    "status": "Status",
+    "cancel": "Cancel",
+    "submitCreate": "Add product",
+    "submitEdit": "Save changes",
+    "submitDuplicate": "Duplicate",
+    "submitting": "Saving…",
+    "errors": {
+      "nameRequired": "Product name is required.",
+      "skuFormat": "SKU must be 3-30 characters, alphanumeric/kebab/underscore.",
+      "priceFormat": "Price must be a positive decimal number.",
+      "categoryRequired": "Category selection is required.",
+      "stockFormat": "Stock must be a non-negative integer.",
+      "duplicateSku": "A product with this SKU code already exists."
+    }
+  },
+  "delete": {
+    "title": "Delete product",
+    "description": "\"{{name}}\" will be removed from the product master data. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "details": {
+    "title": "Product details",
+    "status": "Status",
+    "sku": "SKU",
+    "category": "Category",
+    "price": "Price",
+    "stock": "Stock",
+    "updated": "Last updated",
+    "close": "Close",
+    "edit": "Edit"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "brand": "Rapid",
+    "help": "Need help?",
+    "chat": "Live chat"
+  },
+  "add": {
+    "backToList": "Back to list",
+    "breadcrumb": {
+      "masterData": "Master data",
+      "products": "Products",
+      "newProduct": "New product"
+    },
+    "title": "Add a product",
+    "description": "Five required fields, the rest optional. Nothing is saved until you press Save product.",
+    "sections": {
+      "identity": "Identity",
+      "availability": "Pricing & Availability",
+      "imageAndDesc": "Image and description"
+    },
+    "fields": {
+      "sku": "SKU code *",
+      "productName": "Product name *",
+      "stock": "Stock *",
+      "category": "Category *",
+      "price": "Price *",
+      "status": "Status",
+      "featured": "Featured product",
+      "description": "Description (optional)",
+      "uploadImage": "Upload image here or drag",
+      "pickFromGallery": "Or pick from gallery"
+    },
+    "footer": {
+      "fieldsFilled": "{{filled}} of {{total}} required fields filled",
+      "duplicate": "Duplicate",
+      "print": "Print",
+      "clear": "Clear",
+      "save": "Save Product"
+    }
+  },
+  "edit": {
+    "backToList": "Back to list",
+    "breadcrumb": {
+      "masterData": "Master data",
+      "products": "Products",
+      "editProduct": "Edit product"
+    },
+    "title": "Edit product",
+    "description": "Update product identity, pricing, and availability configuration.",
+    "sections": {
+      "identity": "Identity",
+      "availability": "Pricing & Availability",
+      "imageAndDesc": "Image and description"
+    },
+    "fields": {
+      "sku": "SKU code *",
+      "productName": "Product name *",
+      "stock": "Stock *",
+      "category": "Category *",
+      "price": "Price *",
+      "status": "Status",
+      "featured": "Featured product",
+      "description": "Description (optional)",
+      "uploadImage": "Upload image here or drag",
+      "pickFromGallery": "Or pick from gallery"
+    },
+    "footer": {
+      "fieldsFilled": "{{filled}} of {{total}} required fields filled",
+      "duplicate": "Duplicate",
+      "print": "Print",
+      "clear": "Reset Changes",
+      "save": "Update Product"
+    }
+  }
+}
