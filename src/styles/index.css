@@ -143,7 +143,7 @@
   }
 
   #social .button-icon {
-    filter: invert(1) brightness(2); 
+    filter: invert(1) brightness(2);
   }
 }
 
@@ -281,16 +281,7 @@
 }
 
 @layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    @apply border-border outline-ring/50;
-  }
   body {
     @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
   }
 }
