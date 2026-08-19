@@ -1,4 +1,5 @@
 import countryEn from '@/modules/country/i18n/en.json'
+import productEn from '@/modules/product/i18n/en.json'
 
 /**
  * Loader/merger only — this folder never holds UI copy. Every module ships its
@@ -14,6 +15,7 @@ export type TranslationVars = Record<string, string | number>
 const resources: Record<Locale, TranslationTree> = {
   en: {
     country: countryEn as unknown as TranslationTree,
+    product: productEn as unknown as TranslationTree,
   },
 }
 
