@@ -2,14 +2,7 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import { primaryNavItems } from "@/shared/components/layout";
-import {
-  SignIn,
-  VerifyEmail,
-  AccountVerified,
-  ForgotPassword,
-  CheckEmail,
-  SetNewPassword,
-} from "@/modules/auth";
+import { authRoutes } from "@/modules/auth";
 import {
   COUNTRY_ROUTE_PATH,
   CountryCardSkeleton,
@@ -18,9 +11,7 @@ import {
 } from "@/modules/country";
 import {
   INDUSTRIES_ROUTE_PATH,
-  IndustriesListing,
-  IndustriesAdd,
-  IndustriesEdit,
+  industriesRoutes,
 } from "@/modules/industries";
 
 const AddCountryPage = lazy(() =>
@@ -85,114 +76,8 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: INDUSTRIES_ROUTE_PATH,
-        element: (
-          <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
-            <IndustriesListing />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/industries/new",
-        element: (
-          <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
-            <IndustriesAdd />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/industries/:id/edit",
-        element: (
-          <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
-            <IndustriesEdit />
-          </Suspense>
-        ),
-      },
+      ...industriesRoutes,
     ],
   },
-  {
-    path: "/auth/signin",
-    element: (
-      <Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
-        <SignIn />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/auth/verify-email",
-    element: (
-      <Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
-        <VerifyEmail />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/auth/verified",
-    element: (
-      <Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
-        <AccountVerified />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/auth/forgot-password",
-    element: (
-      <Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
-        <ForgotPassword />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/auth/check-email",
-    element: (
-      <Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
-        <CheckEmail />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/auth/set-new-password",
-    element: (
-      <Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
-        <SetNewPassword />
-      </Suspense>
-    ),
-  },
+  ...authRoutes,
 ]);

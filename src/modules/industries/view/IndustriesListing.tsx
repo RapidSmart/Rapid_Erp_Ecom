@@ -7,6 +7,7 @@ import { IndustriesTable } from '../components/IndustriesTable'
 import { IndustriesOverviewPanel } from '../components/IndustriesOverviewPanel'
 import { IndustriesStatusOverview } from '../components/IndustriesStatusOverview'
 import { IndustriesDetailsDialog } from '../components/IndustriesDetailsDialog'
+import { IndustriesDeleteDialog } from '../components/IndustriesDeleteDialog'
 import { useIndustriesListing } from '../hooks/useIndustriesListing'
 import type { Industry, IndustryView } from '../types/industries.types'
 
@@ -15,6 +16,7 @@ export default function IndustriesListing() {
   const navigate = useNavigate()
   const [view, setView] = useState<IndustryView>('list')
   const [detailsIndustry, setDetailsIndustry] = useState<Industry | null>(null)
+  const [deleteIndustryTarget, setDeleteIndustryTarget] = useState<Industry | null>(null)
   
   const {
     search,
@@ -26,6 +28,7 @@ export default function IndustriesListing() {
     list,
     overview,
     isRefreshing,
+    isMutating,
     isFiltered,
     clearFilters,
     refresh,
@@ -42,12 +45,7 @@ export default function IndustriesListing() {
 
   const openCreate = () => navigate('/industries/new')
   const openEdit = (industry: Industry) => navigate(`/industries/${industry.id}/edit`)
-  
-  const handleDelete = async (industry: Industry) => {
-    if (window.confirm(`Are you sure you want to delete ${industry.name}?`)) {
-      await deleteIndustry(industry.id)
-    }
-  }
+  const handleDelete = (industry: Industry) => setDeleteIndustryTarget(industry)
 
   return (
     <div className="flex min-h-full flex-col gap-5 bg-canvas p-5">
@@ -128,6 +126,15 @@ export default function IndustriesListing() {
             handleDelete(ind)
           }}
           onClose={() => setDetailsIndustry(null)}
+        />
+      )}
+
+      {deleteIndustryTarget && (
+        <IndustriesDeleteDialog
+          industry={deleteIndustryTarget}
+          submitting={isMutating}
+          onConfirm={deleteIndustry}
+          onClose={() => setDeleteIndustryTarget(null)}
         />
       )}
     </div>
