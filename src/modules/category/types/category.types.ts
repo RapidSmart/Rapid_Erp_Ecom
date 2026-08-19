@@ -325,3 +325,20 @@ export interface CategoryFeedbackProps {
   bare?: boolean
 }
 
+export interface CategoryDeleteDialogProps {
+  category: Category
+  submitting: boolean
+  onConfirm: (code: CategoryId) => Promise<CategoryError | null>
+  onClose: () => void
+}
+
+export interface CategoryStatusOverviewProps {
+  state: AsyncState<CategoryOverview>
+  recordCount: number
+  range: CategoryTimeRange
+  onRangeChange: (range: CategoryTimeRange) => void
+  statusFilter: CategoryStatus | null
+  onStatusFilterChange: (status: CategoryStatus | null) => void
+  onRetry: () => void
+}
+

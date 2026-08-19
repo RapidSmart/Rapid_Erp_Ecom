@@ -9,14 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import type { Category, CategoryError, CategoryId } from '../../types/category.types'
-
-export interface CategoryDeleteDialogProps {
-  category: Category
-  submitting: boolean
-  onConfirm: (code: CategoryId) => Promise<CategoryError | null>
-  onClose: () => void
-}
+import type { CategoryError, CategoryDeleteDialogProps } from '../../types/category.types'
 
 function CategoryDeleteDialog({
   category,

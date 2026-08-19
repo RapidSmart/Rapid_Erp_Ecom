@@ -4,22 +4,7 @@ import { Button } from '@/shared/components/ui/button'
 import { CategoryOverviewCard } from './CategoryOverviewCard'
 import { CategoryRangeSwitch } from './CategoryRangeSwitch'
 import { CATEGORY_STAT_TILES } from '../constants/category-overview.data'
-import type {
-  AsyncState,
-  CategoryOverview,
-  CategoryStatus,
-  CategoryTimeRange,
-} from '../types/category.types'
-
-export interface CategoryStatusOverviewProps {
-  state: AsyncState<CategoryOverview>
-  recordCount: number
-  range: CategoryTimeRange
-  onRangeChange: (range: CategoryTimeRange) => void
-  statusFilter: CategoryStatus | null
-  onStatusFilterChange: (status: CategoryStatus | null) => void
-  onRetry: () => void
-}
+import type { CategoryStatus, CategoryStatusOverviewProps } from '../types/category.types'
 
 function CategoryStatusOverview({
   state,

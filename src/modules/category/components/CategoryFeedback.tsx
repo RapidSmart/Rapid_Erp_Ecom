@@ -1,17 +1,6 @@
-import type { LucideIcon } from 'lucide-react'
+import type { CategoryFeedbackProps } from '../types/category.types'
 import { Button } from '@/shared/components/ui/button'
 import { cn } from '@/shared/utils/utils'
-
-export interface CategoryFeedbackProps {
-  icon: LucideIcon
-  tone?: 'muted' | 'danger'
-  title: string
-  body: string
-  actionLabel?: string
-  onAction?: () => void
-  /** Skip the card border/background when already nested inside one. */
-  bare?: boolean
-}
 
 function CategoryFeedback({
   icon: Icon,
