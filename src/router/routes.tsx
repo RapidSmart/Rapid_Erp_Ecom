@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import { primaryNavItems, type NavItem } from "@/shared/components/layout";
