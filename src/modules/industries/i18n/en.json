@@ -54,10 +54,8 @@
   },
   "table": {
     "industry": "Industry",
-    "currency": "Currency",
-    "callingCode": "Calling Code",
-    "iso2": "ISO2",
-    "iso3": "ISO3",
+    "code": "Code",
+    "description": "Description",
     "status": "Status",
     "updated": "Updated",
     "selectAll": "Select all industries",
@@ -119,10 +117,8 @@
   "details": {
     "title": "Industry details",
     "status": "Status",
-    "iso2": "ISO2",
-    "iso3": "ISO3",
-    "currency": "Currency",
-    "callingCode": "Calling code",
+    "code": "Code",
+    "description": "Description",
     "updated": "Last updated",
     "close": "Close",
     "edit": "Edit"

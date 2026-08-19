@@ -25,6 +25,7 @@ export interface IndustriesTableProps {
   onClearFilters: () => void
   onAdd: () => void
   onEdit: (industry: Industry) => void
+  onOpenDetails: (industry: Industry) => void
 }
 
 export function IndustriesTable({
@@ -41,6 +42,7 @@ export function IndustriesTable({
   onClearFilters,
   onAdd,
   onEdit,
+  onOpenDetails,
 }: IndustriesTableProps) {
   const { t } = useTranslation()
   const [selectedIds, setSelectedIds] = useState<ReadonlySet<IndustryId>>(new Set())
@@ -103,23 +105,30 @@ export function IndustriesTable({
               className={isRefreshing ? 'opacity-60 transition-opacity' : undefined}
             >
               {rows.map((industry) => (
-                <tr key={industry.id} className="group border-b border-surface-border last:border-0 hover:bg-surface-muted cursor-pointer" onClick={() => onEdit(industry)}>
-                  <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
+                <tr key={industry.id} className="group border-b border-surface-border last:border-0 hover:bg-surface-muted">
+                  <td className="w-10 px-4 py-3">
                     <Checkbox
                       checked={selectedIds.has(industry.id)}
                       onCheckedChange={(checked) => toggleRow(industry, !!checked)}
                       aria-label={t('industries.table.selectRow') || 'Select row'}
                     />
                   </td>
-                  <td className="px-4 py-3 text-[13px] font-medium text-ink">
-                    <div className="flex items-center gap-2">
+                  <td className="px-4 py-3">
+                    <button
+                      type="button"
+                      onClick={() => onOpenDetails(industry)}
+                      aria-label={t('industries.card.details', { name: industry.name }) || 'View details'}
+                      className="flex cursor-pointer items-center gap-2.5 text-left focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                    >
                       {industry.image ? (
                         <img src={industry.image} alt={industry.name} className="h-5 w-7 rounded object-cover" />
                       ) : (
                         <div className="flex h-5 w-7 items-center justify-center rounded bg-surface-border"><Factory className="size-3 text-ink-muted" /></div>
                       )}
-                      {industry.name}
-                    </div>
+                      <span className="truncate text-[13px] font-semibold text-ink">
+                        {industry.name}
+                      </span>
+                    </button>
                   </td>
                   <td className="px-4 py-3 text-[13px] text-ink-subtle">
                     {industry.code}

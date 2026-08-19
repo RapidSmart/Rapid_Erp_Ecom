@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "@/i18n";
 import { PillInput } from "./PillInput";
 import { SectionHeader } from "./SectionHeader";
@@ -6,6 +7,12 @@ import { Upload } from "lucide-react";
 
 export function IndustriesForm() {
   const { t } = useTranslation();
+  
+  const [code, setCode] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  const filledCount = [code, name].filter((v) => v.trim().length > 0).length;
 
   return (
     <article className="rounded-2xl bg-white p-4 shadow-sm sm:rounded-3xl sm:px-6 sm:pb-6 sm:pt-7 lg:px-8">
@@ -16,17 +23,17 @@ export function IndustriesForm() {
           <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-[1fr_2fr]">
             <PillInput
               id="industry-code"
-              placeholder={t("industries.form.code") || "Code"}
-              value=""
-              onChange={() => {}}
+              placeholder={t("industries.form.codePlaceholder") || "e.g. TECH"}
+              value={code}
+              onChange={setCode}
               maxLength={10}
               required
             />
             <PillInput
               id="industry-name"
-              placeholder={t("industries.form.name") || "Name"}
-              value=""
-              onChange={() => {}}
+              placeholder={t("industries.form.namePlaceholder") || "e.g. Technology"}
+              value={name}
+              onChange={setName}
               maxLength={40}
               required
             />
@@ -62,7 +69,9 @@ export function IndustriesForm() {
               id="description"
               rows={4}
               maxLength={200}
-              placeholder={t("industries.form.description") || "Description"}
+              placeholder={t("industries.form.descriptionPlaceholder") || "Description"}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className="w-full resize-none rounded-2xl border border-transparent bg-gray-100 p-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-400 sm:rounded-3xl sm:p-[22px] sm:text-[14.5px]"
             />
           </div>
@@ -70,16 +79,20 @@ export function IndustriesForm() {
 
         {/* FOOTER */}
         <FormFooter
-          filledCount={0}
+          filledCount={filledCount}
           totalCount={2}
-          filledText="0 of 2 required fields filled"
-          duplicateText="Duplicate"
+          filledText={`${filledCount} of 2 required fields filled`}
+          duplicateText={t("industries.form.submitDuplicate") || "Duplicate"}
           printText="Print"
           clearText="Clear"
-          saveText="Save industry"
+          saveText={t("industries.form.submitCreate") || "Save industry"}
           onDuplicate={() => {}}
           onPrint={() => {}}
-          onClear={() => {}}
+          onClear={() => {
+            setCode("");
+            setName("");
+            setDescription("");
+          }}
           onSave={() => {}}
         />
       </form>

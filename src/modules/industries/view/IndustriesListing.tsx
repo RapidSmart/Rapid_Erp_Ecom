@@ -6,6 +6,7 @@ import { IndustriesGrid } from '../components/IndustriesGrid'
 import { IndustriesTable } from '../components/IndustriesTable'
 import { IndustriesOverviewPanel } from '../components/IndustriesOverviewPanel'
 import { IndustriesStatusOverview } from '../components/IndustriesStatusOverview'
+import { IndustriesDetailsDialog } from '../components/IndustriesDetailsDialog'
 import { useIndustriesListing } from '../hooks/useIndustriesListing'
 import type { Industry, IndustryView } from '../types/industries.types'
 
@@ -13,6 +14,7 @@ export default function IndustriesListing() {
   const { toggleCollapsed } = useSidebar()
   const navigate = useNavigate()
   const [view, setView] = useState<IndustryView>('list')
+  const [detailsIndustry, setDetailsIndustry] = useState<Industry | null>(null)
   
   const {
     search,
@@ -110,6 +112,22 @@ export default function IndustriesListing() {
           onClearFilters={clearFilters}
           onAdd={openCreate}
           onEdit={openEdit}
+          onOpenDetails={setDetailsIndustry}
+        />
+      )}
+
+      {detailsIndustry && (
+        <IndustriesDetailsDialog
+          industry={detailsIndustry}
+          onEdit={(ind) => {
+            setDetailsIndustry(null)
+            openEdit(ind)
+          }}
+          onDelete={(ind) => {
+            setDetailsIndustry(null)
+            handleDelete(ind)
+          }}
+          onClose={() => setDetailsIndustry(null)}
         />
       )}
     </div>
