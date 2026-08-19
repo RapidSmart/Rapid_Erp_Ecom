@@ -14,6 +14,7 @@ export function EditProductPage() {
       <div className="mx-auto max-w-[1560px]">
         <PageHeader
           backText={t("product.edit.backToList")}
+          backHref="/product"
           breadcrumbItems={[
             { label: t("product.edit.breadcrumb.masterData") },
             { label: t("product.edit.breadcrumb.products") },

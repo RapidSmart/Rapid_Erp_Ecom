@@ -1,23 +1,24 @@
-import { useTranslation } from '@/i18n'
-import { Button } from '@/shared/components/ui/button'
+import { useTranslation } from "@/i18n";
+import { Button } from "@/shared/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/shared/components/ui/dialog'
-import { CountryFlag } from './CountryFlag'
-import { CountryStatusBadge } from './CountryStatusBadge'
-import { formatUpdatedAtFull } from '../utils/format-updated-at'
-import type { Country } from '../types/country.types'
+} from "@/shared/components/ui/dialog";
+import { CountryFlag } from "./CountryFlag";
+import { CountryStatusBadge } from "./CountryStatusBadge";
+import { formatUpdatedAtFull } from "../utils/format-updated-at";
+import type { Country } from "../types/country.types";
+import { Link } from "react-router-dom";
 
 export interface CountryDetailsDialogProps {
-  country: Country
-  onEdit: (country: Country) => void
-  onDuplicate: (country: Country) => void
-  onDelete: (country: Country) => void
-  onClose: () => void
+  country: Country;
+  onEdit: (country: Country) => void;
+  onDuplicate: (country: Country) => void;
+  onDelete: (country: Country) => void;
+  onClose: () => void;
 }
 
 function CountryDetailsDialog({
@@ -27,14 +28,17 @@ function CountryDetailsDialog({
   onDelete,
   onClose,
 }: CountryDetailsDialogProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-sm" closeLabel={t('country.details.close')}>
+      <DialogContent
+        className="max-w-sm"
+        closeLabel={t("country.details.close")}
+      >
         <DialogHeader>
           <DialogTitle className="sr-only">
-            {t('country.details.title')}
+            {t("country.details.title")}
           </DialogTitle>
           <div className="flex items-center gap-2.5">
             <CountryFlag iso2={country.iso2} />
@@ -48,7 +52,7 @@ function CountryDetailsDialog({
         <dl className="grid grid-cols-2 gap-4 rounded-xl border border-surface-border bg-surface-muted/60 px-4 py-3">
           <div>
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t('country.details.iso2')}
+              {t("country.details.iso2")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
               {country.iso2}
@@ -56,7 +60,7 @@ function CountryDetailsDialog({
           </div>
           <div>
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t('country.details.iso3')}
+              {t("country.details.iso3")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
               {country.iso3}
@@ -64,7 +68,7 @@ function CountryDetailsDialog({
           </div>
           <div>
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t('country.details.currency')}
+              {t("country.details.currency")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
               {country.currency}
@@ -72,7 +76,7 @@ function CountryDetailsDialog({
           </div>
           <div>
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t('country.details.callingCode')}
+              {t("country.details.callingCode")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
               {country.callingCode}
@@ -80,7 +84,7 @@ function CountryDetailsDialog({
           </div>
           <div className="col-span-2">
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t('country.details.updated')}
+              {t("country.details.updated")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
               {formatUpdatedAtFull(country.updatedAt)}
@@ -91,27 +95,27 @@ function CountryDetailsDialog({
         <DialogFooter className="flex-wrap justify-between sm:justify-between">
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => onDuplicate(country)}>
-              {t('country.card.duplicate')}
+              {t("country.card.duplicate")}
             </Button>
             <Button variant="destructive" onClick={() => onDelete(country)}>
-              {t('country.card.delete')}
+              {t("country.card.delete")}
             </Button>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" onClick={onClose}>
-              {t('country.details.close')}
+              {t("country.details.close")}
             </Button>
-            <Button
-              onClick={() => onEdit(country)}
+            <Link
+              to={`/country/${country.id}/edit`}
               className="bg-brand-accent text-brand-accent-foreground hover:bg-brand-accent/90"
             >
-              {t('country.details.edit')}
-            </Button>
+              {t("country.details.edit")}
+            </Link>
           </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
-export { CountryDetailsDialog }
+export { CountryDetailsDialog };

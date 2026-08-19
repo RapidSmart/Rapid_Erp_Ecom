@@ -1,6 +1,7 @@
 import { IconChevronLeft } from "@/shared/icons/IconChevronLeft";
 import { Breadcrumb } from "./Breadcrumb";
 import type { PageHeaderProps } from "./types/page-header.types";
+import { Link } from "react-router-dom";
 
 export type { PageHeaderProps } from "./types/page-header.types";
 
@@ -18,8 +19,8 @@ export function PageHeader({
       {/* Back button */}
       {backText && (
         <div className="mb-5">
-          <a
-            href={backHref}
+          <Link
+            to={backHref}
             onClick={(e) => {
               if (onBack) {
                 e.preventDefault();
@@ -30,7 +31,7 @@ export function PageHeader({
           >
             <IconChevronLeft />
             {backText}
-          </a>
+          </Link>
         </div>
       )}
 

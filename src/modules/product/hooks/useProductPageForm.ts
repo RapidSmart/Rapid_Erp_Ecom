@@ -22,7 +22,7 @@ const INITIAL_VALUES: ProductFormValues = {
   category: '',
   stock: '',
   status: 'active',
-  featured: 'no',
+  featured: '',
   imageFile: null,
   selectedImage: null,
   description: '',

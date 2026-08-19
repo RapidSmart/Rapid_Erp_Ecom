@@ -60,7 +60,6 @@ function ProductListing() {
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
-          onAdd={openCreate}
           totalCount={masterCount}
           view={view}
           onToggleView={() =>
