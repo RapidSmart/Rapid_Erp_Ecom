@@ -1,7 +1,15 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Suspense, lazy } from "react";
 import App from "@/App";
-import { SignIn, SignUp } from "@/modules/auth";
+import { primaryNavItems } from "@/shared/components/layout";
+import {
+  SignIn,
+  VerifyEmail,
+  AccountVerified,
+  ForgotPassword,
+  CheckEmail,
+  SetNewPassword,
+} from "@/modules/auth";
 
 const AddCountryPage = lazy(() =>
   import("@/modules/countries").then((m) => ({ default: m.AddCountryPage })),
@@ -9,7 +17,6 @@ const AddCountryPage = lazy(() =>
 const EditCountryPage = lazy(() =>
   import("@/modules/countries").then((m) => ({ default: m.EditCountryPage })),
 );
-import { primaryNavItems } from "@/shared/components/layout";
 
 const navRoutes = primaryNavItems
   .filter((item) => item.href !== "/")
@@ -36,7 +43,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/auth/signup",
+    path: "/auth/verify-email",
     element: (
       <Suspense
         fallback={
@@ -45,7 +52,63 @@ export const router = createBrowserRouter([
           </div>
         }
       >
-        <SignUp />
+        <VerifyEmail />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/auth/verified",
+    element: (
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <AccountVerified />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/auth/forgot-password",
+    element: (
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <ForgotPassword />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/auth/check-email",
+    element: (
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <CheckEmail />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/auth/set-new-password",
+    element: (
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <SetNewPassword />
       </Suspense>
     ),
   },
@@ -78,3 +141,4 @@ export const router = createBrowserRouter([
     ),
   },
 ]);
+
