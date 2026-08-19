@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 function ProductDetailsDialog({
   product,
-  onEdit,
+  onEdit: _onEdit,
   onDuplicate,
   onDelete,
   onClose,

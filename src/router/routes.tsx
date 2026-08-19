@@ -12,6 +12,7 @@ import {
 } from "@/modules/auth";
 import { COUNTRY_ROUTE_PATH, countryRoutes } from "@/modules/country";
 import { PRODUCT_ROUTE_PATH, productRoutes } from "@/modules/product";
+import { CATEGORY_ROUTE_PATH, categoryRoutes } from "@/modules/category";
 
 function buildNavRoutes(navItems: NavItem[], excludePaths: string[]) {
   return navItems
@@ -19,7 +20,11 @@ function buildNavRoutes(navItems: NavItem[], excludePaths: string[]) {
     .map((item) => ({ path: item.href, element: null }));
 }
 
-const navRoutes = buildNavRoutes(primaryNavItems, [COUNTRY_ROUTE_PATH, PRODUCT_ROUTE_PATH]);
+const navRoutes = buildNavRoutes(primaryNavItems, [
+  COUNTRY_ROUTE_PATH,
+  PRODUCT_ROUTE_PATH,
+  CATEGORY_ROUTE_PATH,
+]);
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +34,7 @@ export const router = createBrowserRouter([
       ...navRoutes,
       ...countryRoutes,
       ...productRoutes,
+      ...categoryRoutes,
     ],
   },
   {

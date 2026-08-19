@@ -23,7 +23,7 @@ export interface CountryDetailsDialogProps {
 
 function CountryDetailsDialog({
   country,
-  onEdit,
+  onEdit: _onEdit,
   onDuplicate,
   onDelete,
   onClose,
