@@ -11,6 +11,7 @@ import {
   Map,
   Package,
   Folder,
+  Factory,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -27,6 +28,7 @@ export const primaryNavItems: NavItem[] = [
   { id: 'country', label: 'Country', icon: Globe, href: '/country' },
   { id: 'product', label: 'Product', icon: Package, href: '/product' },
   { id: 'category', label: 'Category', icon: Folder, href: '/category' },
+  { id: 'industries', label: 'Industries', icon: Factory, href: '/industries' },
   { id: 'document-types', label: 'Document types', icon: FileText, href: '/document-types' },
   { id: 'action-types', label: 'Action types', icon: Zap, href: '/action-types' },
   { id: 'status-types', label: 'Status types', icon: CheckCircle2, href: '/status-types' },

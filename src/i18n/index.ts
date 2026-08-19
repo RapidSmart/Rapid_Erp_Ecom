@@ -1,6 +1,7 @@
 import countryEn from '@/modules/country/i18n/en.json'
 import productEn from '@/modules/product/i18n/en.json'
 import categoryEn from '@/modules/category/i18n/en.json'
+import industriesEn from '@/modules/industries/i18n/en.json'
 
 /**
  * Loader/merger only — this folder never holds UI copy. Every module ships its
@@ -18,6 +19,7 @@ const resources: Record<Locale, TranslationTree> = {
     country: countryEn as unknown as TranslationTree,
     product: productEn as unknown as TranslationTree,
     category: categoryEn as unknown as TranslationTree,
+    industries: industriesEn as unknown as TranslationTree,
   },
 }
 
@@ -67,4 +69,3 @@ const translation = { t: translate }
 export function useTranslation() {
   return translation
 }
-
