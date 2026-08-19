@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
         errorElement: <CountryRouteError />,
       },
       {
-        path: "/countries/new",
+        path: "/country/new",
         element: (
           <Suspense
             fallback={
@@ -66,7 +66,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/countries/:id/edit",
+        path: "/country/:id/edit",
         element: (
           <Suspense
             fallback={
@@ -166,5 +166,3 @@ export const router = createBrowserRouter([
     ),
   },
 ]);
-
-
