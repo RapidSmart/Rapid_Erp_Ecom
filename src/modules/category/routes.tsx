@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import { CategoryRouteError } from './view/CategoryRouteError'
-import { CategoryCardSkeleton } from './components/CategoryCardSkeleton'
+import { CategoryCardSkeleton } from './components/skeleton/CategoryCardSkeleton'
 
 export const CATEGORY_ROUTE_PATH = '/category'
 

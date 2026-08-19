@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSidebar } from '@/shared/components/layout'
-import { CategoryDeleteDialog } from '../components/CategoryDeleteDialog'
-import { CategoryDetailsDialog } from '../components/CategoryDetailsDialog'
-import { CategoryFormDialog } from '../components/CategoryFormDialog'
+import { CategoryDeleteDialog } from '../components/dialog/CategoryDeleteDialog'
+import { CategoryDetailsDialog } from '../components/dialog/CategoryDetailsDialog'
 import { CategoryGrid } from '../components/CategoryGrid'
 import { CategoryListingFooter } from '../components/CategoryListingFooter'
 import { CategoryListingHeader } from '../components/CategoryListingHeader'
@@ -30,8 +30,6 @@ function CategoryListing() {
     isFiltered,
     clearFilters,
     refresh,
-    createCategory,
-    updateCategory,
     deleteCategory,
     page,
     setPage,
@@ -43,12 +41,12 @@ function CategoryListing() {
     paginatedList,
   } = useCategoryListing()
 
+  const navigate = useNavigate()
   const closeDialog = () => setDialog({ kind: 'none' })
-  const openCreate = () => setDialog({ kind: 'form', mode: 'create' })
-  const openEdit = (category: Category) =>
-    setDialog({ kind: 'form', mode: 'edit', category })
+  const openCreate = () => navigate('/category/new')
+  const openEdit = (category: Category) => navigate(`/category/${category.code}/edit`)
   const openDuplicate = (category: Category) =>
-    setDialog({ kind: 'form', mode: 'duplicate', category })
+    navigate('/category/new', { state: { initialValues: { ...category, code: '' } } })
   const openDelete = (category: Category) => setDialog({ kind: 'delete', category })
   const openDetails = (category: Category) =>
     setDialog({ kind: 'details', category })
@@ -60,7 +58,6 @@ function CategoryListing() {
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
-          onAdd={openCreate}
           totalCount={masterCount}
           view={view}
           onToggleView={() =>
@@ -123,21 +120,6 @@ function CategoryListing() {
 
       <CategoryListingFooter />
 
-      {dialog.kind === 'form' && (
-        <CategoryFormDialog
-          mode={dialog.mode}
-          category={dialog.category}
-          submitting={isMutating}
-          onSubmit={(payload) => {
-            const target = dialog.category
-
-            return dialog.mode === 'edit' && target
-              ? updateCategory(target.code, payload)
-              : createCategory(payload)
-          }}
-          onClose={closeDialog}
-        />
-      )}
 
       {dialog.kind === 'delete' && (
         <CategoryDeleteDialog

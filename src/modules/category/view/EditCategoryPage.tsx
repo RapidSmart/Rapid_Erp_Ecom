@@ -14,6 +14,7 @@ export function EditCategoryPage() {
       <div className="mx-auto max-w-[1560px]">
         <PageHeader
           backText={t("category.edit.backToList")}
+          backHref="/category"
           breadcrumbItems={[
             { label: t("category.edit.breadcrumb.masterData") },
             { label: t("category.edit.breadcrumb.categories") },

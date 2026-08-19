@@ -1,7 +1,7 @@
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
-import type { CategoryStatus } from '../types/category.types'
+import type { CategoryStatusBadgeProps } from '../types/category.types'
 
 const statusBadgeVariants = cva(
   'inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-1 text-[11px] leading-none font-medium',
@@ -19,12 +19,6 @@ const statusBadgeVariants = cva(
     },
   }
 )
-
-export interface CategoryStatusBadgeProps
-  extends VariantProps<typeof statusBadgeVariants> {
-  status: CategoryStatus
-  className?: string
-}
 
 function CategoryStatusBadge({ status, className }: CategoryStatusBadgeProps) {
   const { t } = useTranslation()

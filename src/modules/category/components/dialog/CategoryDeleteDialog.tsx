@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import type { Category, CategoryError, CategoryId } from '../types/category.types'
+import type { Category, CategoryError, CategoryId } from '../../types/category.types'
 
 export interface CategoryDeleteDialogProps {
   category: Category

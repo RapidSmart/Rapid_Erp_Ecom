@@ -1,24 +1,13 @@
+import { Link } from 'react-router-dom'
 import { Menu, Mic, Search } from 'lucide-react'
 import { useTranslation } from '@/i18n'
-import { Button } from '@/shared/components/ui/button'
 import { CategoryViewToggle } from './CategoryViewToggle'
-import type { CategoryView } from '../types/category.types'
-
-export interface CategoryListingHeaderProps {
-  search: string
-  onSearchChange: (value: string) => void
-  onToggleMenu: () => void
-  onAdd: () => void
-  totalCount: number
-  view: CategoryView
-  onToggleView: () => void
-}
+import type { CategoryListingHeaderProps } from '../types/category.types'
 
 function CategoryListingHeader({
   search,
   onSearchChange,
   onToggleMenu,
-  onAdd,
   totalCount,
   view,
   onToggleView,
@@ -66,12 +55,12 @@ function CategoryListingHeader({
         </label>
       </div>
 
-      <Button
-        onClick={onAdd}
-        className="ml-auto h-7 min-w-20 rounded-full bg-brand-accent px-5 text-xs font-medium text-brand-accent-foreground hover:bg-brand-accent/90 sm:ml-0"
+      <Link
+        to="/category/new"
+        className="ml-auto flex items-center justify-center h-7 min-w-20 rounded-full bg-brand-accent px-5 text-xs font-medium text-brand-accent-foreground hover:bg-brand-accent/90 sm:ml-0"
       >
         {t('category.listing.add')}
-      </Button>
+      </Link>
     </div>
   )
 }

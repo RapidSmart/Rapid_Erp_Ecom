@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { cn } from '@/shared/utils/utils'
-import type { CategoryStatTone } from '../types/category.types'
+import type { CategoryStatTone, CategoryStatDonutProps } from '../types/category.types'
 
 const VIEWBOX = 120
 const CENTER = VIEWBOX / 2
@@ -16,16 +16,6 @@ const toneTextClasses: Record<CategoryStatTone, string> = {
   inactive: 'text-stat-inactive',
   draft: 'text-stat-draft',
   delete: 'text-stat-delete',
-}
-
-export interface CategoryStatDonutProps {
-  tone: CategoryStatTone
-  label: string
-  value: number
-  percentage: number
-  selected?: boolean
-  actionLabel?: string
-  onSelect?: () => void
 }
 
 function CategoryStatDonut({

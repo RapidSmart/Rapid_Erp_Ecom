@@ -1,35 +1,16 @@
 import { useState, type FormEvent } from 'react'
 import { DEFAULT_CATEGORY_STATUS } from '../constants/category-status.data'
-import {
-  normalizeCategoryPayload,
-  validateCategoryForm,
-  type CategoryFormErrors,
-  type CategoryFormField,
-} from '../validation/category-form.schema'
+import { normalizeCategoryPayload, validateCategoryForm } from '../validation/category-form.schema'
 import type {
   Category,
-  CategoryError,
   CategoryFormMode,
   CategoryPayload,
   CategoryStatus,
+  CategoryFormErrors,
+  CategoryFormField,
+  UseCategoryFormOptions,
+  CategoryFormController,
 } from '../types/category.types'
-
-export interface UseCategoryFormOptions {
-  mode: CategoryFormMode
-  category?: Category
-  onSubmit: (payload: CategoryPayload) => Promise<CategoryError | null>
-  onSuccess: () => void
-}
-
-export interface CategoryFormController {
-  values: CategoryPayload
-  errors: CategoryFormErrors
-  /** Non field-specific failure returned by the service. */
-  formError: string | null
-  setText: (field: CategoryFormField, value: string) => void
-  setStatus: (status: CategoryStatus) => void
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
-}
 
 function buildInitialValues(
   mode: CategoryFormMode,

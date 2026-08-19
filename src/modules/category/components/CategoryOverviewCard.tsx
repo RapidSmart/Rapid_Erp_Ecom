@@ -1,16 +1,6 @@
 import { useTranslation } from '@/i18n'
 import { CategoryOverviewRing } from './CategoryOverviewRing'
-import type { CategoryStatus } from '../types/category.types'
-
-export interface CategoryOverviewCardProps {
-  status: CategoryStatus
-  label: string
-  value: number
-  percentage: number
-  selected?: boolean
-  actionLabel?: string
-  onSelect?: () => void
-}
+import type { CategoryOverviewCardProps } from '../types/category.types'
 
 function CategoryOverviewCard({
   status,

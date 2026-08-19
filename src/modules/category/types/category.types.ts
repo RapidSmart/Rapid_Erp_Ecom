@@ -1,4 +1,5 @@
-import type { DragEvent, ReactNode, InputHTMLAttributes, RefObject } from 'react'
+import type { DragEvent, ReactNode, InputHTMLAttributes, RefObject, FormEvent } from 'react'
+import type { LucideIcon } from 'lucide-react'
 
 export type CategoryId = string & { readonly __brand: 'CategoryId' }
 
@@ -182,16 +183,145 @@ export interface PillSelectProps {
   prefix?: ReactNode
 }
 
-export interface LanguageTranslationValues {
-  arabic: string
-  hindi: string
-  urdu: string
-  bangla: string
+export type CategoryFormField = 'name' | 'code' | 'description'
+
+export type CategoryFormErrors = Partial<Record<CategoryFormField, string>>
+
+export interface UseCategoryFormOptions {
+  mode: CategoryFormMode
+  category?: Category
+  onSubmit: (payload: CategoryPayload) => Promise<CategoryError | null>
+  onSuccess: () => void
 }
 
-export interface LanguageDropdownProps {
-  initialValues?: Partial<LanguageTranslationValues>
-  onSave?: (translations: LanguageTranslationValues) => void
-  currentLanguage?: string
-  onSelectLanguage?: (lang: any) => void
+export interface CategoryFormController {
+  values: CategoryPayload
+  errors: CategoryFormErrors
+  /** Non field-specific failure returned by the service. */
+  formError: string | null
+  setText: (field: CategoryFormField, value: string) => void
+  setStatus: (status: CategoryStatus) => void
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
 }
+
+export interface CategoryCardProps {
+  category: Category
+  onOpenDetails: (category: Category) => void
+  onEdit: (category: Category) => void
+  onDuplicate: (category: Category) => void
+  onDelete: (category: Category) => void
+}
+
+export interface CategoryDetailsDialogProps {
+  category: Category
+  onEdit: (category: Category) => void
+  onDuplicate: (category: Category) => void
+  onDelete: (category: Category) => void
+  onClose: () => void
+}
+
+export interface CategoryGridProps {
+  state: AsyncState<Category[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onOpenDetails: (category: Category) => void
+  onEdit: (category: Category) => void
+  onDuplicate: (category: Category) => void
+  onDelete: (category: Category) => void
+}
+
+export interface CategoryImageProps {
+  imageUrl?: string
+  name: string
+  className?: string
+}
+
+export interface CategoryListingHeaderProps {
+  search: string
+  onSearchChange: (value: string) => void
+  onToggleMenu: () => void
+  totalCount: number
+  view: CategoryView
+  onToggleView: () => void
+}
+
+export interface CategoryOverviewCardProps {
+  status: CategoryStatus
+  label: string
+  value: number
+  percentage: number
+  selected?: boolean
+  actionLabel?: string
+  onSelect?: () => void
+}
+
+export interface CategoryOverviewPanelProps {
+  state: AsyncState<CategoryOverview>
+  range: CategoryTimeRange
+  onRangeChange: (range: CategoryTimeRange) => void
+  statusFilter: CategoryStatus | null
+  onStatusFilterChange: (status: CategoryStatus | null) => void
+  onRetry: () => void
+}
+
+export interface CategoryPaginationProps {
+  page: number
+  pageCount: number
+  pageSize: CategoryPageSize
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: CategoryPageSize) => void
+  totalCount: number
+}
+
+export interface CategoryStatDonutProps {
+  tone: CategoryStatTone
+  label: string
+  value: number
+  percentage: number
+  selected?: boolean
+  actionLabel?: string
+  onSelect?: () => void
+}
+
+export interface CategoryStatusBadgeProps {
+  status: CategoryStatus
+  className?: string
+}
+
+export interface CategoryTableProps {
+  state: AsyncState<Category[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  page: number
+  pageCount: number
+  pageSize: CategoryPageSize
+  totalCount: number
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: CategoryPageSize) => void
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onOpenDetails: (category: Category) => void
+}
+
+export interface CategoryTableRowProps {
+  category: Category
+  selected: boolean
+  onToggleSelected: (category: Category, selected: boolean) => void
+  onOpenDetails: (category: Category) => void
+}
+
+export interface CategoryFeedbackProps {
+  icon: LucideIcon
+  tone?: 'muted' | 'danger'
+  title: string
+  body: string
+  actionLabel?: string
+  onAction?: () => void
+  /** Skip the card border/background when already nested inside one. */
+  bare?: boolean
+}
+

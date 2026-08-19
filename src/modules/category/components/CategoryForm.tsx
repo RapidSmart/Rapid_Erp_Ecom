@@ -7,7 +7,6 @@ import { PillInput } from './PillInput'
 import { CategoryImageUploadArea } from './CategoryImageUploadArea'
 import { CategoryImageChip } from './CategoryImageChip'
 import { FormFooter } from './FormFooter'
-import { LanguageDropdown } from './LanguageDropdown'
 
 export function CategoryForm({ mode, form }: CategoryPageFormProps) {
   const { t } = useTranslation()
@@ -72,14 +71,6 @@ export function CategoryForm({ mode, form }: CategoryPageFormProps) {
               value={values.name}
               maxLength={40}
               onChange={(v) => handleFieldChange('name', v)}
-              rightIcon={
-                <LanguageDropdown
-                  currentLanguage="en"
-                  onSelectLanguage={(lang) => {
-                    console.log('Selected translation language:', lang)
-                  }}
-                />
-              }
               required
             />
           </div>

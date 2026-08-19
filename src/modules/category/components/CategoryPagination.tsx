@@ -2,16 +2,7 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-r
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
 import { CATEGORY_PAGE_SIZES } from '../constants/category-pagination.data'
-import type { CategoryPageSize } from '../types/category.types'
-
-export interface CategoryPaginationProps {
-  page: number
-  pageCount: number
-  pageSize: CategoryPageSize
-  onPageChange: (page: number) => void
-  onPageSizeChange: (pageSize: CategoryPageSize) => void
-  totalCount: number
-}
+import type { CategoryPaginationProps } from '../types/category.types'
 
 const navButtonClasses =
   'flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink disabled:pointer-events-none disabled:opacity-40 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'

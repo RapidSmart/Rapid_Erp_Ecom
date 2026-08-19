@@ -4,16 +4,9 @@ import { cn } from '@/shared/utils/utils'
 import { CategoryImage } from './CategoryImage'
 import { CategoryStatusBadge } from './CategoryStatusBadge'
 import { formatUpdatedAtCompact } from '../utils/format-updated-at'
-import type { Category } from '../types/category.types'
+import type { CategoryTableRowProps } from '../types/category.types'
 
 const cellClasses = 'px-4 py-3.5 text-[13px] text-ink-muted'
-
-export interface CategoryTableRowProps {
-  category: Category
-  selected: boolean
-  onToggleSelected: (category: Category, selected: boolean) => void
-  onOpenDetails: (category: Category) => void
-}
 
 function CategoryTableRow({
   category,

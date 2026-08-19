@@ -4,15 +4,7 @@ import { cn } from '@/shared/utils/utils'
 import { CategoryImage } from './CategoryImage'
 import { CategoryStatusBadge } from './CategoryStatusBadge'
 import { formatUpdatedAt } from '../utils/format-updated-at'
-import type { Category } from '../types/category.types'
-
-export interface CategoryCardProps {
-  category: Category
-  onOpenDetails: (category: Category) => void
-  onEdit: (category: Category) => void
-  onDuplicate: (category: Category) => void
-  onDelete: (category: Category) => void
-}
+import type { CategoryCardProps } from '../types/category.types'
 
 const actionButtonClasses =
   'flex size-6 cursor-pointer items-center justify-center rounded-md border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'

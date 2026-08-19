@@ -2,11 +2,7 @@ import { useState } from 'react'
 import { cn } from '@/shared/utils/utils'
 import { Folder } from 'lucide-react'
 
-export interface CategoryImageProps {
-  imageUrl?: string
-  name: string
-  className?: string
-}
+import type { CategoryImageProps } from '../types/category.types'
 
 function CategoryImage({ imageUrl, name, className }: CategoryImageProps) {
   const [failed, setFailed] = useState(false)

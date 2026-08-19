@@ -1,11 +1,4 @@
-import type { CategoryPayload } from '../types/category.types'
-
-export type CategoryFormField =
-  | 'code'
-  | 'name'
-  | 'description'
-
-export type CategoryFormErrors = Partial<Record<CategoryFormField, string>>
+import type { CategoryPayload, CategoryFormErrors } from '../types/category.types'
 
 const CODE_PATTERN = /^[A-Za-z0-9-_]{2,10}$/
 

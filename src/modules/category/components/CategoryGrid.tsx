@@ -2,27 +2,15 @@ import { Folder, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
 import { CategoryCard } from './CategoryCard'
-import { CategoryCardSkeleton } from './CategoryCardSkeleton'
+import { CategoryCardSkeleton } from './skeleton/CategoryCardSkeleton'
 import { CategoryFeedback } from './CategoryFeedback'
-import type { AsyncState, Category } from '../types/category.types'
+import type { CategoryGridProps } from '../types/category.types'
 
 const SKELETON_COUNT = 8
 
 const gridClasses =
   'grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-x-3.5 gap-y-5'
 
-export interface CategoryGridProps {
-  state: AsyncState<Category[]>
-  isRefreshing: boolean
-  isFiltered: boolean
-  onRetry: () => void
-  onClearFilters: () => void
-  onAdd: () => void
-  onOpenDetails: (category: Category) => void
-  onEdit: (category: Category) => void
-  onDuplicate: (category: Category) => void
-  onDelete: (category: Category) => void
-}
 
 function CategoryGrid({
   state,
