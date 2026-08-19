@@ -21,6 +21,7 @@ const countryFallback = (
     ))}
   </div>
 )
+import { SignIn, VerifyEmail, AccountVerified, ForgotPassword, CheckEmail, SetNewPassword } from '@/modules/auth'
 
 export const router = createBrowserRouter([
   {
@@ -48,10 +49,42 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/auth/signup',
+    path: '/auth/verify-email',
     element: (
       <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
-        <SignUp />
+        <VerifyEmail />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/auth/verified',
+    element: (
+      <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+        <AccountVerified />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/auth/forgot-password',
+    element: (
+      <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+        <ForgotPassword />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/auth/check-email',
+    element: (
+      <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+        <CheckEmail />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/auth/set-new-password',
+    element: (
+      <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+        <SetNewPassword />
       </Suspense>
     ),
   },

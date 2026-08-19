@@ -1,10 +1,22 @@
+import { SignInForm } from '../components/SignInForm'
+import { AuthLayout } from '../components/AuthLayout'
+
 export default function SignIn() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center text-gray-900">Sign In</h1>
-        <p className="text-center text-gray-600 mt-2">Sign in design coming soon...</p>
+    <AuthLayout>
+      {/* Centered form container inside the right column */}
+      <div className="w-full max-w-[460px] mx-auto space-y-10">
+        <div className="space-y-2">
+          <h2 className="text-[32px] font-bold tracking-tight text-gray-900 m-0">
+            Sign in to Rapid
+          </h2>
+          <p className="text-[#64748B] text-[15px] leading-relaxed m-0">
+            Use your work email. Access follows the permissions set by your administrator.
+          </p>
+        </div>
+
+        <SignInForm />
       </div>
-    </div>
+    </AuthLayout>
   )
 }
