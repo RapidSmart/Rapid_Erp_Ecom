@@ -1,17 +1,4 @@
-import { lazy } from 'react'
-
-export const COUNTRY_ROUTE_PATH = '/country'
-
-export const CountryListing = lazy(() =>
-  import('./view/CountryListing').then((module) => ({
-    default: module.CountryListing,
-  }))
-)
-
-export { CountryRouteError } from './view/CountryRouteError'
-export { CountryCardSkeleton } from './components/CountryCardSkeleton'
-export { AddCountryPage } from './view/AddCountryPage'
-export { EditCountryPage } from './view/EditCountryPage'
+export { COUNTRY_ROUTE_PATH, countryRoutes } from './routes'
 export type {
   Country,
   CountryId,
