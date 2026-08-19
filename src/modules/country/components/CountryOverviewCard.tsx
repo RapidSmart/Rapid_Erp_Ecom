@@ -1,16 +1,6 @@
 import { useTranslation } from '@/i18n'
 import { CountryOverviewRing } from './CountryOverviewRing'
-import type { CountryStatus } from '../types/country.types'
-
-export interface CountryOverviewCardProps {
-  status: CountryStatus
-  label: string
-  value: number
-  percentage: number
-  selected?: boolean
-  actionLabel?: string
-  onSelect?: () => void
-}
+import type { CountryOverviewCardProps } from '../types/country.types'
 
 function CountryOverviewCard({
   status,

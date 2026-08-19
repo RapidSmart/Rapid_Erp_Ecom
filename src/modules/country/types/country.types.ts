@@ -1,4 +1,5 @@
-import type { DragEvent, ReactNode, InputHTMLAttributes, RefObject } from 'react'
+import type { DragEvent, ReactNode, InputHTMLAttributes, RefObject, FormEvent } from 'react'
+import type { LucideIcon } from 'lucide-react'
 
 export type CountryId = string & { readonly __brand: 'CountryId' }
 
@@ -194,6 +195,159 @@ export interface PillSelectProps {
   prefix?: ReactNode
 }
 
+export type CountryFormField = 'name' | 'iso2' | 'iso3' | 'currency' | 'callingCode'
+
+export type CountryFormErrors = Partial<Record<CountryFormField, string>>
+
+export interface UseCountryFormOptions {
+  mode: CountryFormMode
+  country?: Country
+  onSubmit: (payload: CountryPayload) => Promise<CountryError | null>
+  onSuccess: () => void
+}
+
+export interface CountryFormController {
+  values: CountryPayload
+  errors: CountryFormErrors
+  /** Non field-specific failure returned by the service. */
+  formError: string | null
+  setText: (field: CountryFormField, value: string) => void
+  setStatus: (status: CountryStatus) => void
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+}
+
+export interface CountryCardProps {
+  country: Country
+  onOpenDetails: (country: Country) => void
+  onEdit: (country: Country) => void
+  onDuplicate: (country: Country) => void
+  onDelete: (country: Country) => void
+}
+
+export interface CountryDetailsDialogProps {
+  country: Country
+  onEdit: (country: Country) => void
+  onDuplicate: (country: Country) => void
+  onDelete: (country: Country) => void
+  onClose: () => void
+}
+
+export interface CountryGridProps {
+  state: AsyncState<Country[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onOpenDetails: (country: Country) => void
+  onEdit: (country: Country) => void
+  onDuplicate: (country: Country) => void
+  onDelete: (country: Country) => void
+}
+
+export interface CountryListingHeaderProps {
+  search: string
+  onSearchChange: (value: string) => void
+  onToggleMenu: () => void
+  totalCount: number
+  view: CountryView
+  onToggleView: () => void
+}
+
+export interface CountryOverviewCardProps {
+  status: CountryStatus
+  label: string
+  value: number
+  percentage: number
+  selected?: boolean
+  actionLabel?: string
+  onSelect?: () => void
+}
+
+export interface CountryOverviewPanelProps {
+  state: AsyncState<CountryOverview>
+  range: CountryTimeRange
+  onRangeChange: (range: CountryTimeRange) => void
+  statusFilter: CountryStatus | null
+  onStatusFilterChange: (status: CountryStatus | null) => void
+  onRetry: () => void
+}
+
+export interface CountryPaginationProps {
+  page: number
+  pageCount: number
+  pageSize: CountryPageSize
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: CountryPageSize) => void
+  totalCount: number
+}
+
+export interface CountryStatDonutProps {
+  tone: CountryStatTone
+  label: string
+  value: number
+  percentage: number
+  selected?: boolean
+  actionLabel?: string
+  onSelect?: () => void
+}
+
+export interface CountryStatusBadgeProps {
+  status: CountryStatus
+  className?: string
+}
+
+export interface CountryTableProps {
+  state: AsyncState<Country[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  page: number
+  pageCount: number
+  pageSize: CountryPageSize
+  totalCount: number
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: CountryPageSize) => void
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onOpenDetails: (country: Country) => void
+}
+
+export interface CountryTableRowProps {
+  country: Country
+  selected: boolean
+  onToggleSelected: (country: Country, selected: boolean) => void
+  onOpenDetails: (country: Country) => void
+}
+
+export interface CountryFeedbackProps {
+  icon: LucideIcon
+  tone?: 'muted' | 'danger'
+  title: string
+  body: string
+  actionLabel?: string
+  onAction?: () => void
+  /** Skip the card border/background when already nested inside one. */
+  bare?: boolean
+}
+
+export interface CountryDeleteDialogProps {
+  country: Country
+  submitting: boolean
+  onConfirm: (id: CountryId) => Promise<CountryError | null>
+  onClose: () => void
+}
+
+export interface CountryStatusOverviewProps {
+  state: AsyncState<CountryOverview>
+  recordCount: number
+  range: CountryTimeRange
+  onRangeChange: (range: CountryTimeRange) => void
+  statusFilter: CountryStatus | null
+  onStatusFilterChange: (status: CountryStatus | null) => void
+  onRetry: () => void
+}
+
 export interface LanguageTranslationValues {
   arabic: string
   hindi: string
@@ -207,4 +361,5 @@ export interface LanguageDropdownProps {
   currentLanguage?: string
   onSelectLanguage?: (lang: any) => void
 }
+
 

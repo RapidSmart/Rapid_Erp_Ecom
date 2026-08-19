@@ -25,6 +25,7 @@ export function EditCountryPage({ id: propId }: EditCountryPageProps) {
       <div className="mx-auto max-w-[1560px]">
         <PageHeader
           backText={t("country.edit.backToList")}
+          backHref="/country"
           breadcrumbItems={[
             { label: t("country.edit.breadcrumb.masterData") },
             { label: t("country.edit.breadcrumb.countries") },

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import { CountryRouteError } from './view/CountryRouteError'
-import { CountryCardSkeleton } from './components/CountryCardSkeleton'
+import { CountryCardSkeleton } from './components/skeleton/CountryCardSkeleton'
 
 export const COUNTRY_ROUTE_PATH = '/country'
 

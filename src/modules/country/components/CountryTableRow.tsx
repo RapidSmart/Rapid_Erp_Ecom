@@ -3,16 +3,9 @@ import { Checkbox } from '@/shared/components/ui/checkbox'
 import { CountryFlag } from './CountryFlag'
 import { CountryStatusBadge } from './CountryStatusBadge'
 import { formatUpdatedAtCompact } from '../utils/format-updated-at'
-import type { Country } from '../types/country.types'
+import type { CountryTableRowProps } from '../types/country.types'
 
 const cellClasses = 'px-4 py-3.5 text-[13px] text-ink-muted'
-
-export interface CountryTableRowProps {
-  country: Country
-  selected: boolean
-  onToggleSelected: (country: Country, selected: boolean) => void
-  onOpenDetails: (country: Country) => void
-}
 
 function CountryTableRow({
   country,

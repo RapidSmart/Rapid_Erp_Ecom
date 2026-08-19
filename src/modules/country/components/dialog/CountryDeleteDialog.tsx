@@ -9,14 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import type { Country, CountryError, CountryId } from '../types/country.types'
-
-export interface CountryDeleteDialogProps {
-  country: Country
-  submitting: boolean
-  onConfirm: (id: CountryId) => Promise<CountryError | null>
-  onClose: () => void
-}
+import type { CountryError, CountryDeleteDialogProps } from '../../types/country.types'
 
 function CountryDeleteDialog({
   country,

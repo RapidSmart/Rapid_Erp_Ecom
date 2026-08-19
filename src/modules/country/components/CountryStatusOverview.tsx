@@ -4,22 +4,7 @@ import { Button } from '@/shared/components/ui/button'
 import { CountryOverviewCard } from './CountryOverviewCard'
 import { CountryRangeSwitch } from './CountryRangeSwitch'
 import { COUNTRY_STAT_TILES } from '../constants/country-overview.data'
-import type {
-  AsyncState,
-  CountryOverview,
-  CountryStatus,
-  CountryTimeRange,
-} from '../types/country.types'
-
-export interface CountryStatusOverviewProps {
-  state: AsyncState<CountryOverview>
-  recordCount: number
-  range: CountryTimeRange
-  onRangeChange: (range: CountryTimeRange) => void
-  statusFilter: CountryStatus | null
-  onStatusFilterChange: (status: CountryStatus | null) => void
-  onRetry: () => void
-}
+import type { CountryStatus, CountryStatusOverviewProps } from '../types/country.types'
 
 /** List view's overview panel: pastel status cards instead of the grid view's plain donuts. */
 function CountryStatusOverview({

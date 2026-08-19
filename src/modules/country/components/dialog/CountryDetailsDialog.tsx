@@ -7,19 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/shared/components/ui/dialog";
-import { CountryFlag } from "./CountryFlag";
-import { CountryStatusBadge } from "./CountryStatusBadge";
-import { formatUpdatedAtFull } from "../utils/format-updated-at";
-import type { Country } from "../types/country.types";
+import { CountryFlag } from "../CountryFlag";
+import { CountryStatusBadge } from "../CountryStatusBadge";
+import { formatUpdatedAtFull } from "../../utils/format-updated-at";
+import type { CountryDetailsDialogProps } from "../../types/country.types";
 import { Link } from "react-router-dom";
-
-export interface CountryDetailsDialogProps {
-  country: Country;
-  onEdit: (country: Country) => void;
-  onDuplicate: (country: Country) => void;
-  onDelete: (country: Country) => void;
-  onClose: () => void;
-}
 
 function CountryDetailsDialog({
   country,

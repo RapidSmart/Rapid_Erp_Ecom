@@ -1,24 +1,13 @@
+import { Link } from 'react-router-dom'
 import { Menu, Mic, Search } from 'lucide-react'
 import { useTranslation } from '@/i18n'
-import { Button } from '@/shared/components/ui/button'
 import { CountryViewToggle } from './CountryViewToggle'
-import type { CountryView } from '../types/country.types'
-
-export interface CountryListingHeaderProps {
-  search: string
-  onSearchChange: (value: string) => void
-  onToggleMenu: () => void
-  onAdd: () => void
-  totalCount: number
-  view: CountryView
-  onToggleView: () => void
-}
+import type { CountryListingHeaderProps } from '../types/country.types'
 
 function CountryListingHeader({
   search,
   onSearchChange,
   onToggleMenu,
-  onAdd,
   totalCount,
   view,
   onToggleView,
@@ -72,12 +61,12 @@ function CountryListingHeader({
         </label>
       </div>
 
-      <Button
-        onClick={onAdd}
-        className="ml-auto h-7 min-w-20 rounded-full bg-brand-accent px-5 text-xs font-medium text-brand-accent-foreground hover:bg-brand-accent/90 sm:ml-0"
+      <Link
+        to="/country/new"
+        className="ml-auto flex items-center justify-center h-7 min-w-20 rounded-full bg-brand-accent px-5 text-xs font-medium text-brand-accent-foreground hover:bg-brand-accent/90 sm:ml-0"
       >
         {t('country.listing.add')}
-      </Button>
+      </Link>
     </div>
   )
 }
