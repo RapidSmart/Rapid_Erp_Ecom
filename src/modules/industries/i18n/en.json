@@ -1,0 +1,136 @@
+{
+  "listing": {
+    "title": "Listing Industries",
+    "subtitle": "Total Industries {{count}}",
+    "menu": "Toggle navigation",
+    "searchLabel": "Search industries",
+    "searchPlaceholder": "Search industry, code or currency",
+    "voiceSearch": "Search by voice",
+    "add": "Add",
+    "grid": "Industries",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "overview": {
+    "title": "Status overview",
+    "records": "{{count}} records",
+    "rangeLabel": "Overview time range",
+    "statFilterHint": "Filter list by {{status}}",
+    "clearFilterHint": "Clear status filter",
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "card": {
+    "iso2": "ISO2",
+    "iso3": "ISO3",
+    "updated": "Updated {{value}}",
+    "details": "View {{name}} details",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "flagAlt": "{{name}} flag"
+  },
+  "table": {
+    "industry": "Industry",
+    "currency": "Currency",
+    "callingCode": "Calling Code",
+    "iso2": "ISO2",
+    "iso3": "ISO3",
+    "status": "Status",
+    "updated": "Updated",
+    "selectAll": "Select all industries",
+    "selectRow": "Select {{name}}"
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}} Industries",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "states": {
+    "loading": "Loading industries…",
+    "emptyTitle": "No industries yet",
+    "emptyBody": "Add your first industry to start building the master data list.",
+    "emptyAction": "Add industry",
+    "noResultsTitle": "No industries match your filters",
+    "noResultsBody": "Try a different search term or clear the status filter.",
+    "noResultsAction": "Clear filters",
+    "errorTitle": "Could not load industries",
+    "errorAction": "Try again"
+  },
+  "form": {
+    "createTitle": "Add industry",
+    "createDescription": "Create a new industry record in the master data list.",
+    "editTitle": "Edit industry",
+    "editDescription": "Update the details of this industry record.",
+    "duplicateTitle": "Duplicate industry",
+    "duplicateDescription": "Create a copy of this industry with a new name and code.",
+    "name": "Industry name",
+    "namePlaceholder": "e.g. Technology",
+    "code": "Industry code",
+    "codePlaceholder": "e.g. TECH",
+    "description": "Description",
+    "descriptionPlaceholder": "Enter industry description...",
+    "status": "Status",
+    "backToList": "Back to list",
+    "cancel": "Cancel",
+    "submitCreate": "Add industry",
+    "submitEdit": "Save changes",
+    "submitDuplicate": "Duplicate",
+    "submitting": "Saving…",
+    "errors": {
+      "nameRequired": "Industry name is required.",
+      "codeRequired": "Industry code is required.",
+      "duplicateCode": "An industry with this code already exists."
+    }
+  },
+  "delete": {
+    "title": "Delete industry",
+    "description": "\"{{name}}\" will be removed from the industry master data. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "details": {
+    "title": "Industry details",
+    "status": "Status",
+    "iso2": "ISO2",
+    "iso3": "ISO3",
+    "currency": "Currency",
+    "callingCode": "Calling code",
+    "updated": "Last updated",
+    "close": "Close",
+    "edit": "Edit"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "brand": "Rapid",
+    "help": "Need help?",
+    "chat": "Live chat"
+  }
+}

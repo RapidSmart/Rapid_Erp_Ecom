@@ -1,0 +1,88 @@
+import { useTranslation } from "@/i18n";
+import { PillInput } from "./PillInput";
+import { SectionHeader } from "./SectionHeader";
+import { FormFooter } from "./FormFooter";
+import { Upload } from "lucide-react";
+
+export function IndustriesForm() {
+  const { t } = useTranslation();
+
+  return (
+    <article className="rounded-2xl bg-white p-4 shadow-sm sm:rounded-3xl sm:px-6 sm:pb-6 sm:pt-7 lg:px-8">
+      <form noValidate>
+        {/* IDENTITY */}
+        <section aria-label="Identity" className="mb-5 sm:mb-6">
+          <SectionHeader label="IDENTITY" />
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-[1fr_2fr]">
+            <PillInput
+              id="industry-code"
+              placeholder={t("industries.form.code") || "Code"}
+              value=""
+              onChange={() => {}}
+              maxLength={10}
+              required
+            />
+            <PillInput
+              id="industry-name"
+              placeholder={t("industries.form.name") || "Name"}
+              value=""
+              onChange={() => {}}
+              maxLength={40}
+              required
+            />
+          </div>
+        </section>
+
+        {/* IMAGE AND DESCRIPTION */}
+        <section aria-label="Image and Description" className="mb-5 sm:mb-6">
+          <SectionHeader label="IMAGE AND DESCRIPTION" />
+
+          <div
+            role="region"
+            aria-label="Image upload area"
+            className="relative flex h-[108px] w-full items-center justify-center rounded-[26px] border border-dashed border-[#cdd6e3] bg-[#f4f6f9] transition-colors cursor-pointer hover:bg-slate-100/80"
+          >
+            <button
+              type="button"
+              aria-label="Upload image"
+              className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-[26px] outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            >
+              <Upload className="text-slate-400 size-6" />
+              <span className="text-[14.5px] font-medium text-slate-600">
+                Upload image here or drag
+              </span>
+            </button>
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="description" className="sr-only">
+              {t("industries.form.description") || "Description"}
+            </label>
+            <textarea
+              id="description"
+              rows={4}
+              maxLength={200}
+              placeholder={t("industries.form.description") || "Description"}
+              className="w-full resize-none rounded-2xl border border-transparent bg-gray-100 p-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-400 sm:rounded-3xl sm:p-[22px] sm:text-[14.5px]"
+            />
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <FormFooter
+          filledCount={0}
+          totalCount={2}
+          filledText="0 of 2 required fields filled"
+          duplicateText="Duplicate"
+          printText="Print"
+          clearText="Clear"
+          saveText="Save industry"
+          onDuplicate={() => {}}
+          onPrint={() => {}}
+          onClear={() => {}}
+          onSave={() => {}}
+        />
+      </form>
+    </article>
+  );
+}

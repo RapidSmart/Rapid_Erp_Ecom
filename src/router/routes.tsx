@@ -16,6 +16,12 @@ import {
   CountryListing,
   CountryRouteError,
 } from "@/modules/country";
+import {
+  INDUSTRIES_ROUTE_PATH,
+  IndustriesListing,
+  IndustriesAdd,
+  IndustriesEdit,
+} from "@/modules/industries";
 
 const AddCountryPage = lazy(() =>
   import("@/modules/countries").then((m) => ({ default: m.AddCountryPage })),
@@ -25,7 +31,7 @@ const EditCountryPage = lazy(() =>
 );
 
 const navRoutes = primaryNavItems
-  .filter((item) => item.href !== "/" && item.href !== COUNTRY_ROUTE_PATH)
+  .filter((item) => item.href !== "/" && item.href !== COUNTRY_ROUTE_PATH && item.href !== INDUSTRIES_ROUTE_PATH)
   .map((item) => ({ path: item.href, element: null }));
 
 const countryFallback = (
@@ -76,6 +82,30 @@ export const router = createBrowserRouter([
             }
           >
             <EditCountryPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: INDUSTRIES_ROUTE_PATH,
+        element: (
+          <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+            <IndustriesListing />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/industries/new",
+        element: (
+          <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+            <IndustriesAdd />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/industries/:id/edit",
+        element: (
+          <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+            <IndustriesEdit />
           </Suspense>
         ),
       },
