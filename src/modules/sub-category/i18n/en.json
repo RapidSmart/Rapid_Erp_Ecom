@@ -1,0 +1,189 @@
+{
+  "listing": {
+    "title": "Listing Sub Categories",
+    "subtitle": "Total Sub Categories {{count}}",
+    "menu": "Toggle navigation",
+    "searchLabel": "Search sub categories",
+    "searchPlaceholder": "Search sub category, code or description",
+    "voiceSearch": "Search by voice",
+    "add": "Add",
+    "grid": "Sub Categories",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "overview": {
+    "title": "Status overview",
+    "records": "{{count}} records",
+    "rangeLabel": "Overview time range",
+    "statFilterHint": "Filter list by {{status}}",
+    "clearFilterHint": "Clear status filter",
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "card": {
+    "code": "Code",
+    "updated": "Updated {{value}}",
+    "details": "View {{name}} details",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "imageAlt": "{{name}} image"
+  },
+  "table": {
+    "subCategory": "Sub Category",
+    "code": "Code",
+    "description": "Description",
+    "status": "Status",
+    "updated": "Updated",
+    "selectAll": "Select all sub categories",
+    "selectRow": "Select {{name}}"
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}} Sub Categories",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "states": {
+    "loading": "Loading sub categories…",
+    "emptyTitle": "No sub categories yet",
+    "emptyBody": "Add your first sub category to organize products into granular groups.",
+    "emptyAction": "Add sub category",
+    "noResultsTitle": "No sub categories match your filters",
+    "noResultsBody": "Try a different search term or clear the status filter.",
+    "noResultsAction": "Clear filters",
+    "errorTitle": "Could not load sub categories",
+    "errorAction": "Try again"
+  },
+  "form": {
+    "createTitle": "Add sub category",
+    "createDescription": "Create a new sub category in the product catalog.",
+    "editTitle": "Edit sub category",
+    "editDescription": "Update the details of this sub category.",
+    "duplicateTitle": "Duplicate sub category",
+    "duplicateDescription": "Create a copy of this sub category with a new code.",
+    "loading": "Loading sub category details…",
+    "name": "Sub category name",
+    "namePlaceholder": "e.g. Smartphones",
+    "code": "Sub category code",
+    "codePlaceholder": "e.g. SMART",
+    "description": "Description",
+    "descriptionPlaceholder": "e.g. Mobile phones, flagship devices, and accessories",
+    "cancel": "Cancel",
+    "submitCreate": "Add sub category",
+    "submitEdit": "Save changes",
+    "submitDuplicate": "Duplicate",
+    "submitting": "Saving…",
+    "errors": {
+      "codeFormat": "Code must be 2-10 characters, alphanumeric/dash/underscore.",
+      "nameRequired": "Sub category name is required.",
+      "nameLength": "Sub category name must be at most 40 characters.",
+      "descriptionRequired": "Description is required.",
+      "descriptionLength": "Description must be at most 200 characters.",
+      "duplicateCode": "A sub category with this code already exists."
+    }
+  },
+  "delete": {
+    "title": "Delete sub category",
+    "description": "\"{{name}}\" will be removed from the sub categories master data. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "details": {
+    "title": "Sub category details",
+    "status": "Status",
+    "code": "Code",
+    "description": "Description",
+    "updated": "Last updated",
+    "close": "Close",
+    "edit": "Edit"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "brand": "Rapid",
+    "help": "Need help?",
+    "chat": "Live chat"
+  },
+  "add": {
+    "backToList": "Back to list",
+    "breadcrumb": {
+      "masterData": "Master data",
+      "subCategories": "Sub Categories",
+      "newSubCategory": "New sub category"
+    },
+    "title": "Add a sub category",
+    "description": "Exactly three required text fields, and one image picker. Nothing is saved until you press Save sub category.",
+    "sections": {
+      "identity": "Identity",
+      "imageAndDesc": "Image and description"
+    },
+    "fields": {
+      "code": "Sub category code *",
+      "subCategoryName": "Sub category name *",
+      "description": "Description * (max 200 chars)",
+      "uploadImage": "Upload image here or drag",
+      "pickFromGallery": "Or pick from gallery"
+    },
+    "footer": {
+      "fieldsFilled": "{{filled}} of {{total}} required fields filled",
+      "duplicate": "Duplicate",
+      "print": "Print",
+      "clear": "Clear",
+      "save": "Save Sub Category"
+    }
+  },
+  "edit": {
+    "backToList": "Back to list",
+    "breadcrumb": {
+      "masterData": "Master data",
+      "subCategories": "Sub Categories",
+      "editSubCategory": "Edit sub category"
+    },
+    "title": "Edit sub category",
+    "description": "Update sub category identity details, image, and description configuration.",
+    "sections": {
+      "identity": "Identity",
+      "imageAndDesc": "Image and description"
+    },
+    "fields": {
+      "code": "Sub category code",
+      "subCategoryName": "Sub category name *",
+      "description": "Description * (max 200 chars)",
+      "uploadImage": "Upload image here or drag",
+      "pickFromGallery": "Or pick from gallery"
+    },
+    "footer": {
+      "fieldsFilled": "{{filled}} of {{total}} required fields filled",
+      "duplicate": "Duplicate",
+      "print": "Print",
+      "clear": "Reset Changes",
+      "save": "Update Sub Category"
+    }
+  }
+}

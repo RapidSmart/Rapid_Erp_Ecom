@@ -1,0 +1,91 @@
+import { Copy, Pencil, Trash2 } from 'lucide-react'
+import { useTranslation } from '@/i18n'
+import { cn } from '@/shared/utils/utils'
+import { SubCategoryImage } from './SubCategoryImage'
+import { SubCategoryStatusBadge } from './SubCategoryStatusBadge'
+import { formatUpdatedAt } from '../utils/format-updated-at'
+import type { SubCategoryCardProps } from '../types/sub-category.types'
+
+const actionButtonClasses =
+  'flex size-6 cursor-pointer items-center justify-center rounded-md border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'
+
+function SubCategoryCard({
+  subCategory,
+  onOpenDetails,
+  onEdit,
+  onDuplicate,
+  onDelete,
+}: SubCategoryCardProps) {
+  const { t } = useTranslation()
+
+  return (
+    <article className="relative flex w-full flex-col rounded-xl border border-surface-border bg-surface transition-shadow hover:shadow-md">
+      <div className="flex flex-1 flex-col px-4 pt-4 pb-3">
+        <div className="flex items-center gap-2.5">
+          <SubCategoryImage imageUrl={subCategory.imageUrl} name={subCategory.name} />
+          <button
+            type="button"
+            onClick={() => onOpenDetails(subCategory)}
+            aria-label={t('subCategory.card.details', { name: subCategory.name })}
+            className="min-w-0 cursor-pointer truncate text-left text-sm font-semibold text-ink after:absolute after:inset-0 after:rounded-xl focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+          >
+            {subCategory.name}
+          </button>
+          <SubCategoryStatusBadge status={subCategory.status} className="ml-auto" />
+        </div>
+
+        <div className="mt-4 flex flex-col gap-1">
+          <span className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
+            {t('subCategory.card.code')} {subCategory.code}
+          </span>
+          <p className="line-clamp-2 text-[13px] text-ink-muted leading-relaxed">
+            {subCategory.description}
+          </p>
+        </div>
+      </div>
+
+      <div className="relative flex items-center justify-between gap-2 border-t border-surface-border px-4 py-1.5">
+        <time
+          dateTime={subCategory.updatedAt}
+          className="truncate text-[11px] text-ink-subtle"
+        >
+          {t('subCategory.card.updated', {
+            value: formatUpdatedAt(subCategory.updatedAt),
+          })}
+        </time>
+
+        <div className="flex shrink-0 items-center gap-1.5 font-medium z-10">
+          <button
+            type="button"
+            onClick={() => onEdit(subCategory)}
+            aria-label={`${t('subCategory.card.edit')} ${subCategory.name}`}
+            className={actionButtonClasses}
+          >
+            <Pencil className="size-3" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onDuplicate(subCategory)}
+            aria-label={`${t('subCategory.card.duplicate')} ${subCategory.name}`}
+            className={actionButtonClasses}
+          >
+            <Copy className="size-3" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onDelete(subCategory)}
+            aria-label={`${t('subCategory.card.delete')} ${subCategory.name}`}
+            className={cn(
+              actionButtonClasses,
+              'text-status-delete-ink hover:bg-status-delete-surface hover:text-status-delete-ink'
+            )}
+          >
+            <Trash2 className="size-3" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+export { SubCategoryCard }
