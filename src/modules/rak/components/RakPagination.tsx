@@ -14,7 +14,7 @@ export interface RakPaginationProps {
 }
 
 const navButtonClasses =
-  'flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-surface-border text-ink-muted transition-rak hover:bg-surface-muted hover:text-ink disabled:pointer-events-none disabled:opacity-40 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'
+  'flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink disabled:pointer-events-none disabled:opacity-40 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'
 
 function RakPagination({
   page,
@@ -45,7 +45,7 @@ function RakPagination({
             aria-pressed={size === pageSize}
             onClick={() => onPageSizeChange(size)}
             className={cn(
-              'flex h-7 min-w-7 cursor-pointer items-center justify-center rounded-full px-2 text-[11px] font-medium transition-rak focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none',
+              'flex h-7 min-w-7 cursor-pointer items-center justify-center rounded-full px-2 text-[11px] font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none',
               size === pageSize
                 ? 'bg-primary text-primary-foreground'
                 : 'text-ink-muted hover:bg-surface-muted hover:text-ink'

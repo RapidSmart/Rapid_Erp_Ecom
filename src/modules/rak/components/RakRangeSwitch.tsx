@@ -28,7 +28,7 @@ function RakRangeSwitch({ range, onRangeChange }: RakRangeSwitchProps) {
             aria-pressed={isActive}
             onClick={() => onRangeChange(option.value)}
             className={cn(
-              'flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-medium transition-rak focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none',
+              'flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none',
               isActive
                 ? 'border-primary/30 bg-primary/10 text-primary'
                 : 'border-surface-border text-ink-muted hover:bg-surface-muted hover:text-ink'

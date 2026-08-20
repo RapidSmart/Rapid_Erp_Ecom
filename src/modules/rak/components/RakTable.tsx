@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { SearchX, SwatchBook, TriangleAlert } from 'lucide-react'
+import { Boxes, SearchX, SwatchBook, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import { RakSwatch } from './RakSwatch'
 import { RakFeedback } from './RakFeedback'
 import { RakPagination } from './RakPagination'
 import type { AsyncState, Rak, RakId, RakPageSize } from '../types/rak.types'
@@ -124,7 +123,7 @@ export function RakTable({
                       {rak.image ? (
                         <img src={rak.image} alt={rak.name} className="h-5 w-7 rounded object-cover" />
                       ) : (
-                        <RakSwatch rak={rak} size="md" />
+                        <div className="flex h-5 w-7 items-center justify-center rounded bg-surface-border"><Boxes className="size-3 text-ink-muted" /></div>
                       )}
                       <span className="truncate text-[13px] font-semibold text-ink">
                         {rak.name}

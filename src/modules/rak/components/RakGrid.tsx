@@ -1,7 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { RakSwatch } from './RakSwatch'
 import type { Rak } from '../types/rak.types'
 
 export interface RakGridProps {
@@ -52,10 +51,7 @@ function RakGrid({
         <div key={rak.id} className="flex flex-col rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
-              <div className="flex items-center gap-2">
-                <RakSwatch rak={rak} size="md" />
-                <h4 className="font-semibold text-gray-900">{rak.name}</h4>
-              </div>
+              <h4 className="font-semibold text-gray-900">{rak.name}</h4>
               <p className="text-sm text-gray-500">{rak.code}</p>
             </div>
             <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">

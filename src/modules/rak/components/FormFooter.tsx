@@ -41,7 +41,7 @@ export function FormFooter({
           <button
             type="button"
             onClick={onDuplicate}
-            className="inline-flex h-[32px] items-center gap-1.5 rounded-full px-2.5 text-[12px] font-semibold text-slate-600 transition-rak hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:h-[34px] sm:px-3 sm:text-[12.5px]"
+            className="inline-flex h-[32px] items-center gap-1.5 rounded-full px-2.5 text-[12px] font-semibold text-slate-600 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:h-[34px] sm:px-3 sm:text-[12.5px]"
           >
             <Copy className="size-3.5" />
             {duplicateText}
@@ -49,7 +49,7 @@ export function FormFooter({
           <button
             type="button"
             onClick={onPrint}
-            className="inline-flex h-[32px] items-center gap-1.5 rounded-full px-2.5 text-[12px] font-semibold text-slate-600 transition-rak hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:h-[34px] sm:px-3 sm:text-[12.5px]"
+            className="inline-flex h-[32px] items-center gap-1.5 rounded-full px-2.5 text-[12px] font-semibold text-slate-600 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:h-[34px] sm:px-3 sm:text-[12.5px]"
           >
             <Printer className="size-3.5" />
             {printText}
@@ -61,7 +61,7 @@ export function FormFooter({
         <button
           type="button"
           onClick={onClear}
-          className="h-[42px] flex-1 rounded-full border border-slate-200 bg-white px-5 text-xs font-semibold text-slate-600 transition-rak hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:h-[46px] sm:flex-initial sm:px-7 sm:text-sm"
+          className="h-[42px] flex-1 rounded-full border border-slate-200 bg-white px-5 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:h-[46px] sm:flex-initial sm:px-7 sm:text-sm"
         >
           {clearText}
         </button>

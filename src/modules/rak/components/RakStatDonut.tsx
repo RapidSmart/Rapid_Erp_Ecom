@@ -105,7 +105,7 @@ function RakStatDonut({
   )
 
   const shellClasses = cn(
-    'relative flex size-29.5 shrink-0 items-center justify-center rounded-full transition-rak',
+    'relative flex size-29.5 shrink-0 items-center justify-center rounded-full transition-colors',
     selected && 'bg-surface-muted'
   )
 

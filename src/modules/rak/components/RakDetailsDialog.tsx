@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import { RakSwatch } from './RakSwatch'
+import { Boxes } from 'lucide-react'
 import type { Rak } from '../types/rak.types'
 
 export interface RakDetailsDialogProps {
@@ -38,7 +38,7 @@ function RakDetailsDialog({
             {rak.image ? (
               <img src={rak.image} alt={rak.name} className="h-6 w-8 rounded object-cover" />
             ) : (
-              <RakSwatch rak={rak} size="md" />
+              <div className="flex h-6 w-8 items-center justify-center rounded bg-surface-border"><Boxes className="size-4 text-ink-muted" /></div>
             )}
             <span className="truncate text-base font-semibold text-ink">
               {rak.name}

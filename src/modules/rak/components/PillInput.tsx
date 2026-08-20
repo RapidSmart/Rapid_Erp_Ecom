@@ -36,7 +36,7 @@ export function PillInput({
         className={cn(
           'h-full w-full rounded-full border border-transparent bg-gray-100',
           'px-[22px] text-[15px] text-slate-900 placeholder:text-slate-400',
-          'outline-none transition-rak focus:border-blue-400',
+          'outline-none transition-colors focus:border-blue-400',
           rightIcon && 'pr-12',
           className,
         )}

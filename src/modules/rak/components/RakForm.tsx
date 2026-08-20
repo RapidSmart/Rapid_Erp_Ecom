@@ -111,7 +111,7 @@ export function RakForm({ rak, onSubmit, submitting }: RakFormProps) {
             onDragLeave={onDragLeave}
             onDrop={onDrop}
             onClick={() => fileInputRef.current?.click()}
-            className={`relative flex h-[108px] w-full items-center justify-center rounded-[26px] border border-dashed transition-rak cursor-pointer overflow-hidden ${
+            className={`relative flex h-[108px] w-full items-center justify-center rounded-[26px] border border-dashed transition-colors cursor-pointer overflow-hidden ${
               isDragging ? 'border-blue-400 bg-blue-50' : 'border-[#cdd6e3] bg-[#f4f6f9] hover:bg-slate-100/80'
             }`}
           >
@@ -160,7 +160,7 @@ export function RakForm({ rak, onSubmit, submitting }: RakFormProps) {
               placeholder={t("rak.form.descriptionPlaceholder") || "Description"}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full resize-none rounded-2xl border border-transparent bg-gray-100 p-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-rak focus:border-blue-400 sm:rounded-3xl sm:p-[22px] sm:text-[14.5px]"
+              className="w-full resize-none rounded-2xl border border-transparent bg-gray-100 p-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-400 sm:rounded-3xl sm:p-[22px] sm:text-[14.5px]"
             />
           </div>
         </section>

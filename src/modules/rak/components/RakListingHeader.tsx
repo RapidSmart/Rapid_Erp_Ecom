@@ -31,7 +31,7 @@ function RakListingHeader({
         type="button"
         onClick={onToggleMenu}
         aria-label={t('rak.listing.menu')}
-        className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-ink transition-rak hover:bg-surface-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+        className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-ink transition-colors hover:bg-surface-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
       >
         <Menu className="size-5" aria-hidden="true" />
       </button>
