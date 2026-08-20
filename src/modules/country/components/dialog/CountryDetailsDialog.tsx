@@ -1,17 +1,32 @@
-import { useTranslation } from "@/shared/hooks";
+import { useTranslation } from "@/i18n";
 import { Button, buttonVariants } from "@/shared/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/shared/components/ui/dialog";
+import { CountryFlag } from "../CountryFlag";
+import { CountryStatusBadge } from "../CountryStatusBadge";
+import { formatUpdatedAtFull } from "../../utils/format-updated-at";
+import type { CountryDetailsDialogProps } from "../../types/country.types";
 import { Link } from "react-router-dom";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/shared/components/ui/dialog";
-import { CountryFlag } from "@/shared/components/country-flag";
-import { CountryStatusBadge } from "@/shared/components/country-status-badge";
 
-const CountryDetailsDialog = ({ country, onClose, onDuplicate, onDelete }: any) => {
+function CountryDetailsDialog({
+  country,
+  onEdit: _onEdit,
+  onDuplicate,
+  onDelete,
+  onClose,
+}: CountryDetailsDialogProps) {
   const { t } = useTranslation();
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
       <DialogContent
         className="max-w-sm"
+        closeLabel={t("country.details.close")}
       >
         <DialogHeader>
           <DialogTitle className="sr-only">
