@@ -1,6 +1,6 @@
 import countryEn from '@/modules/country/i18n/en.json'
 import countriesEn from '@/modules/countries/i18n/en.json'
-import industriesEn from '@/modules/industries/i18n/en.json'
+import brandsEn from '@/modules/brands/i18n/en.json'
 
 /**
  * Loader/merger only — this folder never holds UI copy. Every module ships its
@@ -17,7 +17,7 @@ const resources: Record<Locale, TranslationTree> = {
   en: {
     country: countryEn as unknown as TranslationTree,
     countries: countriesEn.countries as unknown as TranslationTree,
-    industries: industriesEn as unknown as TranslationTree,
+    brands: brandsEn as unknown as TranslationTree,
   },
 }
 

@@ -1,36 +1,36 @@
 import { useTranslation } from '@/i18n'
 import { PageHeader } from '@/shared/components/layout/PageHeader'
-import { IndustriesForm } from '../components/IndustriesForm'
+import { BrandsForm } from '../components/BrandsForm'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { industriesService } from '../services/industries.service'
-import { useIndustriesListing } from '../hooks/useIndustriesListing'
-import type { Industry, IndustryId } from '../types/industries.types'
+import { brandsService } from '../services/brands.service'
+import { useBrandsListing } from '../hooks/useBrandsListing'
+import type { Brand, BrandId } from '../types/brands.types'
 
-export default function IndustriesEdit() {
+export default function BrandsEdit() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { updateIndustry, isMutating } = useIndustriesListing()
+  const { updateBrand, isMutating } = useBrandsListing()
   
   const [loading, setLoading] = useState(true)
-  const [industry, setIndustry] = useState<Industry | null>(null)
+  const [brand, setBrand] = useState<Brand | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchIndustry = async () => {
+    const fetchBrand = async () => {
       try {
-        const data = await industriesService.get(id as IndustryId)
-        setIndustry(data)
+        const data = await brandsService.get(id as BrandId)
+        setBrand(data)
       } catch (err: any) {
-        setError(err.message || 'Failed to load industry')
+        setError(err.message || 'Failed to load brand')
       } finally {
         setLoading(false)
       }
     }
     
     if (id) {
-      fetchIndustry()
+      fetchBrand()
     }
   }, [id])
 
@@ -38,26 +38,26 @@ export default function IndustriesEdit() {
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
       <div className="mx-auto max-w-[1560px]">
         <PageHeader
-          backText={t("industries.form.backToList") || "Back to list"}
-          backHref="/industries"
+          backText={t("brands.form.backToList") || "Back to list"}
+          backHref="/brands"
           breadcrumbItems={[
             { label: "Master data" },
-            { label: "Industries" },
-            { label: t("industries.form.editTitle") || "Edit industry", current: true },
+            { label: "Brands" },
+            { label: t("brands.form.editTitle") || "Edit brand", current: true },
           ]}
-          title={t("industries.form.editTitle") || "Edit industry"}
-          description="Update industry identity, description, and image configuration."
+          title={t("brands.form.editTitle") || "Edit brand"}
+          description="Update brand identity, description, and image configuration."
         />
         {loading ? (
           <div className="p-8 text-center text-slate-500">Loading...</div>
         ) : error ? (
           <div className="p-8 text-center text-red-500">{error}</div>
-        ) : industry ? (
-          <IndustriesForm 
-            industry={industry} 
+        ) : brand ? (
+          <BrandsForm 
+            brand={brand} 
             onSubmit={async (payload) => {
-              await updateIndustry(industry.id, payload);
-              navigate('/industries');
+              await updateBrand(brand.id, payload);
+              navigate('/brands');
             }}
             submitting={isMutating}
           />

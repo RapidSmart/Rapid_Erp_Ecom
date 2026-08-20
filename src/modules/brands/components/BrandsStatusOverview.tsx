@@ -1,28 +1,28 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { IndustriesOverviewCard } from './IndustriesOverviewCard'
-import { IndustriesRangeSwitch } from './IndustriesRangeSwitch'
-import { INDUSTRIES_STAT_TILES } from '../constants/industries-overview.data'
+import { BrandsOverviewCard } from './BrandsOverviewCard'
+import { BrandsRangeSwitch } from './BrandsRangeSwitch'
+import { BRANDS_STAT_TILES } from '../constants/brands-overview.data'
 import type {
   AsyncState,
-  IndustryOverview,
-  IndustryStatus,
-  IndustryTimeRange,
-} from '../types/industries.types'
+  BrandOverview,
+  BrandStatus,
+  BrandTimeRange,
+} from '../types/brands.types'
 
-export interface IndustriesStatusOverviewProps {
-  state: AsyncState<IndustryOverview>
+export interface BrandsStatusOverviewProps {
+  state: AsyncState<BrandOverview>
   recordCount: number
-  range: IndustryTimeRange
-  onRangeChange: (range: IndustryTimeRange) => void
-  statusFilter: IndustryStatus | null
-  onStatusFilterChange: (status: IndustryStatus | null) => void
+  range: BrandTimeRange
+  onRangeChange: (range: BrandTimeRange) => void
+  statusFilter: BrandStatus | null
+  onStatusFilterChange: (status: BrandStatus | null) => void
   onRetry: () => void
 }
 
 /** List view's overview panel: pastel status cards instead of the grid view's plain donuts. */
-function IndustriesStatusOverview({
+function BrandsStatusOverview({
   state,
   recordCount,
   range,
@@ -30,26 +30,26 @@ function IndustriesStatusOverview({
   statusFilter,
   onStatusFilterChange,
   onRetry,
-}: IndustriesStatusOverviewProps) {
+}: BrandsStatusOverviewProps) {
   const { t } = useTranslation()
-  const tiles = INDUSTRIES_STAT_TILES.filter((tile) => tile.status !== null)
+  const tiles = BRANDS_STAT_TILES.filter((tile) => tile.status !== null)
 
   return (
     <section
-      aria-label={t('industries.overview.title')}
+      aria-label={t('brands.overview.title')}
       className="rounded-xl border border-surface-border bg-surface px-5 py-4"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-baseline gap-2">
           <h2 className="text-sm font-semibold text-ink">
-            {t('industries.overview.title')}
+            {t('brands.overview.title')}
           </h2>
           <span className="text-xs text-ink-subtle">
-            {t('industries.overview.records', { count: recordCount })}
+            {t('brands.overview.records', { count: recordCount })}
           </span>
         </div>
 
-        <IndustriesRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <BrandsRangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {state.status === 'error' ? (
@@ -60,7 +60,7 @@ function IndustriesStatusOverview({
           />
           <p className="text-xs text-ink-muted">{state.error.message}</p>
           <Button variant="outline" size="sm" onClick={onRetry}>
-            {t('industries.states.errorAction')}
+            {t('brands.states.errorAction')}
           </Button>
         </div>
       ) : (
@@ -83,12 +83,12 @@ function IndustriesStatusOverview({
             // reusing tile.labelKey.
             const label =
               tile.tone === 'delete'
-                ? t('industries.overview.stats.deleted')
+                ? t('brands.overview.stats.deleted')
                 : t(tile.labelKey)
-            const status = tile.status as IndustryStatus
+            const status = tile.status as BrandStatus
 
             return (
-              <IndustriesOverviewCard
+              <BrandsOverviewCard
                 key={tile.tone}
                 status={status}
                 label={label}
@@ -97,8 +97,8 @@ function IndustriesStatusOverview({
                 selected={statusFilter === status}
                 actionLabel={
                   statusFilter === status
-                    ? t('industries.overview.clearFilterHint')
-                    : t('industries.overview.statFilterHint', { status: label })
+                    ? t('brands.overview.clearFilterHint')
+                    : t('brands.overview.statFilterHint', { status: label })
                 }
                 onSelect={() =>
                   onStatusFilterChange(statusFilter === status ? null : status)
@@ -111,11 +111,11 @@ function IndustriesStatusOverview({
 
       {state.status === 'loading' && (
         <span className="sr-only" role="status">
-          {t('industries.states.loading')}
+          {t('brands.states.loading')}
         </span>
       )}
     </section>
   )
 }
 
-export { IndustriesStatusOverview }
+export { BrandsStatusOverview }

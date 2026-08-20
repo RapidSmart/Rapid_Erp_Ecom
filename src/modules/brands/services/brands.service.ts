@@ -1,56 +1,56 @@
 import {
-  MOCK_INDUSTRIES,
-  MOCK_INDUSTRIES_OVERVIEW,
-} from '../constants/mock.industries'
+  MOCK_BRANDS,
+  MOCK_BRANDS_OVERVIEW,
+} from '../constants/mock.brands'
 import {
-  parseIndustry,
-  parseIndustryList,
-  parseIndustryOverview,
-} from '../validation/industries.schema'
+  parseBrand,
+  parseBrandList,
+  parseBrandOverview,
+} from '../validation/brands.schema'
 import type {
-  Industry,
-  IndustryError,
-  IndustryId,
-  IndustryListQuery,
-  IndustryOverview,
-  IndustryPayload,
-  IndustryTimeRange,
-} from '../types/industries.types'
+  Brand,
+  BrandError,
+  BrandId,
+  BrandListQuery,
+  BrandOverview,
+  BrandPayload,
+  BrandTimeRange,
+} from '../types/brands.types'
 
 const LATENCY_MS = 380
 
-export class IndustryRequestError extends Error {
+export class BrandRequestError extends Error {
   readonly code: string
   readonly details?: unknown
 
   constructor(code: string, message: string, details?: unknown) {
     super(message)
-    this.name = 'IndustryRequestError'
+    this.name = 'BrandRequestError'
     this.code = code
     this.details = details
   }
 }
 
-export function toIndustryError(error: unknown): IndustryError {
-  if (error instanceof IndustryRequestError) {
+export function toBrandError(error: unknown): BrandError {
+  if (error instanceof BrandRequestError) {
     return { code: error.code, message: error.message, details: error.details }
   }
 
   if (error instanceof Error) {
-    return { code: 'industry/unknown', message: error.message }
+    return { code: 'brand/unknown', message: error.message }
   }
 
-  return { code: 'industry/unknown', message: 'Unexpected industry service error.' }
+  return { code: 'brand/unknown', message: 'Unexpected brand service error.' }
 }
 
 export function isAbortError(error: unknown): boolean {
   return error instanceof DOMException && error.name === 'AbortError'
 }
 
-let store: Industry[] | null = null
+let store: Brand[] | null = null
 
-function getStore(): Industry[] {
-  store ??= [...MOCK_INDUSTRIES]
+function getStore(): Brand[] {
+  store ??= [...MOCK_BRANDS]
 
   return store
 }
@@ -76,55 +76,55 @@ function delay(signal?: AbortSignal): Promise<void> {
   })
 }
 
-function matchesQuery(industry: Industry, query: IndustryListQuery): boolean {
+function matchesQuery(brand: Brand, query: BrandListQuery): boolean {
   const term = query.search.trim().toLowerCase()
-  const matchesStatus = query.status === null || industry.status === query.status
+  const matchesStatus = query.status === null || brand.status === query.status
   const matchesTerm =
     term.length === 0 ||
-    industry.name.toLowerCase().includes(term) ||
-    industry.code.toLowerCase().includes(term) ||
-    industry.description.toLowerCase().includes(term)
+    brand.name.toLowerCase().includes(term) ||
+    brand.code.toLowerCase().includes(term) ||
+    brand.description.toLowerCase().includes(term)
 
   return matchesStatus && matchesTerm
 }
 
-function assertUniqueCodes(payload: IndustryPayload, ignoreId?: IndustryId): void {
+function assertUniqueCodes(payload: BrandPayload, ignoreId?: BrandId): void {
   const clash = getStore().some(
-    (industry) =>
-      industry.id !== ignoreId &&
-      (industry.code === payload.code || industry.name === payload.name)
+    (brand) =>
+      brand.id !== ignoreId &&
+      (brand.code === payload.code || brand.name === payload.name)
   )
 
   if (clash) {
-    throw new IndustryRequestError(
-      'industry/duplicate-code',
-      `An industry with code ${payload.code} or name ${payload.name} already exists.`
+    throw new BrandRequestError(
+      'brand/duplicate-code',
+      `A brand with code ${payload.code} or name ${payload.name} already exists.`
     )
   }
 }
 
-function requireIndustry(id: IndustryId): Industry {
-  const industry = getStore().find((item) => item.id === id)
+function requireBrand(id: BrandId): Brand {
+  const brand = getStore().find((item) => item.id === id)
 
-  if (!industry) {
-    throw new IndustryRequestError('industry/not-found', `Industry ${id} not found.`)
+  if (!brand) {
+    throw new BrandRequestError('brand/not-found', `Brand ${id} not found.`)
   }
 
-  return industry
+  return brand
 }
 
-export const industriesService = {
+export const brandsService = {
   async list(
-    query: IndustryListQuery,
+    query: BrandListQuery,
     signal?: AbortSignal
-  ): Promise<Industry[]> {
+  ): Promise<Brand[]> {
     await delay(signal)
 
     const matches = getStore()
-      .filter((industry) => matchesQuery(industry, query))
-      .map((industry) => ({ ...industry }))
+      .filter((brand) => matchesQuery(brand, query))
+      .map((brand) => ({ ...brand }))
 
-    return parseIndustryList(matches)
+    return parseBrandList(matches)
   },
 
   async count(signal?: AbortSignal): Promise<number> {
@@ -133,40 +133,40 @@ export const industriesService = {
   },
 
   async overview(
-    range: IndustryTimeRange,
+    range: BrandTimeRange,
     signal?: AbortSignal
-  ): Promise<IndustryOverview> {
+  ): Promise<BrandOverview> {
     await delay(signal)
     // In a real app we'd fetch this. We'll just return the mock.
-    return parseIndustryOverview(MOCK_INDUSTRIES_OVERVIEW)
+    return parseBrandOverview(MOCK_BRANDS_OVERVIEW)
   },
 
-  async get(id: IndustryId): Promise<Industry> {
+  async get(id: BrandId): Promise<Brand> {
     await delay()
-    return requireIndustry(id)
+    return requireBrand(id)
   },
 
-  async create(payload: IndustryPayload): Promise<Industry> {
+  async create(payload: BrandPayload): Promise<Brand> {
     await delay()
     assertUniqueCodes(payload)
 
-    const created: Industry = {
+    const created: Brand = {
       ...payload,
-      id: `ind-${crypto.randomUUID()}` as IndustryId,
+      id: `brand-${crypto.randomUUID()}` as BrandId,
       updatedAt: new Date().toISOString(),
     }
 
     getStore().unshift(created)
 
-    return parseIndustry({ ...created })
+    return parseBrand({ ...created })
   },
 
-  async update(id: IndustryId, payload: IndustryPayload): Promise<Industry> {
+  async update(id: BrandId, payload: BrandPayload): Promise<Brand> {
     await delay()
     assertUniqueCodes(payload, id)
 
-    const current = requireIndustry(id)
-    const updated: Industry = {
+    const current = requireBrand(id)
+    const updated: Brand = {
       ...current,
       ...payload,
       updatedAt: new Date().toISOString(),
@@ -175,13 +175,13 @@ export const industriesService = {
     const items = getStore()
     items.splice(items.indexOf(current), 1, updated)
 
-    return parseIndustry({ ...updated })
+    return parseBrand({ ...updated })
   },
 
-  async remove(id: IndustryId): Promise<void> {
+  async remove(id: BrandId): Promise<void> {
     await delay()
 
-    const current = requireIndustry(id)
+    const current = requireBrand(id)
     const items = getStore()
     items.splice(items.indexOf(current), 1)
   },

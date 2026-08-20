@@ -1,42 +1,42 @@
-export type IndustryId = string & { readonly __brand: 'IndustryId' }
+export type BrandId = string & { readonly __brand: 'BrandId' }
 
-export type IndustryStatus = 'active' | 'inactive' | 'draft' | 'delete'
+export type BrandStatus = 'active' | 'inactive' | 'draft' | 'delete'
 
-export interface Industry {
-  id: IndustryId
+export interface Brand {
+  id: BrandId
   code: string
   name: string
   description: string
   image?: string
-  status: IndustryStatus
+  status: BrandStatus
   updatedAt: string
 }
 
-export interface IndustryPayload {
+export interface BrandPayload {
   code: string
   name: string
   description: string
   image?: string
-  status: IndustryStatus
+  status: BrandStatus
 }
 
-export interface IndustryListQuery {
+export interface BrandListQuery {
   search: string
-  status: IndustryStatus | null
+  status: BrandStatus | null
 }
 
-export type IndustryTimeRange = 'live' | '6h' | '24h' | '7d' | '30d'
+export type BrandTimeRange = 'live' | '6h' | '24h' | '7d' | '30d'
 
-export type IndustryStatTone = 'total' | IndustryStatus
+export type BrandStatTone = 'total' | BrandStatus
 
-export interface IndustryStat {
+export interface BrandStat {
   value: number
   percentage: number
 }
 
-export type IndustryOverview = Record<IndustryStatTone, IndustryStat>
+export type BrandOverview = Record<BrandStatTone, BrandStat>
 
-export interface IndustryError {
+export interface BrandError {
   code: string
   message: string
   details?: unknown
@@ -44,16 +44,16 @@ export interface IndustryError {
 
 export type AsyncState<TData> =
   | { status: 'loading' }
-  | { status: 'error'; error: IndustryError }
+  | { status: 'error'; error: BrandError }
   | { status: 'ready'; data: TData }
 
-export type IndustryFormMode = 'create' | 'edit' | 'duplicate'
+export type BrandFormMode = 'create' | 'edit' | 'duplicate'
 
-export type IndustryView = 'grid' | 'list'
+export type BrandView = 'grid' | 'list'
 
-export type IndustryPageSize = 10 | 25 | 50 | 75
+export type BrandPageSize = 10 | 25 | 50 | 75
 
-export type IndustryDialog =
+export type BrandDialog =
   | { kind: 'none' }
-  | { kind: 'delete'; industry: Industry }
-  | { kind: 'details'; industry: Industry }
+  | { kind: 'delete'; brand: Brand }
+  | { kind: 'details'; brand: Brand }

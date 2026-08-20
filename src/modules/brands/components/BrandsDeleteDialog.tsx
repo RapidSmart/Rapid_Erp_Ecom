@@ -9,28 +9,28 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog'
-import type { Industry, IndustryError, IndustryId } from '../types/industries.types'
+import type { Brand, BrandError, BrandId } from '../types/brands.types'
 
-export interface IndustriesDeleteDialogProps {
-  industry: Industry
+export interface BrandsDeleteDialogProps {
+  brand: Brand
   submitting: boolean
-  onConfirm: (id: IndustryId) => Promise<IndustryError | null>
+  onConfirm: (id: BrandId) => Promise<BrandError | null>
   onClose: () => void
 }
 
-function IndustriesDeleteDialog({
-  industry,
+function BrandsDeleteDialog({
+  brand,
   submitting,
   onConfirm,
   onClose,
-}: IndustriesDeleteDialogProps) {
+}: BrandsDeleteDialogProps) {
   const { t } = useTranslation()
-  const [error, setError] = useState<IndustryError | null>(null)
+  const [error, setError] = useState<BrandError | null>(null)
 
   function handleConfirm() {
     setError(null)
 
-    void onConfirm(industry.id).then((failure) => {
+    void onConfirm(brand.id).then((failure) => {
       if (failure) {
         setError(failure)
         return
@@ -44,12 +44,12 @@ function IndustriesDeleteDialog({
     <Dialog open onOpenChange={(open) => !open && onClose()}>
       <DialogContent
         className="max-w-sm"
-        closeLabel={t('industries.delete.cancel')}
+        closeLabel={t('brands.delete.cancel')}
       >
         <DialogHeader>
-          <DialogTitle>{t('industries.delete.title')}</DialogTitle>
+          <DialogTitle>{t('brands.delete.title')}</DialogTitle>
           <DialogDescription>
-            {t('industries.delete.description', { name: industry.name })}
+            {t('brands.delete.description', { name: brand.name })}
           </DialogDescription>
         </DialogHeader>
 
@@ -64,14 +64,14 @@ function IndustriesDeleteDialog({
 
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={submitting}>
-            {t('industries.delete.cancel')}
+            {t('brands.delete.cancel')}
           </Button>
           <Button
             variant="destructive"
             onClick={handleConfirm}
             disabled={submitting}
           >
-            {submitting ? t('industries.delete.deleting') : t('industries.delete.confirm')}
+            {submitting ? t('brands.delete.deleting') : t('brands.delete.confirm')}
           </Button>
         </DialogFooter>
       </DialogContent>
@@ -79,4 +79,4 @@ function IndustriesDeleteDialog({
   )
 }
 
-export { IndustriesDeleteDialog }
+export { BrandsDeleteDialog }

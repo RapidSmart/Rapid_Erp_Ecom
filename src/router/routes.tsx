@@ -10,9 +10,9 @@ import {
   CountryRouteError,
 } from "@/modules/country";
 import {
-  INDUSTRIES_ROUTE_PATH,
-  industriesRoutes,
-} from "@/modules/industries";
+  BRANDS_ROUTE_PATH,
+  brandsRoutes,
+} from "@/modules/brands";
 
 const AddCountryPage = lazy(() =>
   import("@/modules/countries").then((m) => ({ default: m.AddCountryPage })),
@@ -22,7 +22,7 @@ const EditCountryPage = lazy(() =>
 );
 
 const navRoutes = primaryNavItems
-  .filter((item) => item.href !== "/" && item.href !== COUNTRY_ROUTE_PATH && item.href !== INDUSTRIES_ROUTE_PATH)
+  .filter((item) => item.href !== "/" && item.href !== COUNTRY_ROUTE_PATH && item.href !== BRANDS_ROUTE_PATH)
   .map((item) => ({ path: item.href, element: null }));
 
 const countryFallback = (
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      ...industriesRoutes,
+      ...brandsRoutes,
     ],
   },
   ...authRoutes,

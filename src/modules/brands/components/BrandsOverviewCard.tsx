@@ -1,9 +1,9 @@
 import { useTranslation } from '@/i18n'
-import { IndustryOverviewRing } from './IndustryOverviewRing'
-import type { IndustryStatus } from '../types/industries.types'
+import { BrandOverviewRing } from './BrandOverviewRing'
+import type { BrandStatus } from '../types/brands.types'
 
-export interface IndustriesOverviewCardProps {
-  status: IndustryStatus
+export interface BrandsOverviewCardProps {
+  status: BrandStatus
   label: string
   value: number
   percentage: number
@@ -12,7 +12,7 @@ export interface IndustriesOverviewCardProps {
   onSelect?: () => void
 }
 
-function IndustriesOverviewCard({
+function BrandsOverviewCard({
   status,
   label,
   value,
@@ -20,12 +20,12 @@ function IndustriesOverviewCard({
   selected = false,
   actionLabel,
   onSelect,
-}: IndustriesOverviewCardProps) {
+}: BrandsOverviewCardProps) {
   const { t } = useTranslation()
 
   const content = (
     <>
-      <IndustryOverviewRing status={status} percentage={percentage} />
+      <BrandOverviewRing status={status} percentage={percentage} />
       <span className="flex flex-col gap-1">
         <span className="text-2xl leading-none font-bold text-ink">
           {new Intl.NumberFormat().format(value)}
@@ -61,7 +61,7 @@ function IndustriesOverviewCard({
       onClick={onSelect}
       aria-pressed={selected}
       aria-label={
-        actionLabel ?? t('industries.overview.statFilterHint', { status: label })
+        actionLabel ?? t('brands.overview.statFilterHint', { status: label })
       }
       style={{
         ...backgroundStyle,
@@ -74,4 +74,4 @@ function IndustriesOverviewCard({
   )
 }
 
-export { IndustriesOverviewCard }
+export { BrandsOverviewCard }

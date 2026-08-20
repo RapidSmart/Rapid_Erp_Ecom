@@ -1,46 +1,46 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { IndustriesRangeSwitch } from './IndustriesRangeSwitch'
-import { IndustryStatDonut } from './IndustryStatDonut'
-import { INDUSTRIES_STAT_TILES } from '../constants/industries-overview.data'
+import { BrandsRangeSwitch } from './BrandsRangeSwitch'
+import { BrandStatDonut } from './BrandStatDonut'
+import { BRANDS_STAT_TILES } from '../constants/brands-overview.data'
 import type {
   AsyncState,
-  IndustryOverview,
-  IndustryStatus,
-  IndustryTimeRange,
-} from '../types/industries.types'
+  BrandOverview,
+  BrandStatus,
+  BrandTimeRange,
+} from '../types/brands.types'
 
-export interface IndustriesOverviewPanelProps {
-  state: AsyncState<IndustryOverview>
-  range: IndustryTimeRange
-  onRangeChange: (range: IndustryTimeRange) => void
-  statusFilter: IndustryStatus | null
-  onStatusFilterChange: (status: IndustryStatus | null) => void
+export interface BrandsOverviewPanelProps {
+  state: AsyncState<BrandOverview>
+  range: BrandTimeRange
+  onRangeChange: (range: BrandTimeRange) => void
+  statusFilter: BrandStatus | null
+  onStatusFilterChange: (status: BrandStatus | null) => void
   onRetry: () => void
 }
 
-function IndustriesOverviewPanel({
+function BrandsOverviewPanel({
   state,
   range,
   onRangeChange,
   statusFilter,
   onStatusFilterChange,
   onRetry,
-}: IndustriesOverviewPanelProps) {
+}: BrandsOverviewPanelProps) {
   const { t } = useTranslation()
 
   return (
     <section
-      aria-label={t('industries.overview.title')}
+      aria-label={t('brands.overview.title')}
       className="rounded-xl border border-surface-border bg-surface px-5 py-4"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-base font-medium text-ink-subtle">
-          {t('industries.overview.title')}
+          {t('brands.overview.title')}
         </h2>
 
-        <IndustriesRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <BrandsRangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {state.status === 'error' ? (
@@ -51,12 +51,12 @@ function IndustriesOverviewPanel({
           />
           <p className="text-xs text-ink-muted">{state.error.message}</p>
           <Button variant="outline" size="sm" onClick={onRetry}>
-            {t('industries.states.errorAction')}
+            {t('brands.states.errorAction')}
           </Button>
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-2 justify-items-center gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
-          {INDUSTRIES_STAT_TILES.map((tile) => {
+          {BRANDS_STAT_TILES.map((tile) => {
             if (state.status === 'loading') {
               return (
                 <div
@@ -72,7 +72,7 @@ function IndustriesOverviewPanel({
             const tileStatus = tile.status
 
             return (
-              <IndustryStatDonut
+              <BrandStatDonut
                 key={tile.tone}
                 tone={tile.tone}
                 label={label}
@@ -81,8 +81,8 @@ function IndustriesOverviewPanel({
                 selected={statusFilter === tileStatus}
                 actionLabel={
                   tileStatus === null
-                    ? t('industries.overview.clearFilterHint')
-                    : t('industries.overview.statFilterHint', { status: label })
+                    ? t('brands.overview.clearFilterHint')
+                    : t('brands.overview.statFilterHint', { status: label })
                 }
                 onSelect={() =>
                   onStatusFilterChange(
@@ -97,11 +97,11 @@ function IndustriesOverviewPanel({
 
       {state.status === 'loading' && (
         <span className="sr-only" role="status">
-          {t('industries.states.loading')}
+          {t('brands.states.loading')}
         </span>
       )}
     </section>
   )
 }
 
-export { IndustriesOverviewPanel }
+export { BrandsOverviewPanel }

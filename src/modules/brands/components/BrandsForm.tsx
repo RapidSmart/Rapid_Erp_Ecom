@@ -5,21 +5,21 @@ import { SectionHeader } from "./SectionHeader";
 import { FormFooter } from "./FormFooter";
 import { Upload, X } from "lucide-react";
 
-import type { Industry, IndustryPayload } from "../types/industries.types";
+import type { Brand, BrandPayload } from "../types/brands.types";
 
-export interface IndustriesFormProps {
-  industry?: Industry;
-  onSubmit?: (payload: IndustryPayload) => void;
+export interface BrandsFormProps {
+  brand?: Brand;
+  onSubmit?: (payload: BrandPayload) => void;
   submitting?: boolean;
 }
 
-export function IndustriesForm({ industry, onSubmit, submitting }: IndustriesFormProps) {
+export function BrandsForm({ brand, onSubmit, submitting }: BrandsFormProps) {
   const { t } = useTranslation();
   
-  const [code, setCode] = useState(industry?.code || "");
-  const [name, setName] = useState(industry?.name || "");
-  const [description, setDescription] = useState(industry?.description || "");
-  const [image, setImage] = useState(industry?.image || "");
+  const [code, setCode] = useState(brand?.code || "");
+  const [name, setName] = useState(brand?.name || "");
+  const [description, setDescription] = useState(brand?.description || "");
+  const [image, setImage] = useState(brand?.image || "");
   const [isDragging, setIsDragging] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -69,7 +69,7 @@ export function IndustriesForm({ industry, onSubmit, submitting }: IndustriesFor
         name,
         description,
         image: image || undefined,
-        status: industry?.status || 'active',
+        status: brand?.status || 'active',
       });
     }
   };
@@ -82,16 +82,16 @@ export function IndustriesForm({ industry, onSubmit, submitting }: IndustriesFor
           <SectionHeader label="IDENTITY" />
           <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-[1fr_2fr]">
             <PillInput
-              id="industry-code"
-              placeholder={t("industries.form.codePlaceholder") || "e.g. TECH"}
+              id="brand-code"
+              placeholder={t("brands.form.codePlaceholder") || "e.g. TECH"}
               value={code}
               onChange={setCode}
               maxLength={10}
               required
             />
             <PillInput
-              id="industry-name"
-              placeholder={t("industries.form.namePlaceholder") || "e.g. Technology"}
+              id="brand-name"
+              placeholder={t("brands.form.namePlaceholder") || "e.g. Technology"}
               value={name}
               onChange={setName}
               maxLength={40}
@@ -151,13 +151,13 @@ export function IndustriesForm({ industry, onSubmit, submitting }: IndustriesFor
 
           <div className="mt-4">
             <label htmlFor="description" className="sr-only">
-              {t("industries.form.descriptionPlaceholder") || "Description"}
+              {t("brands.form.descriptionPlaceholder") || "Description"}
             </label>
             <textarea
               id="description"
               rows={4}
               maxLength={200}
-              placeholder={t("industries.form.descriptionPlaceholder") || "Description"}
+              placeholder={t("brands.form.descriptionPlaceholder") || "Description"}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="w-full resize-none rounded-2xl border border-transparent bg-gray-100 p-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-400 sm:rounded-3xl sm:p-[22px] sm:text-[14.5px]"
@@ -170,10 +170,10 @@ export function IndustriesForm({ industry, onSubmit, submitting }: IndustriesFor
           filledCount={filledCount}
           totalCount={2}
           filledText={`${filledCount} of 2 required fields filled`}
-          duplicateText={t("industries.form.submitDuplicate") || "Duplicate"}
+          duplicateText={t("brands.form.submitDuplicate") || "Duplicate"}
           printText="Print"
           clearText="Clear"
-          saveText={submitting ? t("industries.form.submitting") || "Saving..." : (t("industries.form.submitCreate") || "Save industry")}
+          saveText={submitting ? t("brands.form.submitting") || "Saving..." : (t("brands.form.submitCreate") || "Save brand")}
           onDuplicate={() => {}}
           onPrint={() => {}}
           onClear={() => {

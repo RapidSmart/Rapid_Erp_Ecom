@@ -24,7 +24,7 @@ export const primaryNavItems: NavItem[] = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutGrid, href: '/' },
   { id: 'analytics', label: 'Analytics', icon: BarChart3, href: '/analytics' },
   { id: 'country', label: 'Country', icon: Globe, href: '/country' },
-  { id: 'industries', label: 'Industries', icon: Factory, href: '/industries' },
+  { id: 'brands', label: 'Brands', icon: Factory, href: '/brands' },
   { id: 'document-types', label: 'Document types', icon: FileText, href: '/document-types' },
   { id: 'action-types', label: 'Action types', icon: Zap, href: '/action-types' },
   { id: 'status-types', label: 'Status types', icon: CheckCircle2, href: '/status-types' },

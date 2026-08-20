@@ -1,2 +1,2 @@
-export const INDUSTRIES_ROUTE_PATH = '/industries'
-export { industriesRoutes } from './routes'
+export const BRANDS_ROUTE_PATH = '/brands'
+export { brandsRoutes } from './routes'

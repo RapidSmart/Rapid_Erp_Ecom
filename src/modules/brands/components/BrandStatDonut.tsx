@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { cn } from '@/shared/utils/utils'
-import type { IndustryStatTone } from '../types/industries.types'
+import type { BrandStatTone } from '../types/brands.types'
 
 const VIEWBOX = 120
 const CENTER = VIEWBOX / 2
@@ -11,7 +11,7 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 const ARC_START_DEGREES = 117.5
 const ARC_SWEEP_DEGREES = 305
 
-const toneTextClasses: Record<IndustryStatTone, string> = {
+const toneTextClasses: Record<BrandStatTone, string> = {
   total: 'text-stat-total',
   active: 'text-stat-active',
   inactive: 'text-stat-inactive',
@@ -19,8 +19,8 @@ const toneTextClasses: Record<IndustryStatTone, string> = {
   delete: 'text-stat-delete',
 }
 
-export interface IndustryStatDonutProps {
-  tone: IndustryStatTone
+export interface BrandStatDonutProps {
+  tone: BrandStatTone
   label: string
   value: number
   percentage: number
@@ -29,7 +29,7 @@ export interface IndustryStatDonutProps {
   onSelect?: () => void
 }
 
-function IndustryStatDonut({
+function BrandStatDonut({
   tone,
   label,
   value,
@@ -37,7 +37,7 @@ function IndustryStatDonut({
   selected = false,
   actionLabel,
   onSelect,
-}: IndustryStatDonutProps) {
+}: BrandStatDonutProps) {
   const gradientId = useId()
   const clamped = Math.min(100, Math.max(0, percentage))
   const trackArcLength = (ARC_SWEEP_DEGREES / 360) * CIRCUMFERENCE
@@ -129,4 +129,4 @@ function IndustryStatDonut({
   )
 }
 
-export { IndustryStatDonut }
+export { BrandStatDonut }

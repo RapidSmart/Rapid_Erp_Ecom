@@ -1,36 +1,36 @@
 import { lazy, Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
 
-const INDUSTRIES_ROUTE_PATH = "/industries";
+const BRANDS_ROUTE_PATH = "/brands";
 
-const IndustriesListing = lazy(() => import("./view/IndustriesListing"));
-const IndustriesAdd = lazy(() => import("./view/IndustriesAdd"));
-const IndustriesEdit = lazy(() => import("./view/IndustriesEdit"));
+const BrandsListing = lazy(() => import("./view/BrandsListing"));
+const BrandsAdd = lazy(() => import("./view/BrandsAdd"));
+const BrandsEdit = lazy(() => import("./view/BrandsEdit"));
 
 const fallback = <div className="flex h-screen items-center justify-center">Loading...</div>;
 
-export const industriesRoutes: RouteObject[] = [
+export const brandsRoutes: RouteObject[] = [
   {
-    path: INDUSTRIES_ROUTE_PATH,
+    path: BRANDS_ROUTE_PATH,
     element: (
       <Suspense fallback={fallback}>
-        <IndustriesListing />
+        <BrandsListing />
       </Suspense>
     ),
   },
   {
-    path: "/industries/new",
+    path: "/brands/new",
     element: (
       <Suspense fallback={fallback}>
-        <IndustriesAdd />
+        <BrandsAdd />
       </Suspense>
     ),
   },
   {
-    path: "/industries/:id/edit",
+    path: "/brands/:id/edit",
     element: (
       <Suspense fallback={fallback}>
-        <IndustriesEdit />
+        <BrandsEdit />
       </Suspense>
     ),
   },

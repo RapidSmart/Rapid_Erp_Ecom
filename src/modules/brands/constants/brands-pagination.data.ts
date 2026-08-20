@@ -1,4 +1,4 @@
-import type { IndustryPageSize } from '../types/industries.types'
+import type { BrandPageSize } from '../types/brands.types'
 
-export const DEFAULT_INDUSTRY_PAGE_SIZE: IndustryPageSize = 25
-export const INDUSTRY_PAGE_SIZES: IndustryPageSize[] = [10, 25, 50, 75]
+export const DEFAULT_BRAND_PAGE_SIZE: BrandPageSize = 25
+export const BRAND_PAGE_SIZES: BrandPageSize[] = [10, 25, 50, 75]

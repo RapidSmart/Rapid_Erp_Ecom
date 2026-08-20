@@ -1,8 +1,8 @@
-import type { Industry, IndustryOverview } from '../types/industries.types'
+import type { Brand, BrandOverview } from '../types/brands.types'
 
-export const MOCK_INDUSTRIES: Industry[] = [
+export const MOCK_BRANDS: Brand[] = [
   {
-    id: 'ind-1' as any,
+    id: 'brand-1' as any,
     code: 'TECH',
     name: 'Technology',
     description: 'Software, hardware, and IT services.',
@@ -10,7 +10,7 @@ export const MOCK_INDUSTRIES: Industry[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: 'ind-2' as any,
+    id: 'brand-2' as any,
     code: 'HEALTH',
     name: 'Healthcare',
     description: 'Medical services, hospitals, and clinics.',
@@ -18,7 +18,7 @@ export const MOCK_INDUSTRIES: Industry[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: 'ind-3' as any,
+    id: 'brand-3' as any,
     code: 'EDU',
     name: 'Education',
     description: 'Schools, universities, and training centers.',
@@ -27,7 +27,7 @@ export const MOCK_INDUSTRIES: Industry[] = [
   },
 ]
 
-export const MOCK_INDUSTRIES_OVERVIEW: IndustryOverview = {
+export const MOCK_BRANDS_OVERVIEW: BrandOverview = {
   total: { value: 3, percentage: 100 },
   active: { value: 2, percentage: 66.6 },
   inactive: { value: 1, percentage: 33.3 },

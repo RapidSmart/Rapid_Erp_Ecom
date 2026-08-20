@@ -1,22 +1,22 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSidebar } from '@/shared/components/layout'
-import { IndustriesListingHeader } from '../components/IndustriesListingHeader'
-import { IndustriesGrid } from '../components/IndustriesGrid'
-import { IndustriesTable } from '../components/IndustriesTable'
-import { IndustriesOverviewPanel } from '../components/IndustriesOverviewPanel'
-import { IndustriesStatusOverview } from '../components/IndustriesStatusOverview'
-import { IndustriesDetailsDialog } from '../components/IndustriesDetailsDialog'
-import { IndustriesDeleteDialog } from '../components/IndustriesDeleteDialog'
-import { useIndustriesListing } from '../hooks/useIndustriesListing'
-import type { Industry, IndustryView } from '../types/industries.types'
+import { BrandsListingHeader } from '../components/BrandsListingHeader'
+import { BrandsGrid } from '../components/BrandsGrid'
+import { BrandsTable } from '../components/BrandsTable'
+import { BrandsOverviewPanel } from '../components/BrandsOverviewPanel'
+import { BrandsStatusOverview } from '../components/BrandsStatusOverview'
+import { BrandsDetailsDialog } from '../components/BrandsDetailsDialog'
+import { BrandsDeleteDialog } from '../components/BrandsDeleteDialog'
+import { useBrandsListing } from '../hooks/useBrandsListing'
+import type { Brand, BrandView } from '../types/brands.types'
 
-export default function IndustriesListing() {
+export default function BrandsListing() {
   const { toggleCollapsed } = useSidebar()
   const navigate = useNavigate()
-  const [view, setView] = useState<IndustryView>('list')
-  const [detailsIndustry, setDetailsIndustry] = useState<Industry | null>(null)
-  const [deleteIndustryTarget, setDeleteIndustryTarget] = useState<Industry | null>(null)
+  const [view, setView] = useState<BrandView>('list')
+  const [detailsBrand, setDetailsBrand] = useState<Brand | null>(null)
+  const [deleteBrandTarget, setDeleteBrandTarget] = useState<Brand | null>(null)
   
   const {
     search,
@@ -32,7 +32,7 @@ export default function IndustriesListing() {
     isFiltered,
     clearFilters,
     refresh,
-    deleteIndustry,
+    deleteBrand,
     page,
     setPage,
     pageSize,
@@ -41,16 +41,16 @@ export default function IndustriesListing() {
     totalCount,
     masterCount,
     paginatedList,
-  } = useIndustriesListing()
+  } = useBrandsListing()
 
-  const openCreate = () => navigate('/industries/new')
-  const openEdit = (industry: Industry) => navigate(`/industries/${industry.id}/edit`)
-  const handleDelete = (industry: Industry) => setDeleteIndustryTarget(industry)
+  const openCreate = () => navigate('/brands/new')
+  const openEdit = (brand: Brand) => navigate(`/brands/${brand.id}/edit`)
+  const handleDelete = (brand: Brand) => setDeleteBrandTarget(brand)
 
   return (
     <div className="flex min-h-full flex-col gap-5 bg-canvas p-5">
       <div className="flex flex-col gap-4 rounded-xl bg-surface p-4">
-        <IndustriesListingHeader
+        <BrandsListingHeader
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
@@ -63,7 +63,7 @@ export default function IndustriesListing() {
         />
 
         {view === 'grid' ? (
-          <IndustriesOverviewPanel
+          <BrandsOverviewPanel
             state={overview}
             range={range}
             onRangeChange={setRange}
@@ -72,7 +72,7 @@ export default function IndustriesListing() {
             onRetry={refresh}
           />
         ) : (
-          <IndustriesStatusOverview
+          <BrandsStatusOverview
             state={overview}
             recordCount={totalCount}
             range={range}
@@ -85,7 +85,7 @@ export default function IndustriesListing() {
       </div>
 
       {view === 'grid' ? (
-        <IndustriesGrid
+        <BrandsGrid
           state={list}
           isRefreshing={isRefreshing}
           isFiltered={isFiltered}
@@ -96,7 +96,7 @@ export default function IndustriesListing() {
           onDelete={handleDelete}
         />
       ) : (
-        <IndustriesTable
+        <BrandsTable
           state={paginatedList}
           isRefreshing={isRefreshing}
           isFiltered={isFiltered}
@@ -110,31 +110,31 @@ export default function IndustriesListing() {
           onClearFilters={clearFilters}
           onAdd={openCreate}
           onEdit={openEdit}
-          onOpenDetails={setDetailsIndustry}
+          onOpenDetails={setDetailsBrand}
         />
       )}
 
-      {detailsIndustry && (
-        <IndustriesDetailsDialog
-          industry={detailsIndustry}
+      {detailsBrand && (
+        <BrandsDetailsDialog
+          brand={detailsBrand}
           onEdit={(ind) => {
-            setDetailsIndustry(null)
+            setDetailsBrand(null)
             openEdit(ind)
           }}
           onDelete={(ind) => {
-            setDetailsIndustry(null)
+            setDetailsBrand(null)
             handleDelete(ind)
           }}
-          onClose={() => setDetailsIndustry(null)}
+          onClose={() => setDetailsBrand(null)}
         />
       )}
 
-      {deleteIndustryTarget && (
-        <IndustriesDeleteDialog
-          industry={deleteIndustryTarget}
+      {deleteBrandTarget && (
+        <BrandsDeleteDialog
+          brand={deleteBrandTarget}
           submitting={isMutating}
-          onConfirm={deleteIndustry}
-          onClose={() => setDeleteIndustryTarget(null)}
+          onConfirm={deleteBrand}
+          onClose={() => setDeleteBrandTarget(null)}
         />
       )}
     </div>

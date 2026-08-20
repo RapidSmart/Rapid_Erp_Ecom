@@ -1,32 +1,32 @@
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from '@/i18n'
 import { PageHeader } from '@/shared/components/layout/PageHeader'
-import { IndustriesForm } from '../components/IndustriesForm'
-import { useIndustriesListing } from '../hooks/useIndustriesListing'
+import { BrandsForm } from '../components/BrandsForm'
+import { useBrandsListing } from '../hooks/useBrandsListing'
 
-export default function IndustriesAdd() {
+export default function BrandsAdd() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { createIndustry, isMutating } = useIndustriesListing()
+  const { createBrand, isMutating } = useBrandsListing()
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
       <div className="mx-auto max-w-[1560px]">
         <PageHeader
-          backText={t("industries.form.backToList") || "Back to list"}
-          backHref="/industries"
+          backText={t("brands.form.backToList") || "Back to list"}
+          backHref="/brands"
           breadcrumbItems={[
             { label: "Master data" },
-            { label: "Industries" },
-            { label: t("industries.form.createTitle") || "New industry", current: true },
+            { label: "Brands" },
+            { label: t("brands.form.createTitle") || "New brand", current: true },
           ]}
-          title={t("industries.form.createTitle") || "Add an industry"}
-          description="Two required fields, the rest optional. Nothing is saved until you press Save industry."
+          title={t("brands.form.createTitle") || "Add an brand"}
+          description="Two required fields, the rest optional. Nothing is saved until you press Save brand."
         />
-        <IndustriesForm 
+        <BrandsForm 
           onSubmit={async (payload) => {
-            await createIndustry(payload);
-            navigate('/industries');
+            await createBrand(payload);
+            navigate('/brands');
           }}
           submitting={isMutating}
         />

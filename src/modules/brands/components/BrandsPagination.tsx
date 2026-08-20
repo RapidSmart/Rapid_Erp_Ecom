@@ -1,29 +1,29 @@
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
-import { INDUSTRY_PAGE_SIZES } from '../constants/industries-pagination.data'
-import type { IndustryPageSize } from '../types/industries.types'
+import { BRAND_PAGE_SIZES } from '../constants/brands-pagination.data'
+import type { BrandPageSize } from '../types/brands.types'
 
-export interface IndustryPaginationProps {
+export interface BrandPaginationProps {
   page: number
   pageCount: number
-  pageSize: IndustryPageSize
+  pageSize: BrandPageSize
   onPageChange: (page: number) => void
-  onPageSizeChange: (pageSize: IndustryPageSize) => void
+  onPageSizeChange: (pageSize: BrandPageSize) => void
   totalCount: number
 }
 
 const navButtonClasses =
   'flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-surface-border text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink disabled:pointer-events-none disabled:opacity-40 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none'
 
-function IndustriesPagination({
+function BrandsPagination({
   page,
   pageCount,
   pageSize,
   onPageChange,
   onPageSizeChange,
   totalCount,
-}: IndustryPaginationProps) {
+}: BrandPaginationProps) {
   const { t } = useTranslation()
 
   const rangeStart = totalCount === 0 ? 0 : (page - 1) * pageSize + 1
@@ -35,10 +35,10 @@ function IndustriesPagination({
     <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
       <div
         role="group"
-        aria-label={t('industries.pagination.pageSizeLabel')}
+        aria-label={t('brands.pagination.pageSizeLabel')}
         className="flex items-center gap-1"
       >
-        {INDUSTRY_PAGE_SIZES.map((size) => (
+        {BRAND_PAGE_SIZES.map((size) => (
           <button
             key={size}
             type="button"
@@ -63,7 +63,7 @@ function IndustriesPagination({
       </div>
 
       <p className="text-[11px] text-ink-subtle" aria-live="polite">
-        {t('industries.pagination.showing', {
+        {t('brands.pagination.showing', {
           from: rangeStart,
           to: rangeEnd,
           total: totalCount,
@@ -75,7 +75,7 @@ function IndustriesPagination({
           type="button"
           onClick={() => onPageChange(1)}
           disabled={isFirstPage}
-          aria-label={t('industries.pagination.first')}
+          aria-label={t('brands.pagination.first')}
           className={navButtonClasses}
         >
           <ChevronsLeft className="size-3.5" aria-hidden="true" />
@@ -84,7 +84,7 @@ function IndustriesPagination({
           type="button"
           onClick={() => onPageChange(page - 1)}
           disabled={isFirstPage}
-          aria-label={t('industries.pagination.previous')}
+          aria-label={t('brands.pagination.previous')}
           className={navButtonClasses}
         >
           <ChevronLeft className="size-3.5" aria-hidden="true" />
@@ -94,14 +94,14 @@ function IndustriesPagination({
           <span className="flex size-7 items-center justify-center rounded-full bg-brand-accent-surface text-brand-accent">
             {page}
           </span>
-          {t('industries.pagination.ofPages', { count: pageCount })}
+          {t('brands.pagination.ofPages', { count: pageCount })}
         </span>
 
         <button
           type="button"
           onClick={() => onPageChange(page + 1)}
           disabled={isLastPage}
-          aria-label={t('industries.pagination.next')}
+          aria-label={t('brands.pagination.next')}
           className={navButtonClasses}
         >
           <ChevronRight className="size-3.5" aria-hidden="true" />
@@ -110,7 +110,7 @@ function IndustriesPagination({
           type="button"
           onClick={() => onPageChange(pageCount)}
           disabled={isLastPage}
-          aria-label={t('industries.pagination.last')}
+          aria-label={t('brands.pagination.last')}
           className={navButtonClasses}
         >
           <ChevronsRight className="size-3.5" aria-hidden="true" />
@@ -120,4 +120,4 @@ function IndustriesPagination({
   )
 }
 
-export { IndustriesPagination }
+export { BrandsPagination }

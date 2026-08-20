@@ -1,4 +1,4 @@
-import type { IndustryStatus } from '../types/industries.types'
+import type { BrandStatus } from '../types/brands.types'
 
 const VIEWBOX = 64
 const CENTER = VIEWBOX / 2
@@ -6,8 +6,8 @@ const RADIUS = 26
 const STROKE_WIDTH = 6
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
-export interface IndustryOverviewRingProps {
-  status: IndustryStatus
+export interface BrandOverviewRingProps {
+  status: BrandStatus
   percentage: number
 }
 
@@ -17,7 +17,7 @@ export interface IndustryOverviewRingProps {
  * view's donuts use. Kept separate rather than unified: the two gauges follow
  * different visual specs that can change independently.
  */
-function IndustryOverviewRing({ status, percentage }: IndustryOverviewRingProps) {
+function BrandOverviewRing({ status, percentage }: BrandOverviewRingProps) {
   const clamped = Math.min(100, Math.max(0, percentage))
   const arcLength = (clamped / 100) * CIRCUMFERENCE
 
@@ -61,4 +61,4 @@ function IndustryOverviewRing({ status, percentage }: IndustryOverviewRingProps)
   )
 }
 
-export { IndustryOverviewRing }
+export { BrandOverviewRing }

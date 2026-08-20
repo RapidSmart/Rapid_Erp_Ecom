@@ -1,67 +1,67 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDebouncedValue } from '@/shared/hooks'
 import {
-  industriesService,
+  brandsService,
   isAbortError,
-  toIndustryError,
-} from '../services/industries.service'
-import { DEFAULT_INDUSTRY_TIME_RANGE } from '../constants/industries-overview.data'
-import { DEFAULT_INDUSTRY_PAGE_SIZE } from '../constants/industries-pagination.data'
+  toBrandError,
+} from '../services/brands.service'
+import { DEFAULT_BRAND_TIME_RANGE } from '../constants/brands-overview.data'
+import { DEFAULT_BRAND_PAGE_SIZE } from '../constants/brands-pagination.data'
 import type {
   AsyncState,
-  Industry,
-  IndustryError,
-  IndustryId,
-  IndustryOverview,
-  IndustryPageSize,
-  IndustryPayload,
-  IndustryStatus,
-  IndustryTimeRange,
-} from '../types/industries.types'
+  Brand,
+  BrandError,
+  BrandId,
+  BrandOverview,
+  BrandPageSize,
+  BrandPayload,
+  BrandStatus,
+  BrandTimeRange,
+} from '../types/brands.types'
 
-export interface IndustryListingController {
+export interface BrandListingController {
   search: string
   setSearch: (value: string) => void
-  statusFilter: IndustryStatus | null
-  setStatusFilter: (status: IndustryStatus | null) => void
-  range: IndustryTimeRange
-  setRange: (range: IndustryTimeRange) => void
-  list: AsyncState<Industry[]>
-  overview: AsyncState<IndustryOverview>
+  statusFilter: BrandStatus | null
+  setStatusFilter: (status: BrandStatus | null) => void
+  range: BrandTimeRange
+  setRange: (range: BrandTimeRange) => void
+  list: AsyncState<Brand[]>
+  overview: AsyncState<BrandOverview>
   isRefreshing: boolean
   isMutating: boolean
   isFiltered: boolean
   clearFilters: () => void
   refresh: () => void
-  createIndustry: (payload: IndustryPayload) => Promise<IndustryError | null>
-  updateIndustry: (
-    id: IndustryId,
-    payload: IndustryPayload
-  ) => Promise<IndustryError | null>
-  deleteIndustry: (id: IndustryId) => Promise<IndustryError | null>
+  createBrand: (payload: BrandPayload) => Promise<BrandError | null>
+  updateBrand: (
+    id: BrandId,
+    payload: BrandPayload
+  ) => Promise<BrandError | null>
+  deleteBrand: (id: BrandId) => Promise<BrandError | null>
   page: number
   setPage: (page: number) => void
-  pageSize: IndustryPageSize
-  setPageSize: (pageSize: IndustryPageSize) => void
+  pageSize: BrandPageSize
+  setPageSize: (pageSize: BrandPageSize) => void
   pageCount: number
   totalCount: number
   masterCount: number
-  paginatedList: AsyncState<Industry[]>
+  paginatedList: AsyncState<Brand[]>
 }
 
-export function useIndustriesListing(): IndustryListingController {
+export function useBrandsListing(): BrandListingController {
   const [search, setSearch] = useState('')
-  const [statusFilter, setStatusFilter] = useState<IndustryStatus | null>(null)
-  const [range, setRange] = useState<IndustryTimeRange>(DEFAULT_INDUSTRY_TIME_RANGE)
+  const [statusFilter, setStatusFilter] = useState<BrandStatus | null>(null)
+  const [range, setRange] = useState<BrandTimeRange>(DEFAULT_BRAND_TIME_RANGE)
   const [reloadToken, setReloadToken] = useState(0)
-  const [list, setList] = useState<AsyncState<Industry[]>>({ status: 'loading' })
-  const [overview, setOverview] = useState<AsyncState<IndustryOverview>>({
+  const [list, setList] = useState<AsyncState<Brand[]>>({ status: 'loading' })
+  const [overview, setOverview] = useState<AsyncState<BrandOverview>>({
     status: 'loading',
   })
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [isMutating, setIsMutating] = useState(false)
   const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState<IndustryPageSize>(DEFAULT_INDUSTRY_PAGE_SIZE)
+  const [pageSize, setPageSize] = useState<BrandPageSize>(DEFAULT_BRAND_PAGE_SIZE)
   const [masterCount, setMasterCount] = useState(0)
 
   const debouncedSearch = useDebouncedValue(search)
@@ -72,15 +72,15 @@ export function useIndustriesListing(): IndustryListingController {
     const controller = new AbortController()
     setIsRefreshing(true)
 
-    industriesService
+    brandsService
       .list({ search: debouncedSearch, status: statusFilter }, controller.signal)
-      .then((industries) => {
-        setList({ status: 'ready', data: industries })
+      .then((brands) => {
+        setList({ status: 'ready', data: brands })
         setIsRefreshing(false)
       })
       .catch((error: unknown) => {
         if (isAbortError(error)) return
-        setList({ status: 'error', error: toIndustryError(error) })
+        setList({ status: 'error', error: toBrandError(error) })
         setIsRefreshing(false)
       })
 
@@ -90,12 +90,12 @@ export function useIndustriesListing(): IndustryListingController {
   useEffect(() => {
     const controller = new AbortController()
 
-    industriesService
+    brandsService
       .overview(range, controller.signal)
       .then((data) => setOverview({ status: 'ready', data }))
       .catch((error: unknown) => {
         if (isAbortError(error)) return
-        setOverview({ status: 'error', error: toIndustryError(error) })
+        setOverview({ status: 'error', error: toBrandError(error) })
       })
 
     return () => controller.abort()
@@ -104,7 +104,7 @@ export function useIndustriesListing(): IndustryListingController {
   useEffect(() => {
     const controller = new AbortController()
 
-    industriesService
+    brandsService
       .count(controller.signal)
       .then(setMasterCount)
       .catch((error: unknown) => {
@@ -119,14 +119,14 @@ export function useIndustriesListing(): IndustryListingController {
   }, [debouncedSearch, statusFilter, pageSize, reloadToken])
 
   const runMutation = useCallback(
-    async (action: () => Promise<unknown>): Promise<IndustryError | null> => {
+    async (action: () => Promise<unknown>): Promise<BrandError | null> => {
       setIsMutating(true)
       try {
         await action()
         refresh()
         return null
       } catch (error: unknown) {
-        return toIndustryError(error)
+        return toBrandError(error)
       } finally {
         setIsMutating(false)
       }
@@ -134,19 +134,19 @@ export function useIndustriesListing(): IndustryListingController {
     [refresh]
   )
 
-  const createIndustry = useCallback(
-    (payload: IndustryPayload) => runMutation(() => industriesService.create(payload)),
+  const createBrand = useCallback(
+    (payload: BrandPayload) => runMutation(() => brandsService.create(payload)),
     [runMutation]
   )
 
-  const updateIndustry = useCallback(
-    (id: IndustryId, payload: IndustryPayload) =>
-      runMutation(() => industriesService.update(id, payload)),
+  const updateBrand = useCallback(
+    (id: BrandId, payload: BrandPayload) =>
+      runMutation(() => brandsService.update(id, payload)),
     [runMutation]
   )
 
-  const deleteIndustry = useCallback(
-    (id: IndustryId) => runMutation(() => industriesService.remove(id)),
+  const deleteBrand = useCallback(
+    (id: BrandId) => runMutation(() => brandsService.remove(id)),
     [runMutation]
   )
 
@@ -158,7 +158,7 @@ export function useIndustriesListing(): IndustryListingController {
   const totalCount = list.status === 'ready' ? list.data.length : 0
   const pageCount = Math.max(1, Math.ceil(totalCount / pageSize))
 
-  const paginatedList = useMemo<AsyncState<Industry[]>>(() => {
+  const paginatedList = useMemo<AsyncState<Brand[]>>(() => {
     if (list.status !== 'ready') return list
     const start = (page - 1) * pageSize
     return { status: 'ready', data: list.data.slice(start, start + pageSize) }
@@ -178,9 +178,9 @@ export function useIndustriesListing(): IndustryListingController {
     isFiltered: search.trim().length > 0 || statusFilter !== null,
     clearFilters,
     refresh,
-    createIndustry,
-    updateIndustry,
-    deleteIndustry,
+    createBrand,
+    updateBrand,
+    deleteBrand,
     page,
     setPage,
     pageSize,

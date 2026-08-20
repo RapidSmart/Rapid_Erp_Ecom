@@ -1,24 +1,24 @@
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
-import { INDUSTRY_TIME_RANGES } from '../constants/industries-overview.data'
-import type { IndustryTimeRange } from '../types/industries.types'
+import { BRAND_TIME_RANGES } from '../constants/brands-overview.data'
+import type { BrandTimeRange } from '../types/brands.types'
 
-export interface IndustriesRangeSwitchProps {
-  range: IndustryTimeRange
-  onRangeChange: (range: IndustryTimeRange) => void
+export interface BrandsRangeSwitchProps {
+  range: BrandTimeRange
+  onRangeChange: (range: BrandTimeRange) => void
 }
 
 /** Live / 6 hours / 24 hours / 7 days / 30 days pill group — shared by both overview panels. */
-function IndustriesRangeSwitch({ range, onRangeChange }: IndustriesRangeSwitchProps) {
+function BrandsRangeSwitch({ range, onRangeChange }: BrandsRangeSwitchProps) {
   const { t } = useTranslation()
 
   return (
     <div
       role="group"
-      aria-label={t('industries.overview.rangeLabel')}
+      aria-label={t('brands.overview.rangeLabel')}
       className="flex flex-wrap items-center gap-1.5 rounded-xl border border-surface-border p-1"
     >
-      {INDUSTRY_TIME_RANGES.map((option) => {
+      {BRAND_TIME_RANGES.map((option) => {
         const isActive = option.value === range
 
         return (
@@ -48,4 +48,4 @@ function IndustriesRangeSwitch({ range, onRangeChange }: IndustriesRangeSwitchPr
   )
 }
 
-export { IndustriesRangeSwitch }
+export { BrandsRangeSwitch }

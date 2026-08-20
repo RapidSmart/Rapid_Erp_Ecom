@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const industrySchema = z.object({
+export const brandSchema = z.object({
   id: z.string().optional(),
   code: z
     .string()
@@ -18,16 +18,16 @@ export const industrySchema = z.object({
   updatedAt: z.string().optional(),
 })
 
-export const industryPayloadSchema = industrySchema.omit({ id: true, updatedAt: true })
+export const brandPayloadSchema = brandSchema.omit({ id: true, updatedAt: true })
 
-export const industryListSchema = z.array(industrySchema)
+export const brandListSchema = z.array(brandSchema)
 
 const statSchema = z.object({
   value: z.number(),
   percentage: z.number(),
 })
 
-export const industryOverviewSchema = z.object({
+export const brandOverviewSchema = z.object({
   total: statSchema,
   active: statSchema,
   inactive: statSchema,
@@ -35,14 +35,14 @@ export const industryOverviewSchema = z.object({
   delete: statSchema,
 })
 
-export function parseIndustry(data: unknown) {
-  return industrySchema.parse(data) as any
+export function parseBrand(data: unknown) {
+  return brandSchema.parse(data) as any
 }
 
-export function parseIndustryList(data: unknown) {
-  return industryListSchema.parse(data) as any[]
+export function parseBrandList(data: unknown) {
+  return brandListSchema.parse(data) as any[]
 }
 
-export function parseIndustryOverview(data: unknown) {
-  return industryOverviewSchema.parse(data) as any
+export function parseBrandOverview(data: unknown) {
+  return brandOverviewSchema.parse(data) as any
 }

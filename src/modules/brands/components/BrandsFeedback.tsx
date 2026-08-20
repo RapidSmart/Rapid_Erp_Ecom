@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { cn } from '@/shared/utils/utils'
 
-export interface IndustryFeedbackProps {
+export interface BrandFeedbackProps {
   icon: LucideIcon
   tone?: 'muted' | 'danger'
   title: string
@@ -13,8 +13,8 @@ export interface IndustryFeedbackProps {
   bare?: boolean
 }
 
-/** Shared empty / no-results / error panel for the industries grid and table. */
-function IndustriesFeedback({
+/** Shared empty / no-results / error panel for the brands grid and table. */
+function BrandsFeedback({
   icon: Icon,
   tone = 'muted',
   title,
@@ -22,7 +22,7 @@ function IndustriesFeedback({
   actionLabel,
   onAction,
   bare = false,
-}: IndustryFeedbackProps) {
+}: BrandFeedbackProps) {
   return (
     <div
       className={cn(
@@ -51,4 +51,4 @@ function IndustriesFeedback({
   )
 }
 
-export { IndustriesFeedback }
+export { BrandsFeedback }
