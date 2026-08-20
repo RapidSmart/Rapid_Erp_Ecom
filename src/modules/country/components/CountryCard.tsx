@@ -1,9 +1,8 @@
 import { Copy, Pencil, Trash2 } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { StatusBadge, formatUpdatedAt } from '@/modules/common-data'
 import { CountryFlag } from './CountryFlag'
-import { CountryStatusBadge } from './CountryStatusBadge'
-import { formatUpdatedAt } from '../utils/format-updated-at'
 import type { CountryCardProps } from '../types/country.types'
 
 const actionButtonClasses =
@@ -32,7 +31,7 @@ function CountryCard({
           >
             {country.name}
           </button>
-          <CountryStatusBadge status={country.status} className="ml-auto" />
+          <StatusBadge status={country.status} className="ml-auto" />
         </div>
 
         <dl className="mt-4 grid grid-cols-2 gap-x-3">

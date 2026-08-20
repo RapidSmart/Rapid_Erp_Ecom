@@ -1,19 +1,19 @@
+import { useState } from 'react'
 import type { DragEvent, ChangeEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
 import type { CountryPageFormProps } from '../types/country.types'
 import { IconCalendar } from '../icons'
-import { SectionHeader } from './SectionHeader'
-import { PillInput } from './PillInput'
-import { PillSelect } from './PillSelect'
+import { PillInput, PillSelect, SectionHeader, FormFooter } from '@/modules/common-data'
 import { FlagUploadArea } from './FlagUploadArea'
 import { FlagChip } from './FlagChip'
-import { FormFooter } from './FormFooter'
 import { LanguageDropdown } from './LanguageDropdown'
+import { CountryTemplateDialog } from './dialog/CountryTemplateDialog'
 
 
 export function CountryForm({ mode, form }: CountryPageFormProps) {
   const { t } = useTranslation()
   const prefix = mode === 'add' ? 'country.add' : 'country.edit'
+  const [isTemplateOpen, setIsTemplateOpen] = useState(false)
 
   const {
     values,
@@ -67,7 +67,16 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
               placeholder={t(`${prefix}.fields.isoCode`)}
               value={values.isoCode}
               onChange={(v) => handleFieldChange('isoCode', v)}
-              rightIcon={<IconCalendar />}
+              rightIcon={
+                <button
+                  type="button"
+                  onClick={() => setIsTemplateOpen(true)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-slate-500 hover:bg-slate-200 transition-colors focus:outline-none"
+                  aria-label="Open template select dialog"
+                >
+                  <IconCalendar />
+                </button>
+              }
               required
             />
             <PillInput
@@ -226,6 +235,23 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
           onSave={handleSave}
         />
       </form>
+
+      {isTemplateOpen && (
+        <CountryTemplateDialog
+          onClose={() => setIsTemplateOpen(false)}
+          onSelect={(template) => {
+            handleFieldChange('isoCode', template.code)
+            handleFieldChange('countryName', template.name)
+            handleFieldChange('diallingCode', template.diallingCode)
+            handleFieldChange('selectedFlag', template.selectedFlag)
+            handleFieldChange('flagFile', null)
+            handleFieldChange('continent', template.continent)
+            if (template.currency) {
+              handleFieldChange('currency', template.currency)
+            }
+          }}
+        />
+      )}
     </article>
   )
 }

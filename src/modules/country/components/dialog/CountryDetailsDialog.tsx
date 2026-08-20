@@ -7,9 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/shared/components/ui/dialog";
+import { StatusBadge, formatUpdatedAtFull } from "@/modules/common-data";
 import { CountryFlag } from "../CountryFlag";
-import { CountryStatusBadge } from "../CountryStatusBadge";
-import { formatUpdatedAtFull } from "../../utils/format-updated-at";
 import type { CountryDetailsDialogProps } from "../../types/country.types";
 import { Link } from "react-router-dom";
 
@@ -37,7 +36,7 @@ function CountryDetailsDialog({
             <span className="truncate text-base font-semibold text-ink">
               {country.name}
             </span>
-            <CountryStatusBadge status={country.status} className="ml-auto" />
+            <StatusBadge status={country.status} className="ml-auto" />
           </div>
         </DialogHeader>
 

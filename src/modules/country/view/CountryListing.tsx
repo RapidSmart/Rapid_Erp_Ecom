@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from '@/i18n'
 import { useSidebar } from '@/shared/components/layout'
-import { CountryDeleteDialog } from '../components/dialog/CountryDeleteDialog'
+import { DeleteConfirmDialog, ListingFooter } from '@/modules/common-data'
 import { CountryDetailsDialog } from '../components/dialog/CountryDetailsDialog'
 import { CountryGrid } from '../components/CountryGrid'
-import { CountryListingFooter } from '../components/CountryListingFooter'
 import { CountryListingHeader } from '../components/CountryListingHeader'
 import { CountryOverviewPanel } from '../components/CountryOverviewPanel'
 import { CountryStatusOverview } from '../components/CountryStatusOverview'
@@ -13,6 +13,7 @@ import { useCountryListing } from '../hooks/useCountryListing'
 import type { Country, CountryDialog, CountryView } from '../types/country.types'
 
 function CountryListing() {
+  const { t } = useTranslation()
   const { toggleCollapsed } = useSidebar()
   const [dialog, setDialog] = useState<CountryDialog>({ kind: 'none' })
   const [view, setView] = useState<CountryView>('list')
@@ -118,14 +119,21 @@ function CountryListing() {
         />
       )}
 
-      <CountryListingFooter />
-
+      <ListingFooter />
 
       {dialog.kind === 'delete' && (
-        <CountryDeleteDialog
-          country={dialog.country}
+        <DeleteConfirmDialog
+          open
+          title={t('country.delete.title')}
+          description={t('country.delete.description', { name: dialog.country.name })}
+          confirmText={t('country.delete.confirm')}
+          cancelText={t('country.delete.cancel')}
+          deletingText={t('country.delete.deleting')}
           submitting={isMutating}
-          onConfirm={deleteCountry}
+          onConfirm={async () => {
+            const failure = await deleteCountry(dialog.country.id)
+            if (!failure) closeDialog()
+          }}
           onClose={closeDialog}
         />
       )}

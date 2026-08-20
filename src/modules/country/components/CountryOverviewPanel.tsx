@@ -1,9 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { CountryRangeSwitch } from './CountryRangeSwitch'
-import { CountryStatDonut } from './CountryStatDonut'
-import { COUNTRY_STAT_TILES } from '../constants/country-overview.data'
+import { RangeSwitch, StatDonut, STAT_TILES } from '@/modules/common-data'
 import type { CountryOverviewPanelProps } from '../types/country.types'
 
 function CountryOverviewPanel({
@@ -26,7 +24,7 @@ function CountryOverviewPanel({
           {t('country.overview.title')}
         </h2>
 
-        <CountryRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <RangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {state.status === 'error' ? (
@@ -42,7 +40,7 @@ function CountryOverviewPanel({
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-2 justify-items-center gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
-          {COUNTRY_STAT_TILES.map((tile) => {
+          {STAT_TILES.map((tile) => {
             if (state.status === 'loading') {
               return (
                 <div
@@ -58,7 +56,7 @@ function CountryOverviewPanel({
             const tileStatus = tile.status
 
             return (
-              <CountryStatDonut
+              <StatDonut
                 key={tile.tone}
                 tone={tile.tone}
                 label={label}

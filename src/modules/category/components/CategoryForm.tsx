@@ -2,11 +2,13 @@ import type { DragEvent, ChangeEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
 import type { CategoryPageFormProps } from '../types/category.types'
 import { Calendar } from 'lucide-react'
-import { SectionHeader } from './SectionHeader'
-import { PillInput } from './PillInput'
-import { CategoryImageUploadArea } from './CategoryImageUploadArea'
-import { CategoryImageChip } from './CategoryImageChip'
-import { FormFooter } from './FormFooter'
+import {
+  SectionHeader,
+  PillInput,
+  FormFooter,
+  ImageUploadArea,
+  ImageChip,
+} from '@/modules/common-data'
 
 export function CategoryForm({ mode, form }: CategoryPageFormProps) {
   const { t } = useTranslation()
@@ -83,7 +85,7 @@ export function CategoryForm({ mode, form }: CategoryPageFormProps) {
         >
           <SectionHeader label={t(`${prefix}.sections.imageAndDesc`)} />
 
-          <CategoryImageUploadArea
+          <ImageUploadArea
             imageFile={values.imageFile}
             selectedImage={values.selectedImage}
             imageGallery={imageGallery}
@@ -111,7 +113,7 @@ export function CategoryForm({ mode, form }: CategoryPageFormProps) {
               className="flex flex-wrap gap-1.5 sm:gap-[7px]"
             >
               {imageGallery.map((item) => (
-                <CategoryImageChip
+                <ImageChip
                   key={item.url}
                   item={item}
                   selected={values.selectedImage === item.url}

@@ -1,8 +1,7 @@
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
+import { StatusBadge, formatUpdatedAtCompact } from '@/modules/common-data'
 import { CountryFlag } from './CountryFlag'
-import { CountryStatusBadge } from './CountryStatusBadge'
-import { formatUpdatedAtCompact } from '../utils/format-updated-at'
 import type { CountryTableRowProps } from '../types/country.types'
 
 const cellClasses = 'px-4 py-3.5 text-[13px] text-ink-muted'
@@ -42,7 +41,7 @@ function CountryTableRow({
       <td className={cellClasses}>{country.iso2}</td>
       <td className={cellClasses}>{country.iso3}</td>
       <td className="px-4 py-3.5">
-        <CountryStatusBadge status={country.status} />
+        <StatusBadge status={country.status} />
       </td>
       <td className={cellClasses}>
         <time dateTime={country.updatedAt}>

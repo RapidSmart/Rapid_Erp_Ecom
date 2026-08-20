@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { Folder, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import { CategoryFeedback } from './CategoryFeedback'
-import { CategoryPagination } from './CategoryPagination'
+import { Feedback, Pagination, TableSkeleton } from '@/modules/common-data'
 import { CategoryTableRow } from './CategoryTableRow'
-import { CategoryTableSkeleton } from './skeleton/CategoryTableSkeleton'
 import type {
   Category,
   CategoryId,
@@ -16,7 +14,6 @@ const SKELETON_ROW_COUNT = 8
 
 const HEADER_CELL_CLASSES =
   'px-4 py-3 text-left text-[11px] font-medium text-ink-subtle'
-
 
 function CategoryTable({
   state,
@@ -112,11 +109,11 @@ function CategoryTable({
       </div>
 
       {state.status === 'loading' && (
-        <CategoryTableSkeleton rowCount={SKELETON_ROW_COUNT} />
+        <TableSkeleton rowCount={SKELETON_ROW_COUNT} />
       )}
 
       {state.status === 'error' && (
-        <CategoryFeedback
+        <Feedback
           bare
           icon={TriangleAlert}
           tone="danger"
@@ -130,7 +127,7 @@ function CategoryTable({
       {state.status === 'ready' && rows.length === 0 && (
         <>
           {isFiltered ? (
-            <CategoryFeedback
+            <Feedback
               bare
               icon={SearchX}
               title={t('category.states.noResultsTitle')}
@@ -139,7 +136,7 @@ function CategoryTable({
               onAction={onClearFilters}
             />
           ) : (
-            <CategoryFeedback
+            <Feedback
               bare
               icon={Folder}
               title={t('category.states.emptyTitle')}
@@ -153,7 +150,7 @@ function CategoryTable({
 
       {state.status === 'ready' && rows.length > 0 && (
         <div className="border-t border-surface-border">
-          <CategoryPagination
+          <Pagination
             page={page}
             pageCount={pageCount}
             pageSize={pageSize}

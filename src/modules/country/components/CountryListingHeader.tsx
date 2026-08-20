@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Menu, Mic, Search } from 'lucide-react'
 import { useTranslation } from '@/i18n'
-import { CountryViewToggle } from './CountryViewToggle'
+import { ViewToggle } from '@/modules/common-data'
 import type { CountryListingHeaderProps } from '../types/country.types'
 
 function CountryListingHeader({
@@ -44,7 +44,7 @@ function CountryListingHeader({
         </span>
       </div>
 
-      <CountryViewToggle view={view} onToggle={onToggleView} />
+      <ViewToggle view={view} onToggle={onToggleView} />
 
       <div className="order-last flex w-full justify-center sm:order-none sm:w-auto sm:flex-1">
         <label className="flex h-7 w-full max-w-60 items-center gap-2 rounded-full bg-surface-muted px-3">

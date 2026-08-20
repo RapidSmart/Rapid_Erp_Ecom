@@ -1,7 +1,10 @@
+import commonEn from '@/modules/common-data/i18n/en.json'
 import countryEn from '@/modules/country/i18n/en.json'
 import productEn from '@/modules/product/i18n/en.json'
 import categoryEn from '@/modules/category/i18n/en.json'
 import industriesEn from '@/modules/industries/i18n/en.json'
+import departmentEn from '@/modules/department/i18n/en.json'
+import subCategoryEn from '@/modules/sub-category/i18n/en.json'
 
 /**
  * Loader/merger only — this folder never holds UI copy. Every module ships its
@@ -16,10 +19,13 @@ export type TranslationVars = Record<string, string | number>
 
 const resources: Record<Locale, TranslationTree> = {
   en: {
+    common: commonEn as unknown as TranslationTree,
     country: countryEn as unknown as TranslationTree,
     product: productEn as unknown as TranslationTree,
     category: categoryEn as unknown as TranslationTree,
     industries: industriesEn as unknown as TranslationTree,
+    department: departmentEn as unknown as TranslationTree,
+    subCategory: subCategoryEn as unknown as TranslationTree,
   },
 }
 

@@ -1,4 +1,4 @@
-import type { CountryFormValues, FlagGalleryItem, SelectOption } from '../types/country.types'
+import type { CountryFormValues, FlagGalleryItem, SelectOption, CountryTemplate } from '../types/country.types'
 
 export const FLAG_GALLERY: readonly FlagGalleryItem[] = [
   {
@@ -115,3 +115,115 @@ export const MOCK_EDIT_COUNTRY: CountryFormValues = {
   selectedFlag: 'US',
   internalNote: 'Primary operation market in North America.',
 }
+
+export const COUNTRY_TEMPLATES: readonly CountryTemplate[] = [
+  {
+    code: 'US',
+    name: 'United States',
+    continent: 'north_america',
+    continentLabel: 'North America',
+    diallingCode: '+1',
+    currency: 'usd',
+    selectedFlag: 'US',
+  },
+  {
+    code: 'CA',
+    name: 'Canada',
+    continent: 'north_america',
+    continentLabel: 'North America',
+    diallingCode: '+1',
+    currency: 'cad',
+    selectedFlag: 'CA',
+  },
+  {
+    code: 'GB',
+    name: 'United Kingdom',
+    continent: 'europe',
+    continentLabel: 'Europe',
+    diallingCode: '+44',
+    currency: 'gbp',
+    selectedFlag: 'GB',
+  },
+  {
+    code: 'AU',
+    name: 'Australia',
+    continent: 'oceania',
+    continentLabel: 'Oceania',
+    diallingCode: '+61',
+    currency: 'aud',
+    selectedFlag: 'AU',
+  },
+  {
+    code: 'DE',
+    name: 'Germany',
+    continent: 'europe',
+    continentLabel: 'Europe',
+    diallingCode: '+49',
+    currency: 'eur',
+    selectedFlag: 'DE',
+  },
+  {
+    code: 'FR',
+    name: 'France',
+    continent: 'europe',
+    continentLabel: 'Europe',
+    diallingCode: '+33',
+    currency: 'eur',
+    selectedFlag: 'FR',
+  },
+  {
+    code: 'AE',
+    name: 'United Arab Emirates',
+    continent: 'asia',
+    continentLabel: 'Asia',
+    diallingCode: '+971',
+    currency: 'aed',
+    selectedFlag: 'AE',
+  },
+  {
+    code: 'IN',
+    name: 'India',
+    continent: 'asia',
+    continentLabel: 'Asia',
+    diallingCode: '+91',
+    currency: 'inr',
+    selectedFlag: 'IN',
+  },
+  {
+    code: 'JP',
+    name: 'Japan',
+    continent: 'asia',
+    continentLabel: 'Asia',
+    diallingCode: '+81',
+    currency: 'jpy',
+    selectedFlag: 'JP',
+  },
+  {
+    code: 'BR',
+    name: 'Brazil',
+    continent: 'south_america',
+    continentLabel: 'South America',
+    diallingCode: '+55',
+    currency: 'brl',
+    selectedFlag: 'BR',
+  },
+  {
+    code: 'ZA',
+    name: 'South Africa',
+    continent: 'africa',
+    continentLabel: 'Africa',
+    diallingCode: '+27',
+    currency: '',
+    selectedFlag: 'ZA',
+  },
+  {
+    code: 'SG',
+    name: 'Singapore',
+    continent: 'asia',
+    continentLabel: 'Asia',
+    diallingCode: '+65',
+    currency: '',
+    selectedFlag: 'SG',
+  },
+] as const
+

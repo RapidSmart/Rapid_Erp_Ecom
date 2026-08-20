@@ -4,29 +4,12 @@ import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
 import { IndustriesFeedback } from './IndustriesFeedback'
 import { IndustriesPagination } from './IndustriesPagination'
-import type { AsyncState, Industry, IndustryId, IndustryPageSize } from '../types/industries.types'
+import type { Industry, IndustryId, IndustriesTableProps } from '../types/industries.types'
 
 
 const SKELETON_ROW_COUNT = 8
 
 const HEADER_CELL_CLASSES = 'px-4 py-3 text-left text-[11px] font-medium text-ink-subtle'
-
-export interface IndustriesTableProps {
-  state: AsyncState<Industry[]>
-  isRefreshing: boolean
-  isFiltered: boolean
-  page: number
-  pageCount: number
-  pageSize: IndustryPageSize
-  totalCount: number
-  onPageChange: (page: number) => void
-  onPageSizeChange: (pageSize: IndustryPageSize) => void
-  onRetry: () => void
-  onClearFilters: () => void
-  onAdd: () => void
-  onEdit: (industry: Industry) => void
-  onOpenDetails: (industry: Industry) => void
-}
 
 export function IndustriesTable({
   state,

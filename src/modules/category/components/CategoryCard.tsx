@@ -1,9 +1,8 @@
 import { Copy, Pencil, Trash2 } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { StatusBadge, formatUpdatedAt } from '@/modules/common-data'
 import { CategoryImage } from './CategoryImage'
-import { CategoryStatusBadge } from './CategoryStatusBadge'
-import { formatUpdatedAt } from '../utils/format-updated-at'
 import type { CategoryCardProps } from '../types/category.types'
 
 const actionButtonClasses =
@@ -31,7 +30,7 @@ function CategoryCard({
           >
             {category.name}
           </button>
-          <CategoryStatusBadge status={category.status} className="ml-auto" />
+          <StatusBadge status={category.status} className="ml-auto" />
         </div>
 
         <div className="mt-4 flex flex-col gap-1">

@@ -1,0 +1,91 @@
+# TODO: Code Duplication & DRY/KISS Refactoring Plan
+
+> **Scope**: `src/modules/country`, `src/modules/department`, `src/modules/category`, `src/modules/sub-category`, `src/modules/common-data`  
+> **Standards Reference**: `AGENTS.md` (Modular Domain Architecture, Promotion Rules, DRY, KISS, Zero Dummy Data)
+
+---
+
+## 1. Executive Summary
+
+Across the four master-data modules (`country`, `department`, `category`, `sub-category`), over **70–80% of component code, utility functions, hooks, and types were duplicate implementations**.
+
+To strictly satisfy DRY and KISS while maintaining clean domain boundaries, all shared master-data primitives, layout components, widgets, hooks, types, constants, and utilities were extracted into **`src/modules/common-data`** with a public barrel export (`index.ts`) and full i18n bundle (`commonEn`).
+
+---
+
+## 2. Comprehensive Duplication Inventory & Status
+
+### A. Shared Utilities (100% Deduplicated)
+- [x] **`format-updated-at.ts`** -> Extracted to `src/modules/common-data/utils/format-updated-at.ts`
+  - Functions: `formatUpdatedAt()`, `formatUpdatedAtCompact()`, `formatUpdatedAtFull()`.
+  - Deleted duplicate copies from `country`, `department`, `category`, `sub-category`.
+
+---
+
+### B. Shared Types & Global Constants (100% Deduplicated)
+- [x] **Common Async & Query State Types** -> `src/modules/common-data/types/common-data.types.ts`
+  - `CommonStatus`, `TimeRange`, `StatTone`, `StatItem`, `StatOverview`, `ListingView`, `PageSize`, `SelectOption`, `ImageChipItem`.
+- [x] **Overview, Pagination & Status Constants** -> `src/modules/common-data/constants/`
+  - `PAGE_SIZES`, `DEFAULT_PAGE_SIZE` (`common-pagination.data.ts`)
+  - `TIME_RANGES`, `DEFAULT_TIME_RANGE`, `STAT_TILES` (`common-overview.data.ts`)
+  - `STATUS_OPTIONS`, `DEFAULT_STATUS` (`common-status.data.ts`)
+  - Deleted duplicate constants from all 4 domain modules.
+
+---
+
+### C. Form & Input Primitives (100% Deduplicated)
+- [x] **`PillInput.tsx`** -> `src/modules/common-data/components/forms/PillInput.tsx`
+- [x] **`PillSelect.tsx`** -> `src/modules/common-data/components/forms/PillSelect.tsx`
+- [x] **`SectionHeader.tsx`** -> `src/modules/common-data/components/forms/SectionHeader.tsx`
+- [x] **`FormFooter.tsx`** -> `src/modules/common-data/components/forms/FormFooter.tsx`
+
+---
+
+### D. Media & Image Upload Primitives & Hooks (100% Deduplicated)
+- [x] **`useImageUpload` hook** -> `src/modules/common-data/hooks/useImageUpload.ts`
+- [x] **`ImageUploadArea.tsx`** -> `src/modules/common-data/components/forms/ImageUploadArea.tsx`
+- [x] **`ImageChip.tsx`** -> `src/modules/common-data/components/forms/ImageChip.tsx`
+
+---
+
+### E. Overview & Stat Widgets (100% Deduplicated)
+- [x] **`OverviewRing.tsx` & `OverviewRingIcon.tsx`** -> `src/modules/common-data/components/overview/`
+- [x] **`StatDonut.tsx`** -> `src/modules/common-data/components/overview/StatDonut.tsx`
+- [x] **`OverviewCard.tsx`** -> `src/modules/common-data/components/overview/OverviewCard.tsx`
+- [x] **`RangeSwitch.tsx`** -> `src/modules/common-data/components/overview/RangeSwitch.tsx`
+
+---
+
+### F. Listing, Table & Feedback Primitives (100% Deduplicated)
+- [x] **`Pagination.tsx`** -> `src/modules/common-data/components/listing/Pagination.tsx`
+- [x] **`ViewToggle.tsx`** -> `src/modules/common-data/components/listing/ViewToggle.tsx`
+- [x] **`ListingHeader.tsx`** -> `src/modules/common-data/components/listing/ListingHeader.tsx`
+- [x] **`ListingFooter.tsx`** -> `src/modules/common-data/components/listing/ListingFooter.tsx`
+- [x] **`Feedback.tsx`** -> `src/modules/common-data/components/feedback/Feedback.tsx`
+- [x] **`TableSkeleton.tsx` & `CardSkeleton.tsx`** -> `src/modules/common-data/components/feedback/`
+- [x] **`StatusBadge.tsx`** -> `src/modules/common-data/components/feedback/StatusBadge.tsx`
+
+---
+
+### G. Common Dialogs (100% Deduplicated)
+- [x] **`DeleteConfirmDialog.tsx`** -> `src/modules/common-data/components/dialogs/DeleteConfirmDialog.tsx`
+
+---
+
+## 3. Module Documentation (`module.md`)
+
+Each module now has its own comprehensive `module.md` serving as the guide for developers and AI agents:
+- [x] `src/modules/common-data/module.md`
+- [x] `src/modules/country/module.md`
+- [x] `src/modules/department/module.md`
+- [x] `src/modules/category/module.md`
+- [x] `src/modules/sub-category/module.md`
+
+---
+
+## 4. Verification & Quality Gates
+
+- [x] TypeScript compilation: `pnpm tsc -b` passes with 0 errors.
+- [x] Linter: `pnpm oxlint` passes with 0 errors.
+- [x] Production build: `pnpm build` bundles successfully.
+.

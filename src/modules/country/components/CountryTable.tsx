@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { Globe, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import { CountryFeedback } from './CountryFeedback'
-import { CountryPagination } from './CountryPagination'
+import { Feedback, Pagination, TableSkeleton } from '@/modules/common-data'
 import { CountryTableRow } from './CountryTableRow'
-import { CountryTableSkeleton } from './skeleton/CountryTableSkeleton'
 import type {
   Country,
   CountryId,
@@ -16,7 +14,6 @@ const SKELETON_ROW_COUNT = 8
 
 const HEADER_CELL_CLASSES =
   'px-4 py-3 text-left text-[11px] font-medium text-ink-subtle'
-
 
 function CountryTable({
   state,
@@ -118,11 +115,11 @@ function CountryTable({
       </div>
 
       {state.status === 'loading' && (
-        <CountryTableSkeleton rowCount={SKELETON_ROW_COUNT} />
+        <TableSkeleton rowCount={SKELETON_ROW_COUNT} />
       )}
 
       {state.status === 'error' && (
-        <CountryFeedback
+        <Feedback
           bare
           icon={TriangleAlert}
           tone="danger"
@@ -136,7 +133,7 @@ function CountryTable({
       {state.status === 'ready' && rows.length === 0 && (
         <>
           {isFiltered ? (
-            <CountryFeedback
+            <Feedback
               bare
               icon={SearchX}
               title={t('country.states.noResultsTitle')}
@@ -145,7 +142,7 @@ function CountryTable({
               onAction={onClearFilters}
             />
           ) : (
-            <CountryFeedback
+            <Feedback
               bare
               icon={Globe}
               title={t('country.states.emptyTitle')}
@@ -159,7 +156,7 @@ function CountryTable({
 
       {state.status === 'ready' && rows.length > 0 && (
         <div className="border-t border-surface-border">
-          <CountryPagination
+          <Pagination
             page={page}
             pageCount={pageCount}
             pageSize={pageSize}

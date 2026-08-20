@@ -57,3 +57,20 @@ export type IndustryDialog =
   | { kind: 'none' }
   | { kind: 'delete'; industry: Industry }
   | { kind: 'details'; industry: Industry }
+
+export interface IndustriesTableProps {
+  state: AsyncState<Industry[]>
+  isRefreshing: boolean
+  isFiltered: boolean
+  page: number
+  pageCount: number
+  pageSize: IndustryPageSize
+  totalCount: number
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: IndustryPageSize) => void
+  onRetry: () => void
+  onClearFilters: () => void
+  onAdd: () => void
+  onEdit: (industry: Industry) => void
+  onOpenDetails: (industry: Industry) => void
+}

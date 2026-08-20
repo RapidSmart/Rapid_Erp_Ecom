@@ -206,5 +206,17 @@
       "clear": "Reset Changes",
       "save": "Update Country"
     }
+  },
+  "templates": {
+    "title": "Templates",
+    "searchPlaceholder": "Search code or country",
+    "showing": "Showing {{count}} of {{total}} templates",
+    "hint": "Selecting a template fills code, name, dialling code and flag.",
+    "columns": {
+      "code": "Code",
+      "name": "Name",
+      "continent": "Continent"
+    }
   }
 }
+

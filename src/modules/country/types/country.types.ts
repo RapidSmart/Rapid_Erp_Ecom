@@ -362,4 +362,15 @@ export interface LanguageDropdownProps {
   onSelectLanguage?: (lang: any) => void
 }
 
+export interface CountryTemplate {
+  readonly code: string
+  readonly name: string
+  readonly continent: string
+  readonly continentLabel: string
+  readonly diallingCode: string
+  readonly currency: string
+  readonly selectedFlag: string
+}
+
+
 

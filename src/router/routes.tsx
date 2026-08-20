@@ -6,6 +6,8 @@ import { COUNTRY_ROUTE_PATH, countryRoutes } from "@/modules/country";
 import { PRODUCT_ROUTE_PATH, productRoutes } from "@/modules/product";
 import { CATEGORY_ROUTE_PATH, categoryRoutes } from "@/modules/category";
 import { INDUSTRIES_ROUTE_PATH, industriesRoutes } from "@/modules/industries";
+import { DEPARTMENT_ROUTE_PATH, departmentRoutes } from "@/modules/department";
+import { SUB_CATEGORY_ROUTE_PATH, subCategoryRoutes } from "@/modules/sub-category";
 
 function buildNavRoutes(navItems: NavItem[], excludePaths: string[]) {
   return navItems
@@ -18,6 +20,8 @@ const navRoutes = buildNavRoutes(primaryNavItems, [
   PRODUCT_ROUTE_PATH,
   CATEGORY_ROUTE_PATH,
   INDUSTRIES_ROUTE_PATH,
+  DEPARTMENT_ROUTE_PATH,
+  SUB_CATEGORY_ROUTE_PATH,
 ]);
 
 export const router = createBrowserRouter([
@@ -30,6 +34,8 @@ export const router = createBrowserRouter([
       ...productRoutes,
       ...categoryRoutes,
       ...industriesRoutes,
+      ...departmentRoutes,
+      ...subCategoryRoutes,
     ],
   },
   ...authRoutes,
