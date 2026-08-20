@@ -1,0 +1,132 @@
+{
+  "listing": {
+    "title": "Listing Rak",
+    "subtitle": "Total Rak {{count}}",
+    "menu": "Toggle navigation",
+    "searchLabel": "Search rak",
+    "searchPlaceholder": "Search rak, code or name",
+    "voiceSearch": "Search by voice",
+    "add": "Add",
+    "grid": "Rak",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "overview": {
+    "title": "Status overview",
+    "records": "{{count}} records",
+    "rangeLabel": "Overview time range",
+    "statFilterHint": "Filter list by {{status}}",
+    "clearFilterHint": "Clear status filter",
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "card": {
+    "iso2": "ISO2",
+    "iso3": "ISO3",
+    "updated": "Updated {{value}}",
+    "details": "View {{name}} details",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "flagAlt": "{{name}} flag"
+  },
+  "table": {
+    "rak": "Rak",
+    "code": "Code",
+    "description": "Description",
+    "status": "Status",
+    "updated": "Updated",
+    "selectAll": "Select all rak",
+    "selectRow": "Select {{name}}"
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}} Rak",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "states": {
+    "loading": "Loading rak…",
+    "emptyTitle": "No rak yet",
+    "emptyBody": "Add your first rak to start building the master data list.",
+    "emptyAction": "Add rak",
+    "noResultsTitle": "No rak match your filters",
+    "noResultsBody": "Try a different search term or clear the status filter.",
+    "noResultsAction": "Clear filters",
+    "errorTitle": "Could not load rak",
+    "errorAction": "Try again"
+  },
+  "form": {
+    "createTitle": "Add rak",
+    "createDescription": "Create a new rak record in the master data list.",
+    "editTitle": "Edit rak",
+    "editDescription": "Update the details of this rak record.",
+    "duplicateTitle": "Duplicate rak",
+    "duplicateDescription": "Create a copy of this rak with a new name and code.",
+    "name": "Rak name",
+    "namePlaceholder": "e.g. Red",
+    "code": "Rak code",
+    "codePlaceholder": "e.g. RED",
+    "description": "Description",
+    "descriptionPlaceholder": "Enter rak description...",
+    "status": "Status",
+    "backToList": "Back to list",
+    "cancel": "Cancel",
+    "submitCreate": "Add rak",
+    "submitEdit": "Save changes",
+    "submitDuplicate": "Duplicate",
+    "submitting": "Saving…",
+    "errors": {
+      "nameRequired": "Rak name is required.",
+      "codeRequired": "Rak code is required.",
+      "duplicateCode": "A Rak with this code already exists."
+    }
+  },
+  "delete": {
+    "title": "Delete rak",
+    "description": "\"{{name}}\" will be removed from the rak master data. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "details": {
+    "title": "Rak details",
+    "status": "Status",
+    "code": "Code",
+    "description": "Description",
+    "updated": "Last updated",
+    "close": "Close",
+    "edit": "Edit"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "rak": "Rapid",
+    "help": "Need help?",
+    "chat": "Live chat"
+  }
+}

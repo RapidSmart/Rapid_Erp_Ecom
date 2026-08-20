@@ -2,6 +2,7 @@ import countryEn from '@/modules/country/i18n/en.json'
 import countriesEn from '@/modules/countries/i18n/en.json'
 import brandsEn from '@/modules/brands/i18n/en.json'
 import colorsEn from '@/modules/colors/i18n/en.json'
+import rakEn from '@/modules/rak/i18n/en.json'
 
 /**
  * Loader/merger only — this folder never holds UI copy. Every module ships its
@@ -20,6 +21,7 @@ const resources: Record<Locale, TranslationTree> = {
     countries: countriesEn.countries as unknown as TranslationTree,
     brands: brandsEn as unknown as TranslationTree,
     colors: colorsEn as unknown as TranslationTree,
+    rak: rakEn as unknown as TranslationTree,
   },
 }
 
