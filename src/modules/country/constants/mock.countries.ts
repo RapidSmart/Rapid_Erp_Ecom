@@ -63,55 +63,29 @@ export const FLAG_GALLERY: readonly FlagGalleryItem[] = [
   },
 ] as const
 
-export const CONTINENT_OPTIONS: readonly SelectOption[] = [
-  { value: 'africa', label: 'Africa' },
-  { value: 'antarctica', label: 'Antarctica' },
-  { value: 'asia', label: 'Asia' },
-  { value: 'europe', label: 'Europe' },
-  { value: 'north_america', label: 'North America' },
-  { value: 'oceania', label: 'Oceania' },
-  { value: 'south_america', label: 'South America' },
-] as const
-
-export const CURRENCY_OPTIONS: readonly SelectOption[] = [
-  { value: 'aed', label: 'AED - UAE Dirham' },
-  { value: 'aud', label: 'AUD - Australian Dollar' },
-  { value: 'brl', label: 'BRL - Brazilian Real' },
-  { value: 'cad', label: 'CAD - Canadian Dollar' },
-  { value: 'eur', label: 'EUR - Euro' },
-  { value: 'gbp', label: 'GBP - British Pound' },
-  { value: 'inr', label: 'INR - Indian Rupee' },
-  { value: 'jpy', label: 'JPY - Japanese Yen' },
-  { value: 'usd', label: 'USD - US Dollar' },
-] as const
-
 export const STATUS_OPTIONS: readonly SelectOption[] = [
   { value: 'active', label: 'Active' },
   { value: 'inactive', label: 'Inactive' },
 ] as const
 
-export const DEFAULT_COUNTRY_OPTIONS: readonly SelectOption[] = [
-  { value: 'no', label: 'No' },
-  { value: 'yes', label: 'Yes' },
-] as const
-
 export const REQUIRED_FIELDS: readonly (keyof CountryFormValues)[] = [
-  'isoCode',
-  'countryName',
-  'diallingCode',
-  'continent',
-  'currency',
+  'countryCode',
+  'name',
+  'nativeName',
+  'iso2',
+  'iso3',
+  'isoNumeric',
 ] as const
 
 export const MOCK_EDIT_COUNTRY: CountryFormValues = {
-  isoCode: 'US',
-  countryName: 'United States',
-  diallingCode: '+1',
-  continent: 'north_america',
-  currency: 'usd',
+  countryCode: 'US',
+  name: 'United States',
+  nativeName: 'Estados Unidos',
   status: 'active',
-  defaultCountry: 'yes',
+  isDefault: true,
+  iso2: 'US',
+  iso3: 'USA',
+  isoNumeric: '840',
   flagFile: null,
   selectedFlag: 'US',
-  internalNote: 'Primary operation market in North America.',
 }

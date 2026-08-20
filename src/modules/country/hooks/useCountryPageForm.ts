@@ -7,25 +7,24 @@ import type {
 } from '../types/country.types'
 import {
   FLAG_GALLERY,
-  CONTINENT_OPTIONS,
-  CURRENCY_OPTIONS,
   STATUS_OPTIONS,
-  DEFAULT_COUNTRY_OPTIONS,
   REQUIRED_FIELDS,
 } from '../constants/mock.countries'
+import { useNavigate } from 'react-router-dom'
 import { countryService } from '../services/country.service'
+import { validateCountryForm } from '../validation/country-form.schema'
 
 const INITIAL_VALUES: CountryFormValues = {
-  isoCode: '',
-  countryName: '',
-  diallingCode: '',
-  continent: '',
-  currency: '',
+  countryCode: '',
+  name: '',
+  nativeName: '',
   status: 'active',
-  defaultCountry: 'no',
+  isDefault: false,
+  iso2: '',
+  iso3: '',
+  isoNumeric: '',
   flagFile: null,
   selectedFlag: null,
-  internalNote: '',
 }
 
 export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCountryPageFormReturn {
@@ -35,6 +34,21 @@ export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCoun
   }))
 
   const [isLoading, setIsLoading] = useState<boolean>(Boolean(options?.isEditMode && options?.id))
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+  const [stayOnPage, setStayOnPage] = useState(false)
+  const navigate = useNavigate()
+
+  const errors = validateCountryForm({
+    countryCode: values.countryCode,
+    name: values.name,
+    nativeName: values.nativeName,
+    iso2: values.iso2,
+    iso3: values.iso3,
+    isoNumeric: values.isoNumeric,
+    status: values.status === 'inactive' ? 'inactive' : 'active',
+    isDefault: values.isDefault,
+    selectedFlag: values.selectedFlag,
+  })
 
   useEffect(() => {
     if (options?.isEditMode && options?.id) {
@@ -61,15 +75,24 @@ export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCoun
   const filledRequiredCount = REQUIRED_FIELDS.filter((field) => {
     const value = values[field]
     if (typeof value === 'string') return value.trim().length > 0
+    if (typeof value === 'boolean') return true // booleans are always considered filled
     return value !== null
   }).length
 
   const handleFieldChange = useCallback(
     <K extends keyof CountryFormValues>(field: K, value: CountryFormValues[K]) => {
       setValues((prev) => ({ ...prev, [field]: value }))
+      if (touched[field]) {
+        // re-validate visually immediately when typing in a touched field
+        setTouched((prev) => ({ ...prev, [field]: true }))
+      }
     },
-    [],
+    [touched],
   )
+
+  const handleBlur = useCallback((field: keyof CountryFormValues) => {
+    setTouched((prev) => ({ ...prev, [field]: true }))
+  }, [])
 
   const handleFlagUpload = useCallback((file: File) => {
     setValues((prev) => ({ ...prev, flagFile: file, selectedFlag: null }))
@@ -103,42 +126,46 @@ export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCoun
   }, [options?.initialValues])
 
   const handleSave = useCallback(() => {
-    const payload: {
-      isoCode: string
-      countryName: string
-      diallingCode: string
-      continent: string
-      currency: string
-      status: 'active' | 'inactive'
-      defaultCountry: string
-      selectedFlag: string | null
-      internalNote: string
-    } = {
-      isoCode: values.isoCode,
-      countryName: values.countryName,
-      diallingCode: values.diallingCode,
-      continent: values.continent,
-      currency: values.currency,
+    const payload = {
+      countryCode: values.countryCode,
+      name: values.name,
+      nativeName: values.nativeName,
+      iso2: values.iso2,
+      iso3: values.iso3,
+      isoNumeric: values.isoNumeric,
       status: values.status === 'inactive' ? 'inactive' : 'active',
-      defaultCountry: values.defaultCountry,
+      isDefault: values.isDefault,
       selectedFlag: values.selectedFlag,
-      internalNote: values.internalNote,
     }
 
     if (options?.isEditMode && options?.id) {
-      countryService.updateCountry(options.id, payload).catch((err: unknown) => {
-        console.error('Failed to update country', err)
-      })
+      countryService.updateCountry(options.id, payload)
+        .then(() => {
+          if (!stayOnPage) {
+            navigate('/country')
+          }
+        })
+        .catch((err: unknown) => {
+          console.error('Failed to update country', err)
+        })
     } else {
-      countryService.createCountry(payload).catch((err: unknown) => {
-        console.error('Failed to create country', err)
-      })
+      countryService.createCountry(payload)
+        .then(() => {
+          if (!stayOnPage) {
+            navigate('/country')
+          } else {
+            handleClear()
+          }
+        })
+        .catch((err: unknown) => {
+          console.error('Failed to create country', err)
+        })
     }
-  }, [options?.id, options?.isEditMode, values])
+  }, [options?.id, options?.isEditMode, values, stayOnPage, navigate, handleClear])
 
-  const handleDuplicate = useCallback(() => {
-    void Promise.resolve(values)
-  }, [values])
+  const toggleStayOnPage = useCallback(() => {
+    setStayOnPage(prev => !prev)
+  }, [])
 
   const handlePrint = useCallback(() => {
     window.print()
@@ -150,18 +177,19 @@ export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCoun
     filledRequiredCount,
     totalRequiredCount: REQUIRED_FIELDS.length,
     flagGallery: FLAG_GALLERY,
-    continentOptions: CONTINENT_OPTIONS,
-    currencyOptions: CURRENCY_OPTIONS,
     statusOptions: STATUS_OPTIONS,
-    defaultCountryOptions: DEFAULT_COUNTRY_OPTIONS,
+    errors,
+    touched,
     handleFieldChange,
+    handleBlur,
     handleFlagUpload,
     handleFlagSelect,
     handleDragOver,
     handleDrop,
     handleClear,
     handleSave,
-    handleDuplicate,
+    stayOnPage,
+    toggleStayOnPage,
     handlePrint,
   }
 }

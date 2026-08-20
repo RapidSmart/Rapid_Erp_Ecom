@@ -12,30 +12,32 @@ import type {
  * `httpService` once the real API ships and this file can be deleted.
  */
 interface CountrySeed {
+  countryCode: string
   name: string
+  nativeName: string
   iso2: string
   iso3: string
-  currency: string
-  callingCode: string
+  isoNumeric: string
   status: CountryStatus
+  isDefault: boolean
   updatedMinutesAgo: number
 }
 
 const MINUTES_PER_DAY = 60 * 24
 
 const COUNTRY_SEED: readonly CountrySeed[] = [
-  { name: 'United States', iso2: 'US', iso3: 'USA', currency: 'USD', callingCode: '+1', status: 'active', updatedMinutesAgo: 2 * 60 },
-  { name: 'Canada', iso2: 'CA', iso3: 'CAN', currency: 'CAD', callingCode: '+1', status: 'active', updatedMinutesAgo: 380 * MINUTES_PER_DAY },
-  { name: 'Japan', iso2: 'JP', iso3: 'JPN', currency: 'JPY', callingCode: '+81', status: 'inactive', updatedMinutesAgo: 4 * 60 },
-  { name: 'Germany', iso2: 'DE', iso3: 'DEU', currency: 'EUR', callingCode: '+49', status: 'active', updatedMinutesAgo: 5 * 60 },
-  { name: 'France', iso2: 'FR', iso3: 'FRA', currency: 'EUR', callingCode: '+33', status: 'draft', updatedMinutesAgo: 400 * MINUTES_PER_DAY },
-  { name: 'Italy', iso2: 'IT', iso3: 'ITA', currency: 'EUR', callingCode: '+39', status: 'active', updatedMinutesAgo: 6 * 60 },
-  { name: 'Spain', iso2: 'ES', iso3: 'ESP', currency: 'EUR', callingCode: '+34', status: 'active', updatedMinutesAgo: 420 * MINUTES_PER_DAY },
-  { name: 'Portugal', iso2: 'PT', iso3: 'PRT', currency: 'EUR', callingCode: '+351', status: 'inactive', updatedMinutesAgo: 14 * MINUTES_PER_DAY },
-  { name: 'United Kingdom', iso2: 'GB', iso3: 'GBR', currency: 'GBP', callingCode: '+44', status: 'active', updatedMinutesAgo: 440 * MINUTES_PER_DAY },
-  { name: 'Australia', iso2: 'AU', iso3: 'AUS', currency: 'AUD', callingCode: '+61', status: 'active', updatedMinutesAgo: 25 },
-  { name: 'India', iso2: 'IN', iso3: 'IND', currency: 'INR', callingCode: '+91', status: 'active', updatedMinutesAgo: 40 },
-  { name: 'Brazil', iso2: 'BR', iso3: 'BRA', currency: 'BRL', callingCode: '+55', status: 'draft', updatedMinutesAgo: 30 * 60 },
+  { countryCode: 'US', name: 'United States', nativeName: 'Estados Unidos', iso2: 'US', iso3: 'USA', isoNumeric: '840', status: 'active', isDefault: true, updatedMinutesAgo: 2 * 60 },
+  { countryCode: 'CA', name: 'Canada', nativeName: 'Canada', iso2: 'CA', iso3: 'CAN', isoNumeric: '124', status: 'active', isDefault: false, updatedMinutesAgo: 380 * MINUTES_PER_DAY },
+  { countryCode: 'JP', name: 'Japan', nativeName: 'Nippon', iso2: 'JP', iso3: 'JPN', isoNumeric: '392', status: 'inactive', isDefault: false, updatedMinutesAgo: 4 * 60 },
+  { countryCode: 'DE', name: 'Germany', nativeName: 'Deutschland', iso2: 'DE', iso3: 'DEU', isoNumeric: '276', status: 'active', isDefault: false, updatedMinutesAgo: 5 * 60 },
+  { countryCode: 'FR', name: 'France', nativeName: 'France', iso2: 'FR', iso3: 'FRA', isoNumeric: '250', status: 'draft', isDefault: false, updatedMinutesAgo: 400 * MINUTES_PER_DAY },
+  { countryCode: 'IT', name: 'Italy', nativeName: 'Italia', iso2: 'IT', iso3: 'ITA', isoNumeric: '380', status: 'active', isDefault: false, updatedMinutesAgo: 6 * 60 },
+  { countryCode: 'ES', name: 'Spain', nativeName: 'España', iso2: 'ES', iso3: 'ESP', isoNumeric: '724', status: 'active', isDefault: false, updatedMinutesAgo: 420 * MINUTES_PER_DAY },
+  { countryCode: 'PT', name: 'Portugal', nativeName: 'Portugal', iso2: 'PT', iso3: 'PRT', isoNumeric: '620', status: 'inactive', isDefault: false, updatedMinutesAgo: 14 * MINUTES_PER_DAY },
+  { countryCode: 'GB', name: 'United Kingdom', nativeName: 'United Kingdom', iso2: 'GB', iso3: 'GBR', isoNumeric: '826', status: 'active', isDefault: false, updatedMinutesAgo: 440 * MINUTES_PER_DAY },
+  { countryCode: 'AU', name: 'Australia', nativeName: 'Australia', iso2: 'AU', iso3: 'AUS', isoNumeric: '036', status: 'active', isDefault: false, updatedMinutesAgo: 25 },
+  { countryCode: 'IN', name: 'India', nativeName: 'Bharat', iso2: 'IN', iso3: 'IND', isoNumeric: '356', status: 'active', isDefault: false, updatedMinutesAgo: 40 },
+  { countryCode: 'BR', name: 'Brazil', nativeName: 'Brasil', iso2: 'BR', iso3: 'BRA', isoNumeric: '076', status: 'draft', isDefault: false, updatedMinutesAgo: 30 * 60 },
 ]
 
 export function createMockCountries(): Country[] {
@@ -43,12 +45,14 @@ export function createMockCountries(): Country[] {
 
   return COUNTRY_SEED.map((seed, index) => ({
     id: `country-${index + 1}` as CountryId,
+    countryCode: seed.countryCode,
     name: seed.name,
+    nativeName: seed.nativeName,
     iso2: seed.iso2,
     iso3: seed.iso3,
-    currency: seed.currency,
-    callingCode: seed.callingCode,
+    isoNumeric: seed.isoNumeric,
     status: seed.status,
+    isDefault: seed.isDefault,
     updatedAt: new Date(now - seed.updatedMinutesAgo * 60_000).toISOString(),
   }))
 }

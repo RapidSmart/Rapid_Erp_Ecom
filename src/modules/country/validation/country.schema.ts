@@ -65,6 +65,14 @@ function parseStatus(input: unknown, path: string): CountryStatus {
   return input as CountryStatus
 }
 
+function parseBoolean(input: unknown, path: string): boolean {
+  if (typeof input !== 'boolean') {
+    throw new CountrySchemaError(path, 'a boolean')
+  }
+
+  return input
+}
+
 export function parseCountry(input: unknown, path = 'country'): Country {
   if (!isRecord(input)) {
     throw new CountrySchemaError(path, 'an object')
@@ -72,12 +80,14 @@ export function parseCountry(input: unknown, path = 'country'): Country {
 
   return {
     id: parseString(input.id, `${path}.id`) as CountryId,
+    countryCode: parseString(input.countryCode, `${path}.countryCode`),
     name: parseString(input.name, `${path}.name`),
+    nativeName: parseString(input.nativeName, `${path}.nativeName`),
     iso2: parseString(input.iso2, `${path}.iso2`),
     iso3: parseString(input.iso3, `${path}.iso3`),
-    currency: parseString(input.currency, `${path}.currency`),
-    callingCode: parseString(input.callingCode, `${path}.callingCode`),
+    isoNumeric: parseString(input.isoNumeric, `${path}.isoNumeric`),
     status: parseStatus(input.status, `${path}.status`),
+    isDefault: parseBoolean(input.isDefault, `${path}.isDefault`),
     updatedAt: parseString(input.updatedAt, `${path}.updatedAt`),
   }
 }

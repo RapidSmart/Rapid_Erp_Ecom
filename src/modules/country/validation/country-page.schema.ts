@@ -1,15 +1,15 @@
 import { z } from 'zod'
 
 export const countryFormSchema = z.object({
-  isoCode: z.string().min(2, 'ISO code must be at least 2 characters'),
-  countryName: z.string().min(2, 'Country name is required'),
-  diallingCode: z.string().min(1, 'Dialling code is required'),
-  continent: z.string().min(1, 'Continent selection is required'),
-  currency: z.string().min(1, 'Currency selection is required'),
+  countryCode: z.string().min(2, 'Country Code is required'),
+  name: z.string().min(2, 'Country name is required'),
+  nativeName: z.string().min(2, 'Native name is required'),
   status: z.enum(['active', 'inactive']).default('active'),
-  defaultCountry: z.string().optional(),
+  isDefault: z.boolean().default(false),
+  iso2: z.string().min(2, 'ISO2 Code must be at least 2 characters'),
+  iso3: z.string().min(3, 'ISO3 Code must be at least 3 characters'),
+  isoNumeric: z.string().min(1, 'ISO Numeric Code is required'),
   selectedFlag: z.string().nullable().optional(),
-  internalNote: z.string().optional(),
 })
 
 export const countryResponseSchema = countryFormSchema.extend({

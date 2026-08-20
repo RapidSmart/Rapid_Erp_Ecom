@@ -75,19 +75,23 @@ function CountryTable({
                 />
               </th>
               <th scope="col" className={HEADER_CELL_CLASSES}>
+                {t('country.table.countryCode')}
+              </th>
+              <th scope="col" className={HEADER_CELL_CLASSES}>
                 {t('country.table.country')}
               </th>
               <th scope="col" className={HEADER_CELL_CLASSES}>
-                {t('country.table.currency')}
+                {t('country.table.nativeName')}
               </th>
-              <th scope="col" className={HEADER_CELL_CLASSES}>
-                {t('country.table.callingCode')}
-              </th>
+
               <th scope="col" className={HEADER_CELL_CLASSES}>
                 {t('country.table.iso2')}
               </th>
               <th scope="col" className={HEADER_CELL_CLASSES}>
                 {t('country.table.iso3')}
+              </th>
+              <th scope="col" className={HEADER_CELL_CLASSES}>
+                {t('country.table.isoNumeric')}
               </th>
               <th scope="col" className={HEADER_CELL_CLASSES}>
                 {t('country.table.status')}

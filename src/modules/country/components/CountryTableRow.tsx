@@ -24,6 +24,7 @@ function CountryTableRow({
           aria-label={t('country.table.selectRow', { name: country.name })}
         />
       </td>
+      <td className={cellClasses}>{country.countryCode}</td>
       <td className="px-4 py-3.5">
         <button
           type="button"
@@ -37,10 +38,11 @@ function CountryTableRow({
           </span>
         </button>
       </td>
-      <td className={cellClasses}>{country.currency}</td>
-      <td className={cellClasses}>{country.callingCode}</td>
+      <td className={cellClasses}>{country.nativeName}</td>
+
       <td className={cellClasses}>{country.iso2}</td>
       <td className={cellClasses}>{country.iso3}</td>
+      <td className={cellClasses}>{country.isoNumeric}</td>
       <td className="px-4 py-3.5">
         <CountryStatusBadge status={country.status} />
       </td>

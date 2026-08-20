@@ -9,10 +9,11 @@ export function PillInput({
   type = 'text',
   rightIcon,
   required,
+  error,
   onChange,
   className,
   ...props
-}: PillInputProps) {
+}: PillInputProps & { error?: boolean }) {
   return (
     <div className="relative h-[54px]">
       <label htmlFor={id} className="sr-only">
@@ -29,7 +30,10 @@ export function PillInput({
         className={cn(
           'h-full w-full rounded-full border border-transparent bg-gray-100',
           'px-[22px] text-[15px] text-slate-900 placeholder:text-slate-400',
-          'outline-none transition-colors focus:border-blue-400',
+          'outline-none transition-colors',
+          error 
+            ? 'border-red-400 focus:border-red-500 bg-red-50/30' 
+            : 'border-transparent focus:border-blue-400',
           rightIcon && 'pr-12',
           className,
         )}

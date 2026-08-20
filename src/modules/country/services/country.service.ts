@@ -101,10 +101,11 @@ function matchesQuery(country: Country, query: CountryListQuery): boolean {
   const matchesTerm =
     term.length === 0 ||
     country.name.toLowerCase().includes(term) ||
+    country.nativeName.toLowerCase().includes(term) ||
+    country.countryCode.toLowerCase().includes(term) ||
     country.iso2.toLowerCase().includes(term) ||
     country.iso3.toLowerCase().includes(term) ||
-    country.currency.toLowerCase().includes(term) ||
-    country.callingCode.toLowerCase().includes(term)
+    country.isoNumeric.toLowerCase().includes(term)
 
   return matchesStatus && matchesTerm
 }

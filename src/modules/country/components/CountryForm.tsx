@@ -9,6 +9,7 @@ import { FlagUploadArea } from './FlagUploadArea'
 import { FlagChip } from './FlagChip'
 import { FormFooter } from './FormFooter'
 import { LanguageDropdown } from './LanguageDropdown'
+import { Switch } from '@/shared/components/ui/switch'
 
 
 export function CountryForm({ mode, form }: CountryPageFormProps) {
@@ -21,18 +22,19 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
     filledRequiredCount,
     totalRequiredCount,
     flagGallery,
-    continentOptions,
-    currencyOptions,
     statusOptions,
-    defaultCountryOptions,
+    errors,
+    touched,
     handleFieldChange,
+    handleBlur,
     handleFlagUpload,
     handleFlagSelect,
     handleDragOver,
     handleDrop,
     handleClear,
     handleSave,
-    handleDuplicate,
+    stayOnPage,
+    toggleStayOnPage,
     handlePrint,
   } = form
 
@@ -63,18 +65,19 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
           <SectionHeader label={t(`${prefix}.sections.identity`)} />
           <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-[1fr_2fr_1fr]">
             <PillInput
-              id="iso-code"
-              placeholder={t(`${prefix}.fields.isoCode`)}
-              value={values.isoCode}
-              onChange={(v) => handleFieldChange('isoCode', v)}
-              rightIcon={<IconCalendar />}
+              id="country-code"
+              placeholder={t(`${prefix}.fields.countryCode`)}
+              value={values.countryCode}
+              onChange={(v) => handleFieldChange('countryCode', v)}
+              onBlur={() => handleBlur('countryCode')}
+              error={touched.countryCode && !!errors.countryCode}
               required
             />
             <PillInput
               id="country-name"
-              placeholder={t(`${prefix}.fields.countryName`)}
-              value={values.countryName}
-              onChange={(v) => handleFieldChange('countryName', v)}
+              placeholder={t(`${prefix}.fields.name`)}
+              value={values.name}
+              onChange={(v) => handleFieldChange('name', v)}
               rightIcon={
                 <LanguageDropdown
                   currentLanguage="en"
@@ -83,14 +86,17 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
                   }}
                 />
               }
+              onBlur={() => handleBlur('name')}
+              error={touched.name && !!errors.name}
               required
             />
             <PillInput
-              id="dialling-code"
-              placeholder={t(`${prefix}.fields.diallingCode`)}
-              value={values.diallingCode}
-              onChange={(v) => handleFieldChange('diallingCode', v)}
-              type="tel"
+              id="native-name"
+              placeholder={t(`${prefix}.fields.nativeName`)}
+              value={values.nativeName}
+              onChange={(v) => handleFieldChange('nativeName', v)}
+              onBlur={() => handleBlur('nativeName')}
+              error={touched.nativeName && !!errors.nativeName}
               required
             />
           </div>
@@ -102,21 +108,32 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
           className="mb-5 sm:mb-6"
         >
           <SectionHeader label={t(`${prefix}.sections.availability`)} />
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <PillSelect
-              id="continent"
-              placeholder={t(`${prefix}.fields.continent`)}
-              value={values.continent}
-              options={continentOptions}
-              onChange={(v) => handleFieldChange('continent', v)}
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_auto]">
+            <PillInput
+              id="iso2"
+              placeholder={t(`${prefix}.fields.iso2`)}
+              value={values.iso2}
+              onChange={(v) => handleFieldChange('iso2', v)}
+              onBlur={() => handleBlur('iso2')}
+              error={touched.iso2 && !!errors.iso2}
               required
             />
-            <PillSelect
-              id="currency"
-              placeholder={t(`${prefix}.fields.currency`)}
-              value={values.currency}
-              options={currencyOptions}
-              onChange={(v) => handleFieldChange('currency', v)}
+            <PillInput
+              id="iso3"
+              placeholder={t(`${prefix}.fields.iso3`)}
+              value={values.iso3}
+              onChange={(v) => handleFieldChange('iso3', v)}
+              onBlur={() => handleBlur('iso3')}
+              error={touched.iso3 && !!errors.iso3}
+              required
+            />
+            <PillInput
+              id="iso-numeric"
+              placeholder={t(`${prefix}.fields.isoNumeric`)}
+              value={values.isoNumeric}
+              onChange={(v) => handleFieldChange('isoNumeric', v)}
+              onBlur={() => handleBlur('isoNumeric')}
+              error={touched.isoNumeric && !!errors.isoNumeric}
               required
             />
             <PillSelect
@@ -136,13 +153,16 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
                 ) : undefined
               }
             />
-            <PillSelect
-              id="default-country"
-              placeholder={t(`${prefix}.fields.defaultCountry`)}
-              value={values.defaultCountry}
-              options={defaultCountryOptions}
-              onChange={(v) => handleFieldChange('defaultCountry', v)}
-            />
+            <div className="flex h-14 items-center gap-3 rounded-3xl border border-transparent bg-gray-100 px-[22px] transition-colors focus-within:border-blue-400">
+              <label htmlFor="is-default" className="text-sm font-medium text-slate-900 cursor-pointer">
+                {t(`${prefix}.fields.isDefault`)}
+              </label>
+              <Switch
+                id="is-default"
+                checked={values.isDefault}
+                onCheckedChange={(checked) => handleFieldChange('isDefault', checked)}
+              />
+            </div>
           </div>
         </section>
 
@@ -191,22 +211,7 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
             </div>
           </div>
 
-          <div className="mt-4">
-            <label htmlFor="internal-note" className="sr-only">
-              {t(`${prefix}.fields.internalNote`)}
-            </label>
-            <textarea
-              id="internal-note"
-              rows={4}
-              value={values.internalNote}
-              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                handleFieldChange('internalNote', e.target.value)
-              }
-              placeholder={t(`${prefix}.fields.internalNote`)}
-              className="w-full resize-none rounded-2xl border border-transparent bg-gray-100 p-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-400 sm:rounded-3xl sm:p-[22px] sm:text-[14.5px]"
-            />
-          </div>
-        </section>
+          </section>
 
         {/* FOOTER */}
         <FormFooter
@@ -220,7 +225,8 @@ export function CountryForm({ mode, form }: CountryPageFormProps) {
           printText={t(`${prefix}.footer.print`)}
           clearText={t(`${prefix}.footer.clear`)}
           saveText={t(`${prefix}.footer.save`)}
-          onDuplicate={handleDuplicate}
+          onToggleStayOnPage={toggleStayOnPage}
+          stayOnPage={stayOnPage}
           onPrint={handlePrint}
           onClear={handleClear}
           onSave={handleSave}

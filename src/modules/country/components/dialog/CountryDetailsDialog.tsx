@@ -60,18 +60,34 @@ function CountryDetailsDialog({
           </div>
           <div>
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t("country.details.currency")}
+              {t("country.details.countryCode")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
-              {country.currency}
+              {country.countryCode}
             </dd>
           </div>
           <div>
             <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
-              {t("country.details.callingCode")}
+              {t("country.details.nativeName")}
             </dt>
             <dd className="mt-1.5 text-[13px] font-medium text-ink">
-              {country.callingCode}
+              {country.nativeName}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
+              {t("country.details.isoNumeric")}
+            </dt>
+            <dd className="mt-1.5 text-[13px] font-medium text-ink">
+              {country.isoNumeric}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-[10px] tracking-[0.08em] text-ink-subtle uppercase">
+              {t("country.details.isDefault")}
+            </dt>
+            <dd className="mt-1.5 text-[13px] font-medium text-ink">
+              {country.isDefault ? t("country.add.fields.isDefault") : ''}
             </dd>
           </div>
           <div className="col-span-2">
@@ -97,12 +113,11 @@ function CountryDetailsDialog({
             <Button variant="outline" onClick={onClose}>
               {t("country.details.close")}
             </Button>
-            <Link
-              to={`/country/${country.id}/edit`}
-              className="bg-brand-accent text-brand-accent-foreground hover:bg-brand-accent/90"
-            >
-              {t("country.details.edit")}
-            </Link>
+            <Button asChild>
+              <Link to={`/country/${country.id}/edit`}>
+                {t("country.details.edit")}
+              </Link>
+            </Button>
           </div>
         </DialogFooter>
       </DialogContent>

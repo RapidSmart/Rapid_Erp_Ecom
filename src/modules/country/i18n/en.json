@@ -53,11 +53,13 @@
     "flagAlt": "{{name}} flag"
   },
   "table": {
+    "countryCode": "Country Code",
     "country": "Country",
-    "currency": "Currency",
-    "callingCode": "Calling Code",
+    "nativeName": "Native Name",
+    "isDefault": "Default",
     "iso2": "ISO2",
     "iso3": "ISO3",
+    "isoNumeric": "ISO Numeric",
     "status": "Status",
     "updated": "Updated",
     "selectAll": "Select all countries",
@@ -90,16 +92,18 @@
     "editDescription": "Update the details of this country record.",
     "duplicateTitle": "Duplicate country",
     "duplicateDescription": "Create a copy of this country with a new name and codes.",
+    "countryCode": "Country code",
+    "countryCodePlaceholder": "US",
     "name": "Country name",
     "namePlaceholder": "e.g. United States",
+    "nativeName": "Native name",
+    "nativeNamePlaceholder": "e.g. Estados Unidos",
     "iso2": "ISO2 code",
     "iso2Placeholder": "US",
     "iso3": "ISO3 code",
     "iso3Placeholder": "USA",
-    "currency": "Currency",
-    "currencyPlaceholder": "USD",
-    "callingCode": "Calling code",
-    "callingCodePlaceholder": "+1",
+    "isoNumeric": "ISO numeric",
+    "isoNumericPlaceholder": "840",
     "status": "Status",
     "cancel": "Cancel",
     "submitCreate": "Add country",
@@ -107,11 +111,12 @@
     "submitDuplicate": "Duplicate",
     "submitting": "Saving…",
     "errors": {
+      "countryCodeRequired": "Country code is required.",
       "nameRequired": "Country name is required.",
+      "nativeNameRequired": "Native name is required.",
       "iso2Length": "ISO2 must be exactly 2 letters.",
       "iso3Length": "ISO3 must be exactly 3 letters.",
-      "currencyLength": "Currency must be a 3-letter code.",
-      "callingCodeFormat": "Calling code must look like +1.",
+      "isoNumericFormat": "ISO numeric must be exactly 3 digits.",
       "duplicateCode": "A country with this ISO2 code already exists."
     }
   },
@@ -125,10 +130,12 @@
   "details": {
     "title": "Country details",
     "status": "Status",
+    "countryCode": "Country Code",
+    "nativeName": "Native Name",
+    "isDefault": "Default",
     "iso2": "ISO2",
     "iso3": "ISO3",
-    "currency": "Currency",
-    "callingCode": "Calling code",
+    "isoNumeric": "ISO Numeric",
     "updated": "Last updated",
     "close": "Close",
     "edit": "Edit"
@@ -147,21 +154,21 @@
       "newCountry": "New country"
     },
     "title": "Add a country",
-    "description": "Five required fields, the rest optional. Nothing is saved until you press Save country.",
+    "description": "Six required fields, the rest optional. Nothing is saved until you press Submit.",
     "sections": {
       "identity": "Identity",
       "availability": "Availability",
       "flagAndNote": "Flag and note"
     },
     "fields": {
-      "isoCode": "ISO code *",
-      "countryName": "Country name *",
-      "diallingCode": "Dialling code *",
-      "continent": "Continent *",
-      "currency": "Currency *",
+      "countryCode": "Country Code *",
+      "name": "Country name *",
+      "nativeName": "Native name *",
       "status": "Status",
-      "defaultCountry": "Default country",
-      "internalNote": "Internal note (optional)",
+      "isDefault": "Default country",
+      "iso2": "ISO2 code *",
+      "iso3": "ISO3 code *",
+      "isoNumeric": "ISO numeric code *",
       "uploadFlag": "Upload flag here or drag",
       "pickFromGallery": "Or pick from gallery"
     },
@@ -169,8 +176,8 @@
       "fieldsFilled": "{{filled}} of {{total}} required fields filled",
       "duplicate": "Duplicate",
       "print": "Print",
-      "clear": "Clear",
-      "save": "Save Country"
+      "clear": "Cancel",
+      "save": "Submit"
     }
   },
   "edit": {
@@ -188,14 +195,14 @@
       "flagAndNote": "Flag and note"
     },
     "fields": {
-      "isoCode": "ISO code *",
-      "countryName": "Country name *",
-      "diallingCode": "Dialling code *",
-      "continent": "Continent *",
-      "currency": "Currency *",
+      "countryCode": "Country Code *",
+      "name": "Country name *",
+      "nativeName": "Native name *",
       "status": "Status",
-      "defaultCountry": "Default country",
-      "internalNote": "Internal note (optional)",
+      "isDefault": "Default country",
+      "iso2": "ISO2 code *",
+      "iso3": "ISO3 code *",
+      "isoNumeric": "ISO numeric code *",
       "uploadFlag": "Upload flag here or drag",
       "pickFromGallery": "Or pick from gallery"
     },
@@ -203,8 +210,8 @@
       "fieldsFilled": "{{filled}} of {{total}} required fields filled",
       "duplicate": "Duplicate",
       "print": "Print",
-      "clear": "Reset Changes",
-      "save": "Update Country"
+      "clear": "Reset",
+      "save": "Update"
     }
   }
 }

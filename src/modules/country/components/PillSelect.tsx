@@ -9,9 +9,11 @@ export function PillSelect({
   value,
   options,
   required,
+  error,
   onChange,
+  onBlur,
   prefix,
-}: PillSelectProps) {
+}: PillSelectProps & { error?: boolean; onBlur?: () => void }) {
   const selectedLabel = options.find((o) => o.value === value)?.label
 
   return (
@@ -21,7 +23,10 @@ export function PillSelect({
       </label>
 
       <div
-        className="pointer-events-none absolute inset-0 flex items-center gap-[10px] rounded-full bg-gray-100 px-[22px]"
+        className={cn(
+          "pointer-events-none absolute inset-0 flex items-center gap-[10px] rounded-full px-[22px] border transition-colors",
+          error ? "border-red-400 bg-red-50/30" : "border-transparent bg-gray-100"
+        )}
         aria-hidden="true"
       >
         {prefix}
@@ -40,6 +45,7 @@ export function PillSelect({
         id={id}
         value={value}
         onChange={(e: ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
+        onBlur={onBlur}
         required={required}
         aria-required={required}
         className="absolute inset-0 h-full w-full cursor-pointer rounded-full opacity-0"

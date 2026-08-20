@@ -7,26 +7,29 @@ export type CountryStatus = 'active' | 'inactive' | 'draft' | 'delete'
 
 export interface Country {
   id: CountryId
+  countryCode: string
   name: string
+  nativeName: string
   iso2: string
   iso3: string
-  /** ISO 4217 currency code, e.g. "USD". */
-  currency: string
-  /** E.164 calling code, e.g. "+1". */
-  callingCode: string
+  isoNumeric: string
   status: CountryStatus
+  isDefault: boolean
   /** ISO-8601 timestamp of the last mutation. */
   updatedAt: string
 }
 
 /** Payload accepted by create / update / duplicate endpoints. */
 export interface CountryPayload {
+  countryCode: string
   name: string
+  nativeName: string
   iso2: string
   iso3: string
-  currency: string
-  callingCode: string
+  isoNumeric: string
   status: CountryStatus
+  isDefault: boolean
+  selectedFlag: string | null
 }
 
 export interface CountryListQuery {
@@ -73,16 +76,16 @@ export type CountryDialog =
   | { kind: 'details'; country: Country }
 
 export interface CountryFormValues {
-  isoCode: string
-  countryName: string
-  diallingCode: string
-  continent: string
-  currency: string
+  countryCode: string
+  name: string
+  nativeName: string
   status: 'active' | 'inactive'
-  defaultCountry: string
+  isDefault: boolean
+  iso2: string
+  iso3: string
+  isoNumeric: string
   flagFile: File | null
   selectedFlag: string | null
-  internalNote: string
 }
 
 export interface SelectOption {
@@ -107,21 +110,22 @@ export interface UseCountryPageFormReturn {
   filledRequiredCount: number
   totalRequiredCount: number
   flagGallery: readonly FlagGalleryItem[]
-  continentOptions: readonly SelectOption[]
-  currencyOptions: readonly SelectOption[]
   statusOptions: readonly SelectOption[]
-  defaultCountryOptions: readonly SelectOption[]
+  errors: CountryFormErrors
+  touched: Record<string, boolean>
   handleFieldChange: <K extends keyof CountryFormValues>(
     field: K,
     value: CountryFormValues[K],
   ) => void
+  handleBlur: (field: keyof CountryFormValues) => void
   handleFlagUpload: (file: File) => void
   handleFlagSelect: (code: string) => void
   handleDragOver: (e: DragEvent<HTMLElement>) => void
   handleDrop: (e: DragEvent<HTMLElement>) => void
   handleClear: () => void
   handleSave: () => void
-  handleDuplicate: () => void
+  stayOnPage: boolean
+  toggleStayOnPage: () => void
   handlePrint: () => void
 }
 
@@ -169,7 +173,8 @@ export interface FormFooterProps {
   printText: string
   clearText: string
   saveText: string
-  onDuplicate: () => void
+  stayOnPage: boolean
+  onToggleStayOnPage: () => void
   onPrint: () => void
   onClear: () => void
   onSave: () => void
@@ -195,7 +200,7 @@ export interface PillSelectProps {
   prefix?: ReactNode
 }
 
-export type CountryFormField = 'name' | 'iso2' | 'iso3' | 'currency' | 'callingCode'
+export type CountryFormField = 'countryCode' | 'name' | 'nativeName' | 'iso2' | 'iso3' | 'isoNumeric'
 
 export type CountryFormErrors = Partial<Record<CountryFormField, string>>
 
