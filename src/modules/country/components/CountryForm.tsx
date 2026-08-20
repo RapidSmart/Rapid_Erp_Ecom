@@ -1,7 +1,6 @@
-import type { DragEvent, ChangeEvent } from 'react'
+import type { DragEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
 import type { CountryPageFormProps } from '../types/country.types'
-import { IconCalendar } from '../icons'
 import { SectionHeader } from './SectionHeader'
 import { PillInput } from './PillInput'
 import { PillSelect } from './PillSelect'

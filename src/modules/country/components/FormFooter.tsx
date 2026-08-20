@@ -1,6 +1,5 @@
 import { cn } from '@/shared/utils'
 import type { FormFooterProps } from '../types/country.types'
-import { IconDuplicate, IconPrint } from '../icons'
 
 import { Pointer, FileText, Printer } from 'lucide-react'
 

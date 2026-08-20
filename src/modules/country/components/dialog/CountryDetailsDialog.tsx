@@ -1,32 +1,17 @@
-import { useTranslation } from "@/i18n";
-import { Button } from "@/shared/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/shared/components/ui/dialog";
-import { CountryFlag } from "../CountryFlag";
-import { CountryStatusBadge } from "../CountryStatusBadge";
-import { formatUpdatedAtFull } from "../../utils/format-updated-at";
-import type { CountryDetailsDialogProps } from "../../types/country.types";
+import { useTranslation } from "@/shared/hooks";
+import { Button, buttonVariants } from "@/shared/components/ui/button";
 import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/shared/components/ui/dialog";
+import { CountryFlag } from "@/shared/components/country-flag";
+import { CountryStatusBadge } from "@/shared/components/country-status-badge";
 
-function CountryDetailsDialog({
-  country,
-  onEdit: _onEdit,
-  onDuplicate,
-  onDelete,
-  onClose,
-}: CountryDetailsDialogProps) {
+const CountryDetailsDialog = ({ country, onClose, onDuplicate, onDelete }: any) => {
   const { t } = useTranslation();
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
       <DialogContent
         className="max-w-sm"
-        closeLabel={t("country.details.close")}
       >
         <DialogHeader>
           <DialogTitle className="sr-only">
@@ -113,11 +98,12 @@ function CountryDetailsDialog({
             <Button variant="outline" onClick={onClose}>
               {t("country.details.close")}
             </Button>
-            <Button asChild>
-              <Link to={`/country/${country.id}/edit`}>
-                {t("country.details.edit")}
-              </Link>
-            </Button>
+            <Link 
+              to={`/country/${country.id}/edit`}
+              className={buttonVariants()}
+            >
+              {t("country.details.edit")}
+            </Link>
           </div>
         </DialogFooter>
       </DialogContent>

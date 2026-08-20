@@ -40,8 +40,6 @@ function buildInitialValues(
       name: country.name,
       iso2: country.iso2,
       iso3: country.iso3,
-      currency: country.currency,
-      callingCode: country.callingCode,
       status: country.status,
     }
   }
@@ -52,8 +50,6 @@ function buildInitialValues(
       name: country.name,
       iso2: '',
       iso3: '',
-      currency: country.currency,
-      callingCode: country.callingCode,
       status: country.status,
     }
   }
@@ -62,8 +58,6 @@ function buildInitialValues(
     name: '',
     iso2: '',
     iso3: '',
-    currency: '',
-    callingCode: '',
     status: DEFAULT_COUNTRY_STATUS,
   }
 }

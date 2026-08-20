@@ -45,7 +45,7 @@ export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCoun
     iso2: values.iso2,
     iso3: values.iso3,
     isoNumeric: values.isoNumeric,
-    status: values.status === 'inactive' ? 'inactive' : 'active',
+    status: (values.status === 'inactive' ? 'inactive' : 'active') as 'active' | 'inactive',
     isDefault: values.isDefault,
     selectedFlag: values.selectedFlag,
   })
@@ -133,7 +133,7 @@ export function useCountryPageForm(options?: UseCountryPageFormOptions): UseCoun
       iso2: values.iso2,
       iso3: values.iso3,
       isoNumeric: values.isoNumeric,
-      status: values.status === 'inactive' ? 'inactive' : 'active',
+      status: (values.status === 'inactive' ? 'inactive' : 'active') as 'active' | 'inactive',
       isDefault: values.isDefault,
       selectedFlag: values.selectedFlag,
     }
