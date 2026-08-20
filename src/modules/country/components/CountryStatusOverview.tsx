@@ -1,9 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { CountryOverviewCard } from './CountryOverviewCard'
-import { CountryRangeSwitch } from './CountryRangeSwitch'
-import { COUNTRY_STAT_TILES } from '../constants/country-overview.data'
+import { OverviewCard, RangeSwitch, STAT_TILES } from '@/modules/common-data'
 import type { CountryStatus, CountryStatusOverviewProps } from '../types/country.types'
 
 /** List view's overview panel: pastel status cards instead of the grid view's plain donuts. */
@@ -17,7 +15,7 @@ function CountryStatusOverview({
   onRetry,
 }: CountryStatusOverviewProps) {
   const { t } = useTranslation()
-  const tiles = COUNTRY_STAT_TILES.filter((tile) => tile.status !== null)
+  const tiles = STAT_TILES.filter((tile) => tile.status !== null)
 
   return (
     <section
@@ -34,7 +32,7 @@ function CountryStatusOverview({
           </span>
         </div>
 
-        <CountryRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <RangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {state.status === 'error' ? (
@@ -73,7 +71,7 @@ function CountryStatusOverview({
             const status = tile.status as CountryStatus
 
             return (
-              <CountryOverviewCard
+              <OverviewCard
                 key={tile.tone}
                 status={status}
                 label={label}

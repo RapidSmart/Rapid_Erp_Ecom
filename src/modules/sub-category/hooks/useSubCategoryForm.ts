@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { DEFAULT_SUB_CATEGORY_STATUS } from '../constants/sub-category-status.data'
+import { DEFAULT_STATUS } from '@/modules/common-data'
 import { normalizeSubCategoryPayload, validateSubCategoryForm } from '../validation/sub-category-form.schema'
 import type {
   SubCategory,
@@ -40,7 +40,7 @@ function buildInitialValues(
     code: '',
     name: '',
     description: '',
-    status: DEFAULT_SUB_CATEGORY_STATUS,
+    status: DEFAULT_STATUS,
     imageUrl: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80',
   }
 }

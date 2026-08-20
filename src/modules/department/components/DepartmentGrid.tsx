@@ -1,9 +1,8 @@
 import { Building2, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { Feedback, CardSkeleton } from '@/modules/common-data'
 import { DepartmentCard } from './DepartmentCard'
-import { DepartmentCardSkeleton } from './skeleton/DepartmentCardSkeleton'
-import { DepartmentFeedback } from './DepartmentFeedback'
 import type { DepartmentGridProps } from '../types/department.types'
 
 const SKELETON_COUNT = 8
@@ -30,7 +29,7 @@ function DepartmentGrid({
       <div className={gridClasses} role="status" aria-busy="true">
         <span className="sr-only">{t('department.states.loading')}</span>
         {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-          <DepartmentCardSkeleton key={index} />
+          <CardSkeleton key={index} />
         ))}
       </div>
     )
@@ -38,9 +37,9 @@ function DepartmentGrid({
 
   if (state.status === 'error') {
     return (
-      <DepartmentFeedback
-        actionIcon={TriangleAlert}
-        variant="error"
+      <Feedback
+        icon={TriangleAlert}
+        tone="danger"
         title={t('department.states.errorTitle')}
         body={state.error.message}
         actionLabel={t('department.states.errorAction')}
@@ -51,18 +50,16 @@ function DepartmentGrid({
 
   if (state.data.length === 0) {
     return isFiltered ? (
-      <DepartmentFeedback
-        actionIcon={SearchX}
-        variant="no-results"
+      <Feedback
+        icon={SearchX}
         title={t('department.states.noResultsTitle')}
         body={t('department.states.noResultsBody')}
         actionLabel={t('department.states.noResultsAction')}
         onAction={onClearFilters}
       />
     ) : (
-      <DepartmentFeedback
-        actionIcon={Building2}
-        variant="empty"
+      <Feedback
+        icon={Building2}
         title={t('department.states.emptyTitle')}
         body={t('department.states.emptyBody')}
         actionLabel={t('department.states.emptyAction')}

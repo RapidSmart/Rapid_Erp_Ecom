@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from '@/i18n'
 import { useSidebar } from '@/shared/components/layout'
-import { SubCategoryDeleteDialog } from '../components/dialog/SubCategoryDeleteDialog'
+import {
+  DeleteConfirmDialog,
+  ListingHeader,
+  ListingFooter,
+} from '@/modules/common-data'
 import { SubCategoryDetailsDialog } from '../components/dialog/SubCategoryDetailsDialog'
 import { SubCategoryGrid } from '../components/SubCategoryGrid'
-import { SubCategoryListingFooter } from '../components/SubCategoryListingFooter'
-import { SubCategoryListingHeader } from '../components/SubCategoryListingHeader'
 import { SubCategoryOverviewPanel } from '../components/SubCategoryOverviewPanel'
 import { SubCategoryStatusOverview } from '../components/SubCategoryStatusOverview'
 import { SubCategoryTable } from '../components/SubCategoryTable'
@@ -13,6 +16,7 @@ import { useSubCategoryListing } from '../hooks/useSubCategoryListing'
 import type { SubCategory, SubCategoryDialog, SubCategoryView } from '../types/sub-category.types'
 
 export function SubCategoryListing() {
+  const { t } = useTranslation()
   const { toggleCollapsed } = useSidebar()
   const [dialog, setDialog] = useState<SubCategoryDialog>({ kind: 'none' })
   const [view, setView] = useState<SubCategoryView>('list')
@@ -26,7 +30,7 @@ export function SubCategoryListing() {
     list,
     overview,
     isRefreshing,
-    isMutating: _isMutating,
+    isMutating,
     isFiltered,
     clearFilters,
     refresh,
@@ -54,7 +58,8 @@ export function SubCategoryListing() {
   return (
     <div className="flex min-h-full flex-col gap-5 bg-canvas p-5">
       <div className="flex flex-col gap-4 rounded-xl bg-surface p-4">
-        <SubCategoryListingHeader
+        <ListingHeader
+          title={t('subCategory.listing.title')}
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
@@ -63,6 +68,9 @@ export function SubCategoryListing() {
           onToggleView={() =>
             setView((current) => (current === 'grid' ? 'list' : 'grid'))
           }
+          searchPlaceholder={t('subCategory.listing.searchPlaceholder')}
+          addHref="/sub-category/new"
+          addLabel={t('subCategory.listing.add')}
         />
 
         {view === 'grid' ? (
@@ -118,19 +126,22 @@ export function SubCategoryListing() {
         />
       )}
 
-      <SubCategoryListingFooter />
+      <ListingFooter />
 
       {dialog.kind === 'delete' && (
-        <SubCategoryDeleteDialog
-          subCategory={dialog.subCategory}
+        <DeleteConfirmDialog
           open={true}
-          onOpenChange={(open) => {
-            if (!open) closeDialog()
-          }}
+          title={t('subCategory.delete.title')}
+          description={t('subCategory.delete.description', { name: dialog.subCategory.name })}
+          confirmText={t('subCategory.delete.confirm')}
+          cancelText={t('subCategory.delete.cancel')}
+          deletingText={t('subCategory.delete.deleting')}
+          submitting={isMutating}
           onConfirm={async () => {
             await deleteSubCategory(dialog.subCategory.code)
             closeDialog()
           }}
+          onClose={closeDialog}
         />
       )}
 

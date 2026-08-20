@@ -1,9 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { SubCategoryOverviewCard } from './SubCategoryOverviewCard'
-import { SubCategoryRangeSwitch } from './SubCategoryRangeSwitch'
-import { SUB_CATEGORY_STAT_TILES } from '../constants/sub-category-overview.data'
+import { OverviewCard, RangeSwitch, STAT_TILES } from '@/modules/common-data'
 import type { SubCategoryStatus, SubCategoryStatusOverviewProps } from '../types/sub-category.types'
 
 export function SubCategoryStatusOverview({
@@ -15,7 +13,7 @@ export function SubCategoryStatusOverview({
   onRetry,
 }: SubCategoryStatusOverviewProps & { recordCount?: number }) {
   const { t } = useTranslation()
-  const tiles = SUB_CATEGORY_STAT_TILES.filter((tile) => tile.status !== null)
+  const tiles = STAT_TILES.filter((tile) => tile.status !== null)
 
   return (
     <section
@@ -29,7 +27,7 @@ export function SubCategoryStatusOverview({
           </h2>
         </div>
 
-        <SubCategoryRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <RangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {overviewState.status === 'error' ? (
@@ -64,7 +62,7 @@ export function SubCategoryStatusOverview({
             const status = tile.status as SubCategoryStatus
 
             return (
-              <SubCategoryOverviewCard
+              <OverviewCard
                 key={tile.tone}
                 status={status}
                 label={label}

@@ -1,3 +1,4 @@
+import commonEn from '@/modules/common-data/i18n/en.json'
 import countryEn from '@/modules/country/i18n/en.json'
 import productEn from '@/modules/product/i18n/en.json'
 import categoryEn from '@/modules/category/i18n/en.json'
@@ -18,6 +19,7 @@ export type TranslationVars = Record<string, string | number>
 
 const resources: Record<Locale, TranslationTree> = {
   en: {
+    common: commonEn as unknown as TranslationTree,
     country: countryEn as unknown as TranslationTree,
     product: productEn as unknown as TranslationTree,
     category: categoryEn as unknown as TranslationTree,

@@ -1,9 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { DepartmentOverviewCard } from './DepartmentOverviewCard'
-import { DepartmentRangeSwitch } from './DepartmentRangeSwitch'
-import { DEPARTMENT_STAT_TILES } from '../constants/department-overview.data'
+import { OverviewCard, RangeSwitch, STAT_TILES } from '@/modules/common-data'
 import type { DepartmentStatus, DepartmentStatusOverviewProps } from '../types/department.types'
 
 export function DepartmentStatusOverview({
@@ -15,7 +13,7 @@ export function DepartmentStatusOverview({
   onRetry,
 }: DepartmentStatusOverviewProps & { recordCount?: number }) {
   const { t } = useTranslation()
-  const tiles = DEPARTMENT_STAT_TILES.filter((tile) => tile.status !== null)
+  const tiles = STAT_TILES.filter((tile) => tile.status !== null)
 
   return (
     <section
@@ -29,7 +27,7 @@ export function DepartmentStatusOverview({
           </h2>
         </div>
 
-        <DepartmentRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <RangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {overviewState.status === 'error' ? (
@@ -64,7 +62,7 @@ export function DepartmentStatusOverview({
             const status = tile.status as DepartmentStatus
 
             return (
-              <DepartmentOverviewCard
+              <OverviewCard
                 key={tile.tone}
                 status={status}
                 label={label}

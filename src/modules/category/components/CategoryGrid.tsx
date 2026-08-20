@@ -1,16 +1,14 @@
 import { Folder, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { Feedback, CardSkeleton } from '@/modules/common-data'
 import { CategoryCard } from './CategoryCard'
-import { CategoryCardSkeleton } from './skeleton/CategoryCardSkeleton'
-import { CategoryFeedback } from './CategoryFeedback'
 import type { CategoryGridProps } from '../types/category.types'
 
 const SKELETON_COUNT = 8
 
 const gridClasses =
   'grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-x-3.5 gap-y-5'
-
 
 function CategoryGrid({
   state,
@@ -31,7 +29,7 @@ function CategoryGrid({
       <div className={gridClasses} role="status" aria-busy="true">
         <span className="sr-only">{t('category.states.loading')}</span>
         {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-          <CategoryCardSkeleton key={index} />
+          <CardSkeleton key={index} />
         ))}
       </div>
     )
@@ -39,7 +37,7 @@ function CategoryGrid({
 
   if (state.status === 'error') {
     return (
-      <CategoryFeedback
+      <Feedback
         icon={TriangleAlert}
         tone="danger"
         title={t('category.states.errorTitle')}
@@ -52,7 +50,7 @@ function CategoryGrid({
 
   if (state.data.length === 0) {
     return isFiltered ? (
-      <CategoryFeedback
+      <Feedback
         icon={SearchX}
         title={t('category.states.noResultsTitle')}
         body={t('category.states.noResultsBody')}
@@ -60,7 +58,7 @@ function CategoryGrid({
         onAction={onClearFilters}
       />
     ) : (
-      <CategoryFeedback
+      <Feedback
         icon={Folder}
         title={t('category.states.emptyTitle')}
         body={t('category.states.emptyBody')}

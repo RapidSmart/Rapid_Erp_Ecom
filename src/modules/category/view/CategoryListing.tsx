@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from '@/i18n'
 import { useSidebar } from '@/shared/components/layout'
-import { CategoryDeleteDialog } from '../components/dialog/CategoryDeleteDialog'
+import {
+  DeleteConfirmDialog,
+  ListingHeader,
+  ListingFooter,
+} from '@/modules/common-data'
 import { CategoryDetailsDialog } from '../components/dialog/CategoryDetailsDialog'
 import { CategoryGrid } from '../components/CategoryGrid'
-import { CategoryListingFooter } from '../components/CategoryListingFooter'
-import { CategoryListingHeader } from '../components/CategoryListingHeader'
 import { CategoryOverviewPanel } from '../components/CategoryOverviewPanel'
 import { CategoryStatusOverview } from '../components/CategoryStatusOverview'
 import { CategoryTable } from '../components/CategoryTable'
@@ -13,6 +16,7 @@ import { useCategoryListing } from '../hooks/useCategoryListing'
 import type { Category, CategoryDialog, CategoryView } from '../types/category.types'
 
 function CategoryListing() {
+  const { t } = useTranslation()
   const { toggleCollapsed } = useSidebar()
   const [dialog, setDialog] = useState<CategoryDialog>({ kind: 'none' })
   const [view, setView] = useState<CategoryView>('list')
@@ -54,7 +58,8 @@ function CategoryListing() {
   return (
     <div className="flex min-h-full flex-col gap-5 bg-canvas p-5">
       <div className="flex flex-col gap-4 rounded-xl bg-surface p-4">
-        <CategoryListingHeader
+        <ListingHeader
+          title={t('category.listing.title')}
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
@@ -63,6 +68,9 @@ function CategoryListing() {
           onToggleView={() =>
             setView((current) => (current === 'grid' ? 'list' : 'grid'))
           }
+          searchPlaceholder={t('category.listing.searchPlaceholder')}
+          addHref="/category/new"
+          addLabel={t('category.listing.add')}
         />
 
         {view === 'grid' ? (
@@ -118,14 +126,21 @@ function CategoryListing() {
         />
       )}
 
-      <CategoryListingFooter />
-
+      <ListingFooter />
 
       {dialog.kind === 'delete' && (
-        <CategoryDeleteDialog
-          category={dialog.category}
+        <DeleteConfirmDialog
+          open
+          title={t('category.delete.title')}
+          description={t('category.delete.description', { name: dialog.category.name })}
+          confirmText={t('category.delete.confirm')}
+          cancelText={t('category.delete.cancel')}
+          deletingText={t('category.delete.deleting')}
           submitting={isMutating}
-          onConfirm={deleteCategory}
+          onConfirm={async () => {
+            const failure = await deleteCategory(dialog.category.code)
+            if (!failure) closeDialog()
+          }}
           onClose={closeDialog}
         />
       )}

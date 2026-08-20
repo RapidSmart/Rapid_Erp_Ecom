@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDebouncedValue } from '@/shared/hooks'
+import { DEFAULT_PAGE_SIZE, DEFAULT_TIME_RANGE } from '@/modules/common-data'
 import {
   departmentService,
   isAbortError,
   toDepartmentError,
 } from '../services/department.service'
-import { DEFAULT_DEPARTMENT_TIME_RANGE } from '../constants/department-overview.data'
-import { DEFAULT_DEPARTMENT_PAGE_SIZE } from '../constants/department-pagination.data'
 import type {
   AsyncState,
   Department,
@@ -35,10 +34,10 @@ export interface DepartmentListingController {
   refresh: () => void
   createDepartment: (payload: DepartmentPayload) => Promise<DepartmentError | null>
   updateDepartment: (
-    code: DepartmentId,
+    id: DepartmentId,
     payload: DepartmentPayload
   ) => Promise<DepartmentError | null>
-  deleteDepartment: (code: DepartmentId) => Promise<DepartmentError | null>
+  deleteDepartment: (id: DepartmentId) => Promise<DepartmentError | null>
   /** Client-side pagination over `list` — shared by every view that paginates. */
   page: number
   setPage: (page: number) => void
@@ -56,7 +55,7 @@ export function useDepartmentListing(): DepartmentListingController {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<DepartmentStatus | null>(null)
   const [range, setRange] = useState<DepartmentTimeRange>(
-    DEFAULT_DEPARTMENT_TIME_RANGE
+    DEFAULT_TIME_RANGE
   )
   const [reloadToken, setReloadToken] = useState(0)
   const [list, setList] = useState<AsyncState<Department[]>>({ status: 'loading' })
@@ -67,7 +66,7 @@ export function useDepartmentListing(): DepartmentListingController {
   const [isMutating, setIsMutating] = useState(false)
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState<DepartmentPageSize>(
-    DEFAULT_DEPARTMENT_PAGE_SIZE
+    DEFAULT_PAGE_SIZE
   )
   const [masterCount, setMasterCount] = useState(0)
 

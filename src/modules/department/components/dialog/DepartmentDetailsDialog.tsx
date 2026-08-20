@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { DepartmentImage } from "../DepartmentImage";
-import { DepartmentStatusBadge } from "../DepartmentStatusBadge";
-import { formatUpdatedAtFull } from "../../utils/format-updated-at";
+import { StatusBadge, formatUpdatedAtFull } from "@/modules/common-data";
 import type { DepartmentDetailsDialogProps } from "../../types/department.types";
 import { useTranslation } from "@/i18n";
 import { Button } from "@/shared/components/ui/button";
@@ -36,7 +35,7 @@ export function DepartmentDetailsDialog({
             <span className="truncate text-base font-semibold text-ink">
               {department.name}
             </span>
-            <DepartmentStatusBadge status={department.status} className="ml-auto" />
+            <StatusBadge status={department.status} className="ml-auto" />
           </div>
         </DialogHeader>
 

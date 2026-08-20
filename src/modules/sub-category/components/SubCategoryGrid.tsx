@@ -1,9 +1,8 @@
 import { FolderTree, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { Feedback, CardSkeleton } from '@/modules/common-data'
 import { SubCategoryCard } from './SubCategoryCard'
-import { SubCategoryCardSkeleton } from './skeleton/SubCategoryCardSkeleton'
-import { SubCategoryFeedback } from './SubCategoryFeedback'
 import type { SubCategoryGridProps } from '../types/sub-category.types'
 
 const SKELETON_COUNT = 8
@@ -30,7 +29,7 @@ function SubCategoryGrid({
       <div className={gridClasses} role="status" aria-busy="true">
         <span className="sr-only">{t('subCategory.states.loading')}</span>
         {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-          <SubCategoryCardSkeleton key={index} />
+          <CardSkeleton key={index} />
         ))}
       </div>
     )
@@ -38,9 +37,9 @@ function SubCategoryGrid({
 
   if (state.status === 'error') {
     return (
-      <SubCategoryFeedback
-        actionIcon={TriangleAlert}
-        variant="error"
+      <Feedback
+        icon={TriangleAlert}
+        tone="danger"
         title={t('subCategory.states.errorTitle')}
         body={state.error.message}
         actionLabel={t('subCategory.states.errorAction')}
@@ -51,18 +50,16 @@ function SubCategoryGrid({
 
   if (state.data.length === 0) {
     return isFiltered ? (
-      <SubCategoryFeedback
-        actionIcon={SearchX}
-        variant="no-results"
+      <Feedback
+        icon={SearchX}
         title={t('subCategory.states.noResultsTitle')}
         body={t('subCategory.states.noResultsBody')}
         actionLabel={t('subCategory.states.noResultsAction')}
         onAction={onClearFilters}
       />
     ) : (
-      <SubCategoryFeedback
-        actionIcon={FolderTree}
-        variant="empty"
+      <Feedback
+        icon={FolderTree}
         title={t('subCategory.states.emptyTitle')}
         body={t('subCategory.states.emptyBody')}
         actionLabel={t('subCategory.states.emptyAction')}

@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from '@/i18n'
 import { useSidebar } from '@/shared/components/layout'
-import { DepartmentDeleteDialog } from '../components/dialog/DepartmentDeleteDialog'
+import {
+  DeleteConfirmDialog,
+  ListingHeader,
+  ListingFooter,
+} from '@/modules/common-data'
 import { DepartmentDetailsDialog } from '../components/dialog/DepartmentDetailsDialog'
 import { DepartmentGrid } from '../components/DepartmentGrid'
-import { DepartmentListingFooter } from '../components/DepartmentListingFooter'
-import { DepartmentListingHeader } from '../components/DepartmentListingHeader'
 import { DepartmentOverviewPanel } from '../components/DepartmentOverviewPanel'
 import { DepartmentStatusOverview } from '../components/DepartmentStatusOverview'
 import { DepartmentTable } from '../components/DepartmentTable'
@@ -13,6 +16,7 @@ import { useDepartmentListing } from '../hooks/useDepartmentListing'
 import type { Department, DepartmentDialog, DepartmentView } from '../types/department.types'
 
 export function DepartmentListing() {
+  const { t } = useTranslation()
   const { toggleCollapsed } = useSidebar()
   const [dialog, setDialog] = useState<DepartmentDialog>({ kind: 'none' })
   const [view, setView] = useState<DepartmentView>('list')
@@ -26,7 +30,7 @@ export function DepartmentListing() {
     list,
     overview,
     isRefreshing,
-    isMutating: _isMutating,
+    isMutating,
     isFiltered,
     clearFilters,
     refresh,
@@ -54,7 +58,8 @@ export function DepartmentListing() {
   return (
     <div className="flex min-h-full flex-col gap-5 bg-canvas p-5">
       <div className="flex flex-col gap-4 rounded-xl bg-surface p-4">
-        <DepartmentListingHeader
+        <ListingHeader
+          title={t('department.listing.title')}
           search={search}
           onSearchChange={setSearch}
           onToggleMenu={toggleCollapsed}
@@ -63,6 +68,9 @@ export function DepartmentListing() {
           onToggleView={() =>
             setView((current) => (current === 'grid' ? 'list' : 'grid'))
           }
+          searchPlaceholder={t('department.listing.searchPlaceholder')}
+          addHref="/department/new"
+          addLabel={t('department.listing.add')}
         />
 
         {view === 'grid' ? (
@@ -118,19 +126,22 @@ export function DepartmentListing() {
         />
       )}
 
-      <DepartmentListingFooter />
+      <ListingFooter />
 
       {dialog.kind === 'delete' && (
-        <DepartmentDeleteDialog
-          department={dialog.department}
+        <DeleteConfirmDialog
           open={true}
-          onOpenChange={(open) => {
-            if (!open) closeDialog()
-          }}
+          title={t('department.delete.title')}
+          description={t('department.delete.description', { name: dialog.department.name })}
+          confirmText={t('department.delete.confirm')}
+          cancelText={t('department.delete.cancel')}
+          deletingText={t('department.delete.deleting')}
+          submitting={isMutating}
           onConfirm={async () => {
             await deleteDepartment(dialog.department.code)
             closeDialog()
           }}
+          onClose={closeDialog}
         />
       )}
 

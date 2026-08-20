@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
+import { CardSkeleton } from '@/modules/common-data'
 import { SubCategoryRouteError } from './view/SubCategoryRouteError'
-import { SubCategoryCardSkeleton } from './components/skeleton/SubCategoryCardSkeleton'
 
 export const SUB_CATEGORY_ROUTE_PATH = '/sub-category'
 
@@ -26,7 +26,7 @@ const EditSubCategoryPage = lazy(() =>
 const subCategoryFallback = (
   <div className="grid min-h-full grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-x-3.5 gap-y-5 bg-canvas p-5">
     {Array.from({ length: 8 }, (_, index) => (
-      <SubCategoryCardSkeleton key={index} />
+      <CardSkeleton key={index} />
     ))}
   </div>
 )

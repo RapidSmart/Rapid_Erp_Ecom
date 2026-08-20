@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { DEFAULT_CATEGORY_STATUS } from '../constants/category-status.data'
+import { DEFAULT_STATUS } from '@/modules/common-data'
 import { normalizeCategoryPayload, validateCategoryForm } from '../validation/category-form.schema'
 import type {
   Category,
@@ -41,7 +41,7 @@ function buildInitialValues(
     code: '',
     name: '',
     description: '',
-    status: DEFAULT_CATEGORY_STATUS,
+    status: DEFAULT_STATUS,
     imageUrl: 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80',
   }
 }

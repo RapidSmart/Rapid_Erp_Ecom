@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDebouncedValue } from '@/shared/hooks'
+import { DEFAULT_PAGE_SIZE, DEFAULT_TIME_RANGE } from '@/modules/common-data'
 import {
   categoryService,
   isAbortError,
   toCategoryError,
 } from '../services/category.service'
-import { DEFAULT_CATEGORY_TIME_RANGE } from '../constants/category-overview.data'
-import { DEFAULT_CATEGORY_PAGE_SIZE } from '../constants/category-pagination.data'
 import type {
   AsyncState,
   Category,
@@ -35,10 +34,10 @@ export interface CategoryListingController {
   refresh: () => void
   createCategory: (payload: CategoryPayload) => Promise<CategoryError | null>
   updateCategory: (
-    code: CategoryId,
+    id: CategoryId,
     payload: CategoryPayload
   ) => Promise<CategoryError | null>
-  deleteCategory: (code: CategoryId) => Promise<CategoryError | null>
+  deleteCategory: (id: CategoryId) => Promise<CategoryError | null>
   /** Client-side pagination over `list` — shared by every view that paginates. */
   page: number
   setPage: (page: number) => void
@@ -56,7 +55,7 @@ export function useCategoryListing(): CategoryListingController {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<CategoryStatus | null>(null)
   const [range, setRange] = useState<CategoryTimeRange>(
-    DEFAULT_CATEGORY_TIME_RANGE
+    DEFAULT_TIME_RANGE
   )
   const [reloadToken, setReloadToken] = useState(0)
   const [list, setList] = useState<AsyncState<Category[]>>({ status: 'loading' })
@@ -67,7 +66,7 @@ export function useCategoryListing(): CategoryListingController {
   const [isMutating, setIsMutating] = useState(false)
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState<CategoryPageSize>(
-    DEFAULT_CATEGORY_PAGE_SIZE
+    DEFAULT_PAGE_SIZE
   )
   const [masterCount, setMasterCount] = useState(0)
 

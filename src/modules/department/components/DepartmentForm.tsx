@@ -2,11 +2,13 @@ import type { DragEvent, ChangeEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
 import type { DepartmentPageFormProps } from '../types/department.types'
 import { Building2 } from 'lucide-react'
-import { SectionHeader } from './SectionHeader'
-import { PillInput } from './PillInput'
-import { DepartmentImageUploadArea } from './DepartmentImageUploadArea'
-import { DepartmentImageChip } from './DepartmentImageChip'
-import { FormFooter } from './FormFooter'
+import {
+  SectionHeader,
+  PillInput,
+  FormFooter,
+  ImageUploadArea,
+  ImageChip,
+} from '@/modules/common-data'
 
 export function DepartmentForm({ mode, form }: DepartmentPageFormProps) {
   const { t } = useTranslation()
@@ -41,37 +43,31 @@ export function DepartmentForm({ mode, form }: DepartmentPageFormProps) {
 
   return (
     <article className="rounded-2xl bg-white p-4 shadow-sm sm:rounded-3xl sm:px-6 sm:pb-6 sm:pt-7 lg:px-8">
-      <form
-        noValidate
-        onSubmit={(e) => {
-          e.preventDefault()
-          handleSave()
-        }}
-      >
-        {/* IDENTITY */}
+      <form onSubmit={(e) => e.preventDefault()} noValidate>
+        {/* BASIC INFORMATION */}
         <section
-          aria-label={t(`${prefix}.sections.identity`)}
+          aria-label={t(`${prefix}.sections.basicInfo`)}
           className="mb-5 sm:mb-6"
         >
-          <SectionHeader label={t(`${prefix}.sections.identity`)} />
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
+          <SectionHeader label={t(`${prefix}.sections.basicInfo`)} />
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5">
+            <PillInput
+              id="department-name"
+              placeholder={t(`${prefix}.fields.name`)}
+              value={values.name}
+              required
+              rightIcon={
+                <Building2 className="size-4 text-slate-400" />
+              }
+              onChange={(v) => handleFieldChange('name', v)}
+            />
             <PillInput
               id="department-code"
               placeholder={t(`${prefix}.fields.code`)}
               value={values.code}
-              disabled={mode === 'edit'}
-              maxLength={10}
-              onChange={(v) => handleFieldChange('code', v.toUpperCase())}
-              rightIcon={<Building2 className="size-4 text-slate-400" />}
               required
-            />
-            <PillInput
-              id="department-name"
-              placeholder={t(`${prefix}.fields.departmentName`)}
-              value={values.name}
-              maxLength={40}
-              onChange={(v) => handleFieldChange('name', v)}
-              required
+              onChange={(v) => handleFieldChange('code', v)}
             />
           </div>
         </section>
@@ -83,7 +79,7 @@ export function DepartmentForm({ mode, form }: DepartmentPageFormProps) {
         >
           <SectionHeader label={t(`${prefix}.sections.imageAndDesc`)} />
 
-          <DepartmentImageUploadArea
+          <ImageUploadArea
             imageFile={values.imageFile}
             selectedImage={values.selectedImage}
             imageGallery={imageGallery}
@@ -111,7 +107,7 @@ export function DepartmentForm({ mode, form }: DepartmentPageFormProps) {
               className="flex flex-wrap gap-1.5 sm:gap-[7px]"
             >
               {imageGallery.map((item) => (
-                <DepartmentImageChip
+                <ImageChip
                   key={item.url}
                   item={item}
                   selected={values.selectedImage === item.url}

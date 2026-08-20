@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { DEFAULT_DEPARTMENT_STATUS } from '../constants/department-status.data'
+import { DEFAULT_STATUS } from '@/modules/common-data'
 import { normalizeDepartmentPayload, validateDepartmentForm } from '../validation/department-form.schema'
 import type {
   Department,
@@ -40,7 +40,7 @@ function buildInitialValues(
     code: '',
     name: '',
     description: '',
-    status: DEFAULT_DEPARTMENT_STATUS,
+    status: DEFAULT_STATUS,
     imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
   }
 }

@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { FolderTree, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import { SubCategoryFeedback } from './SubCategoryFeedback'
-import { SubCategoryPagination } from './SubCategoryPagination'
+import { Feedback, Pagination, TableSkeleton } from '@/modules/common-data'
 import { SubCategoryTableRow } from './SubCategoryTableRow'
-import { SubCategoryTableSkeleton } from './skeleton/SubCategoryTableSkeleton'
 import type {
   SubCategory,
   SubCategoryId,
@@ -119,13 +117,13 @@ export function SubCategoryTable({
       </div>
 
       {state.status === 'loading' && (
-        <SubCategoryTableSkeleton rowCount={SKELETON_ROW_COUNT} />
+        <TableSkeleton rowCount={SKELETON_ROW_COUNT} />
       )}
 
       {state.status === 'error' && (
-        <SubCategoryFeedback
-          actionIcon={TriangleAlert}
-          variant="error"
+        <Feedback
+          icon={TriangleAlert}
+          tone="danger"
           title={t('subCategory.states.errorTitle')}
           body={state.error.message}
           actionLabel={t('subCategory.states.errorAction')}
@@ -135,18 +133,16 @@ export function SubCategoryTable({
 
       {state.status === 'ready' && rows.length === 0 && (
         isFiltered ? (
-          <SubCategoryFeedback
-            actionIcon={SearchX}
-            variant="no-results"
+          <Feedback
+            icon={SearchX}
             title={t('subCategory.states.noResultsTitle')}
             body={t('subCategory.states.noResultsBody')}
             actionLabel={t('subCategory.states.noResultsAction')}
             onAction={onClearFilters}
           />
         ) : (
-          <SubCategoryFeedback
-            actionIcon={FolderTree}
-            variant="empty"
+          <Feedback
+            icon={FolderTree}
             title={t('subCategory.states.emptyTitle')}
             body={t('subCategory.states.emptyBody')}
             actionLabel={t('subCategory.states.emptyAction')}
@@ -157,7 +153,7 @@ export function SubCategoryTable({
 
       {state.status === 'ready' && rows.length > 0 && (
         <div className="border-t border-surface-border">
-          <SubCategoryPagination
+          <Pagination
             page={page}
             pageCount={pageCount}
             pageSize={pageSize}

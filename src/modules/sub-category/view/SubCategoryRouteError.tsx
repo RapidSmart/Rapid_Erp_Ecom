@@ -1,7 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useRouteError } from 'react-router-dom'
 import { useTranslation } from '@/i18n'
-import { SubCategoryFeedback } from '../components/SubCategoryFeedback'
+import { Feedback } from '@/modules/common-data'
 
 export function SubCategoryRouteError() {
   const { t } = useTranslation()
@@ -10,9 +10,9 @@ export function SubCategoryRouteError() {
 
   return (
     <div className="flex min-h-full flex-col bg-canvas p-5">
-      <SubCategoryFeedback
-        actionIcon={TriangleAlert}
-        variant="error"
+      <Feedback
+        icon={TriangleAlert}
+        tone="danger"
         title={t('subCategory.states.errorTitle')}
         body={message}
         actionLabel={t('subCategory.states.errorAction')}

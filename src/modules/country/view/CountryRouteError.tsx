@@ -1,7 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useRouteError } from 'react-router-dom'
 import { useTranslation } from '@/i18n'
-import { CountryFeedback } from '../components/CountryFeedback'
+import { Feedback } from '@/modules/common-data'
 
 /** Route-level boundary for the country module — never a blank screen. */
 function CountryRouteError() {
@@ -11,7 +11,7 @@ function CountryRouteError() {
 
   return (
     <div className="flex min-h-full flex-col bg-canvas p-5">
-      <CountryFeedback
+      <Feedback
         icon={TriangleAlert}
         tone="danger"
         title={t('country.states.errorTitle')}

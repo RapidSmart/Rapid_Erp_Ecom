@@ -2,11 +2,13 @@ import type { DragEvent, ChangeEvent } from 'react'
 import { useTranslation } from '@/shared/hooks'
 import type { SubCategoryPageFormProps } from '../types/sub-category.types'
 import { FolderTree } from 'lucide-react'
-import { SectionHeader } from './SectionHeader'
-import { PillInput } from './PillInput'
-import { SubCategoryImageUploadArea } from './SubCategoryImageUploadArea'
-import { SubCategoryImageChip } from './SubCategoryImageChip'
-import { FormFooter } from './FormFooter'
+import {
+  SectionHeader,
+  PillInput,
+  FormFooter,
+  ImageUploadArea,
+  ImageChip,
+} from '@/modules/common-data'
 
 export function SubCategoryForm({ mode, form }: SubCategoryPageFormProps) {
   const { t } = useTranslation()
@@ -83,7 +85,7 @@ export function SubCategoryForm({ mode, form }: SubCategoryPageFormProps) {
         >
           <SectionHeader label={t(`${prefix}.sections.imageAndDesc`)} />
 
-          <SubCategoryImageUploadArea
+          <ImageUploadArea
             imageFile={values.imageFile}
             selectedImage={values.selectedImage}
             imageGallery={imageGallery}
@@ -111,7 +113,7 @@ export function SubCategoryForm({ mode, form }: SubCategoryPageFormProps) {
               className="flex flex-wrap gap-1.5 sm:gap-[7px]"
             >
               {imageGallery.map((item) => (
-                <SubCategoryImageChip
+                <ImageChip
                   key={item.url}
                   item={item}
                   selected={values.selectedImage === item.url}

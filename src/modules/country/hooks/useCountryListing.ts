@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDebouncedValue } from '@/shared/hooks'
+import { DEFAULT_PAGE_SIZE, DEFAULT_TIME_RANGE } from '@/modules/common-data'
 import {
   countryService,
   isAbortError,
   toCountryError,
 } from '../services/country.service'
-import { DEFAULT_COUNTRY_TIME_RANGE } from '../constants/country-overview.data'
-import { DEFAULT_COUNTRY_PAGE_SIZE } from '../constants/country-pagination.data'
 import type {
   AsyncState,
   Country,
@@ -61,7 +60,7 @@ export function useCountryListing(): CountryListingController {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<CountryStatus | null>(null)
   const [range, setRange] = useState<CountryTimeRange>(
-    DEFAULT_COUNTRY_TIME_RANGE
+    DEFAULT_TIME_RANGE
   )
   const [reloadToken, setReloadToken] = useState(0)
   const [list, setList] = useState<AsyncState<Country[]>>({ status: 'loading' })
@@ -72,7 +71,7 @@ export function useCountryListing(): CountryListingController {
   const [isMutating, setIsMutating] = useState(false)
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState<CountryPageSize>(
-    DEFAULT_COUNTRY_PAGE_SIZE
+    DEFAULT_PAGE_SIZE
   )
   const [masterCount, setMasterCount] = useState(0)
 

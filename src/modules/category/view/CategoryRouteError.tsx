@@ -1,7 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useRouteError } from 'react-router-dom'
 import { useTranslation } from '@/i18n'
-import { CategoryFeedback } from '../components/CategoryFeedback'
+import { Feedback } from '@/modules/common-data'
 
 function CategoryRouteError() {
   const { t } = useTranslation()
@@ -10,7 +10,7 @@ function CategoryRouteError() {
 
   return (
     <div className="flex min-h-full flex-col bg-canvas p-5">
-      <CategoryFeedback
+      <Feedback
         icon={TriangleAlert}
         tone="danger"
         title={t('category.states.errorTitle')}

@@ -1,0 +1,72 @@
+{
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "overview": {
+    "title": "Status Overview",
+    "rangeLabel": "Time Range",
+    "clearFilterHint": "Clear filter",
+    "statFilterHint": "Filter by {{status}}",
+    "records": "{{count}} records",
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    },
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    }
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}-{{to}} of {{total}}",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "listing": {
+    "menu": "Toggle menu",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    },
+    "searchLabel": "Search records",
+    "searchPlaceholder": "Search by name, code or keyword…",
+    "subtitle": "{{count}} total records"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "brand": "Rapid ERP",
+    "help": "Help & documentation",
+    "chat": "Online chat"
+  },
+  "states": {
+    "loading": "Loading records…",
+    "errorTitle": "Failed to load",
+    "errorAction": "Retry",
+    "emptyTitle": "No records yet",
+    "emptyAction": "Add record",
+    "noResultsTitle": "No matches found",
+    "noResultsBody": "Try adjusting your search or filters to find what you're looking for.",
+    "noResultsAction": "Clear filters"
+  },
+  "delete": {
+    "title": "Delete Record",
+    "confirm": "Delete",
+    "cancel": "Cancel",
+    "deleting": "Deleting…"
+  }
+}

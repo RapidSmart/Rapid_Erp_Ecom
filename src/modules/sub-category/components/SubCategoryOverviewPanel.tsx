@@ -1,9 +1,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Button } from '@/shared/components/ui/button'
-import { SubCategoryRangeSwitch } from './SubCategoryRangeSwitch'
-import { SubCategoryStatDonut } from './SubCategoryStatDonut'
-import { SUB_CATEGORY_STAT_TILES } from '../constants/sub-category-overview.data'
+import { RangeSwitch, StatDonut, STAT_TILES } from '@/modules/common-data'
 import type { SubCategoryOverviewPanelProps } from '../types/sub-category.types'
 
 export function SubCategoryOverviewPanel({
@@ -26,7 +24,7 @@ export function SubCategoryOverviewPanel({
           {t('subCategory.overview.title')}
         </h2>
 
-        <SubCategoryRangeSwitch range={range} onRangeChange={onRangeChange} />
+        <RangeSwitch range={range} onRangeChange={onRangeChange} />
       </div>
 
       {overviewState.status === 'error' ? (
@@ -42,7 +40,7 @@ export function SubCategoryOverviewPanel({
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-2 justify-items-center gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
-          {SUB_CATEGORY_STAT_TILES.map((tile) => {
+          {STAT_TILES.map((tile) => {
             if (overviewState.status === 'loading') {
               return (
                 <div
@@ -58,7 +56,7 @@ export function SubCategoryOverviewPanel({
             const tileStatus = tile.status
 
             return (
-              <SubCategoryStatDonut
+              <StatDonut
                 key={tile.tone}
                 tone={tile.tone}
                 label={label}

@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { Building2, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import { DepartmentFeedback } from './DepartmentFeedback'
-import { DepartmentPagination } from './DepartmentPagination'
+import { Feedback, Pagination, TableSkeleton } from '@/modules/common-data'
 import { DepartmentTableRow } from './DepartmentTableRow'
-import { DepartmentTableSkeleton } from './skeleton/DepartmentTableSkeleton'
 import type {
   Department,
   DepartmentId,
@@ -119,13 +117,13 @@ export function DepartmentTable({
       </div>
 
       {state.status === 'loading' && (
-        <DepartmentTableSkeleton rowCount={SKELETON_ROW_COUNT} />
+        <TableSkeleton rowCount={SKELETON_ROW_COUNT} />
       )}
 
       {state.status === 'error' && (
-        <DepartmentFeedback
-          actionIcon={TriangleAlert}
-          variant="error"
+        <Feedback
+          icon={TriangleAlert}
+          tone="danger"
           title={t('department.states.errorTitle')}
           body={state.error.message}
           actionLabel={t('department.states.errorAction')}
@@ -135,18 +133,16 @@ export function DepartmentTable({
 
       {state.status === 'ready' && rows.length === 0 && (
         isFiltered ? (
-          <DepartmentFeedback
-            actionIcon={SearchX}
-            variant="no-results"
+          <Feedback
+            icon={SearchX}
             title={t('department.states.noResultsTitle')}
             body={t('department.states.noResultsBody')}
             actionLabel={t('department.states.noResultsAction')}
             onAction={onClearFilters}
           />
         ) : (
-          <DepartmentFeedback
-            actionIcon={Building2}
-            variant="empty"
+          <Feedback
+            icon={Building2}
             title={t('department.states.emptyTitle')}
             body={t('department.states.emptyBody')}
             actionLabel={t('department.states.emptyAction')}
@@ -157,7 +153,7 @@ export function DepartmentTable({
 
       {state.status === 'ready' && rows.length > 0 && (
         <div className="border-t border-surface-border">
-          <DepartmentPagination
+          <Pagination
             page={page}
             pageCount={pageCount}
             pageSize={pageSize}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { SubCategoryImage } from "../SubCategoryImage";
-import { SubCategoryStatusBadge } from "../SubCategoryStatusBadge";
-import { formatUpdatedAtFull } from "../../utils/format-updated-at";
+import { StatusBadge, formatUpdatedAtFull } from "@/modules/common-data";
 import type { SubCategoryDetailsDialogProps } from "../../types/sub-category.types";
 import { useTranslation } from "@/i18n";
 import { Button } from "@/shared/components/ui/button";
@@ -36,7 +35,7 @@ export function SubCategoryDetailsDialog({
             <span className="truncate text-base font-semibold text-ink">
               {subCategory.name}
             </span>
-            <SubCategoryStatusBadge status={subCategory.status} className="ml-auto" />
+            <StatusBadge status={subCategory.status} className="ml-auto" />
           </div>
         </DialogHeader>
 

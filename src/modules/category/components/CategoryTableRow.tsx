@@ -1,9 +1,8 @@
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
 import { cn } from '@/shared/utils/utils'
+import { StatusBadge, formatUpdatedAtCompact } from '@/modules/common-data'
 import { CategoryImage } from './CategoryImage'
-import { CategoryStatusBadge } from './CategoryStatusBadge'
-import { formatUpdatedAtCompact } from '../utils/format-updated-at'
 import type { CategoryTableRowProps } from '../types/category.types'
 
 const cellClasses = 'px-4 py-3.5 text-[13px] text-ink-muted'
@@ -41,7 +40,7 @@ function CategoryTableRow({
       <td className={cn(cellClasses, 'font-semibold')}>{category.code}</td>
       <td className={cn(cellClasses, 'line-clamp-1 truncate max-w-sm')}>{category.description}</td>
       <td className="px-4 py-3.5">
-        <CategoryStatusBadge status={category.status} />
+        <StatusBadge status={category.status} />
       </td>
       <td className={cellClasses}>
         <time dateTime={category.updatedAt}>

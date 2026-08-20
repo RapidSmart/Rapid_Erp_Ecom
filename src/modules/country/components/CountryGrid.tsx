@@ -1,16 +1,14 @@
 import { Globe, SearchX, TriangleAlert } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { Feedback, CardSkeleton } from '@/modules/common-data'
 import { CountryCard } from './CountryCard'
-import { CountryCardSkeleton } from './skeleton/CountryCardSkeleton'
-import { CountryFeedback } from './CountryFeedback'
 import type { CountryGridProps } from '../types/country.types'
 
 const SKELETON_COUNT = 8
 
 const gridClasses =
   'grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-x-3.5 gap-y-5'
-
 
 function CountryGrid({
   state,
@@ -31,7 +29,7 @@ function CountryGrid({
       <div className={gridClasses} role="status" aria-busy="true">
         <span className="sr-only">{t('country.states.loading')}</span>
         {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-          <CountryCardSkeleton key={index} />
+          <CardSkeleton key={index} />
         ))}
       </div>
     )
@@ -39,7 +37,7 @@ function CountryGrid({
 
   if (state.status === 'error') {
     return (
-      <CountryFeedback
+      <Feedback
         icon={TriangleAlert}
         tone="danger"
         title={t('country.states.errorTitle')}
@@ -52,7 +50,7 @@ function CountryGrid({
 
   if (state.data.length === 0) {
     return isFiltered ? (
-      <CountryFeedback
+      <Feedback
         icon={SearchX}
         title={t('country.states.noResultsTitle')}
         body={t('country.states.noResultsBody')}
@@ -60,7 +58,7 @@ function CountryGrid({
         onAction={onClearFilters}
       />
     ) : (
-      <CountryFeedback
+      <Feedback
         icon={Globe}
         title={t('country.states.emptyTitle')}
         body={t('country.states.emptyBody')}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { CategoryImage } from "../CategoryImage";
-import { CategoryStatusBadge } from "../CategoryStatusBadge";
-import { formatUpdatedAtFull } from "../../utils/format-updated-at";
+import { StatusBadge, formatUpdatedAtFull } from "@/modules/common-data";
 import type { CategoryDetailsDialogProps } from "../../types/category.types";
 
 import { useTranslation } from "@/i18n";
@@ -38,7 +37,7 @@ function CategoryDetailsDialog({
             <span className="truncate text-base font-semibold text-ink">
               {category.name}
             </span>
-            <CategoryStatusBadge status={category.status} className="ml-auto" />
+            <StatusBadge status={category.status} className="ml-auto" />
           </div>
         </DialogHeader>
 

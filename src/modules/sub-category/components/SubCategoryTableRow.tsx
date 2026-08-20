@@ -1,9 +1,8 @@
 import { useTranslation } from '@/i18n'
 import { Checkbox } from '@/shared/components/ui/checkbox'
 import { cn } from '@/shared/utils/utils'
+import { StatusBadge, formatUpdatedAtCompact } from '@/modules/common-data'
 import { SubCategoryImage } from './SubCategoryImage'
-import { SubCategoryStatusBadge } from './SubCategoryStatusBadge'
-import { formatUpdatedAtCompact } from '../utils/format-updated-at'
 import type { SubCategoryTableRowProps } from '../types/sub-category.types'
 
 const cellClasses = 'px-4 py-3.5 text-[13px] text-ink-muted'
@@ -41,7 +40,7 @@ function SubCategoryTableRow({
       <td className={cn(cellClasses, 'font-semibold')}>{subCategory.code}</td>
       <td className={cn(cellClasses, 'line-clamp-1 truncate max-w-sm')}>{subCategory.description}</td>
       <td className="px-4 py-3.5">
-        <SubCategoryStatusBadge status={subCategory.status} />
+        <StatusBadge status={subCategory.status} />
       </td>
       <td className={cellClasses}>
         <time dateTime={subCategory.updatedAt}>

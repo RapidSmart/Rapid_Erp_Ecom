@@ -1,9 +1,8 @@
 import { Copy, Pencil, Trash2 } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { cn } from '@/shared/utils/utils'
+import { StatusBadge, formatUpdatedAt } from '@/modules/common-data'
 import { DepartmentImage } from './DepartmentImage'
-import { DepartmentStatusBadge } from './DepartmentStatusBadge'
-import { formatUpdatedAt } from '../utils/format-updated-at'
 import type { DepartmentCardProps } from '../types/department.types'
 
 const actionButtonClasses =
@@ -31,7 +30,7 @@ function DepartmentCard({
           >
             {department.name}
           </button>
-          <DepartmentStatusBadge status={department.status} className="ml-auto" />
+          <StatusBadge status={department.status} className="ml-auto" />
         </div>
 
         <div className="mt-4 flex flex-col gap-1">

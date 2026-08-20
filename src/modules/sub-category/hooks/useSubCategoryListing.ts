@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDebouncedValue } from '@/shared/hooks'
+import { DEFAULT_PAGE_SIZE, DEFAULT_TIME_RANGE } from '@/modules/common-data'
 import {
   subCategoryService,
   isAbortError,
   toSubCategoryError,
 } from '../services/sub-category.service'
-import { DEFAULT_SUB_CATEGORY_TIME_RANGE } from '../constants/sub-category-overview.data'
-import { DEFAULT_SUB_CATEGORY_PAGE_SIZE } from '../constants/sub-category-pagination.data'
 import type {
   AsyncState,
   SubCategory,
@@ -35,10 +34,10 @@ export interface SubCategoryListingController {
   refresh: () => void
   createSubCategory: (payload: SubCategoryPayload) => Promise<SubCategoryError | null>
   updateSubCategory: (
-    code: SubCategoryId,
+    id: SubCategoryId,
     payload: SubCategoryPayload
   ) => Promise<SubCategoryError | null>
-  deleteSubCategory: (code: SubCategoryId) => Promise<SubCategoryError | null>
+  deleteSubCategory: (id: SubCategoryId) => Promise<SubCategoryError | null>
   page: number
   setPage: (page: number) => void
   pageSize: SubCategoryPageSize
@@ -53,7 +52,7 @@ export function useSubCategoryListing(): SubCategoryListingController {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<SubCategoryStatus | null>(null)
   const [range, setRange] = useState<SubCategoryTimeRange>(
-    DEFAULT_SUB_CATEGORY_TIME_RANGE
+    DEFAULT_TIME_RANGE
   )
   const [reloadToken, setReloadToken] = useState(0)
   const [list, setList] = useState<AsyncState<SubCategory[]>>({ status: 'loading' })
@@ -64,7 +63,7 @@ export function useSubCategoryListing(): SubCategoryListingController {
   const [isMutating, setIsMutating] = useState(false)
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState<SubCategoryPageSize>(
-    DEFAULT_SUB_CATEGORY_PAGE_SIZE
+    DEFAULT_PAGE_SIZE
   )
   const [masterCount, setMasterCount] = useState(0)
 

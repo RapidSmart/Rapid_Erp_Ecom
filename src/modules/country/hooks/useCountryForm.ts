@@ -1,5 +1,5 @@
 import { useState, type SubmitEvent } from 'react'
-import { DEFAULT_COUNTRY_STATUS } from '../constants/country-status.data'
+import { DEFAULT_STATUS } from '@/modules/common-data'
 import {
   normalizeCountryPayload,
   validateCountryForm,
@@ -64,7 +64,7 @@ function buildInitialValues(
     iso3: '',
     currency: '',
     callingCode: '',
-    status: DEFAULT_COUNTRY_STATUS,
+    status: DEFAULT_STATUS,
   }
 }
 
