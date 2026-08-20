@@ -1,0 +1,132 @@
+{
+  "listing": {
+    "title": "Listing Colors",
+    "subtitle": "Total Colors {{count}}",
+    "menu": "Toggle navigation",
+    "searchLabel": "Search colors",
+    "searchPlaceholder": "Search color, code or name",
+    "voiceSearch": "Search by voice",
+    "add": "Add",
+    "grid": "Colors",
+    "viewToggle": "Switch to {{view}} view",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "overview": {
+    "title": "Status overview",
+    "records": "{{count}} records",
+    "rangeLabel": "Overview time range",
+    "statFilterHint": "Filter list by {{status}}",
+    "clearFilterHint": "Clear status filter",
+    "ranges": {
+      "live": "Live",
+      "6h": "6 hours",
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "delete": "Delete",
+      "deleted": "Deleted"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "delete": "Delete"
+  },
+  "card": {
+    "iso2": "ISO2",
+    "iso3": "ISO3",
+    "updated": "Updated {{value}}",
+    "details": "View {{name}} details",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "flagAlt": "{{name}} flag"
+  },
+  "table": {
+    "color": "Color",
+    "code": "Code",
+    "description": "Description",
+    "status": "Status",
+    "updated": "Updated",
+    "selectAll": "Select all colors",
+    "selectRow": "Select {{name}}"
+  },
+  "pagination": {
+    "pageSizeLabel": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}} Colors",
+    "ofPages": "of {{count}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+  "states": {
+    "loading": "Loading colors…",
+    "emptyTitle": "No colors yet",
+    "emptyBody": "Add your first color to start building the master data list.",
+    "emptyAction": "Add color",
+    "noResultsTitle": "No colors match your filters",
+    "noResultsBody": "Try a different search term or clear the status filter.",
+    "noResultsAction": "Clear filters",
+    "errorTitle": "Could not load colors",
+    "errorAction": "Try again"
+  },
+  "form": {
+    "createTitle": "Add color",
+    "createDescription": "Create a new color record in the master data list.",
+    "editTitle": "Edit color",
+    "editDescription": "Update the details of this color record.",
+    "duplicateTitle": "Duplicate color",
+    "duplicateDescription": "Create a copy of this color with a new name and code.",
+    "name": "Color name",
+    "namePlaceholder": "e.g. Red",
+    "code": "Color code",
+    "codePlaceholder": "e.g. RED",
+    "description": "Description",
+    "descriptionPlaceholder": "Enter color description...",
+    "status": "Status",
+    "backToList": "Back to list",
+    "cancel": "Cancel",
+    "submitCreate": "Add color",
+    "submitEdit": "Save changes",
+    "submitDuplicate": "Duplicate",
+    "submitting": "Saving…",
+    "errors": {
+      "nameRequired": "Color name is required.",
+      "codeRequired": "Color code is required.",
+      "duplicateCode": "A color with this code already exists."
+    }
+  },
+  "delete": {
+    "title": "Delete color",
+    "description": "\"{{name}}\" will be removed from the color master data. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "details": {
+    "title": "Color details",
+    "status": "Status",
+    "code": "Code",
+    "description": "Description",
+    "updated": "Last updated",
+    "close": "Close",
+    "edit": "Edit"
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "color": "Rapid",
+    "help": "Need help?",
+    "chat": "Live chat"
+  }
+}

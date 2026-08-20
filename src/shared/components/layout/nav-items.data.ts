@@ -10,6 +10,7 @@ import {
   UserCog,
   Map,
   Factory,
+  SwatchBook,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -25,6 +26,7 @@ export const primaryNavItems: NavItem[] = [
   { id: 'analytics', label: 'Analytics', icon: BarChart3, href: '/analytics' },
   { id: 'country', label: 'Country', icon: Globe, href: '/country' },
   { id: 'brands', label: 'Brands', icon: Factory, href: '/brands' },
+  { id: 'colors', label: 'Colors', icon: SwatchBook, href: '/colors' },
   { id: 'document-types', label: 'Document types', icon: FileText, href: '/document-types' },
   { id: 'action-types', label: 'Action types', icon: Zap, href: '/action-types' },
   { id: 'status-types', label: 'Status types', icon: CheckCircle2, href: '/status-types' },
